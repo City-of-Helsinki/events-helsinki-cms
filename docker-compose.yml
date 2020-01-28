@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  database:
+    # https://hub.docker.com/_/postgres
+    image: postgres:12.1
+    volumes:
+      - database-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: primary_db
+      POSTGRES_USER: primary_user
+    ports:
+      - "127.0.0.1:5555:5432"
+
+  api:
+    build:
+        context: .
+        target: development
+    volumes:
+      - .:/app:cached
+    environment:
+      - APPLY_MIGRATIONS=true
+      - CREATE_SUPERUSER=true
+      - DATABASE_URL=postgres://primary_user@database:5432/primary_db
+      - DEBUG=true
+      - DJANGO_SECRET_KEY=NotImportantHere
+      - DEV_SERVER=true
+      - DEV_SERVER_ADDRESS=0.0.0.0:8000
+      - WAIT_FOR_IT_ADDRESS=database:5432
+    ports:
+      - "127.0.0.1:8000:8000"
+
+volumes:
+  database-volume: {}
