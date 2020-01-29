@@ -1,22 +1,19 @@
 import os
+import logging.config
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import dj_database_url
+
+
+ALLOWED_HOSTS = ['*']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_URLCONF = 'project.urls'
+WSGI_APPLICATION = 'project.wsgi.application'
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+# Environments settings
+DEBUG = os.getenv('DEBUG') == 'true'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7fh8m5wzw(uoj_7xow-@o2)ghj288!$ao)3m1c*&n!i(@((#1*'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,11 +21,39 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
+    # disable Django’s static file handling
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+
+    # Django libraries and apps below here
+    'application',
+    'corsheaders',
+    'django_extensions',
+    'drf_yasg',
+    'rest_framework',
 ]
+
+
+# Django REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # CorsMiddleware should be placed as high as possible and above WhiteNoiseMiddleware in particular
+    'corsheaders.middleware.CorsMiddleware',
+    # WhiteNoise middleware should be above all and just below SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -37,7 +62,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
     {
@@ -55,54 +79,102 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'project.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = dict()
+DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=300)
 
 
 # Password validation
-# https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# Swagger settings
+SWAGGER_SETTINGS = {
+    'DOC_EXPANSION': 'list',
+    'OPERATIONS_SORTER': 'method',
+    'REFETCH_SCHEMA_ON_LOGOUT': True,
+    'REFETCH_SCHEMA_WITH_AUTH': True,
+    'USE_SESSION_AUTH': True,
+}
+LOGIN_URL = '/admin/login/'
+LOGOUT_URL = '/admin/logout/'
 
+
+# Static files
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-files')
+
+
+# CORS settings
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',  # local development environment of frontend application
+)
+
+
+# Logging
+def skip_static_requests(record):
+    static_request = record.args[0].startswith('GET /static/')
+    return not static_request
+
+
+logging_configurations = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'skip_static_requests': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': skip_static_requests
+        }
+    },
+    'formatters': {
+        'django.server': {
+            '()': 'django.utils.log.ServerFormatter',
+            'format': '[{server_time}] {message}',
+            'style': '{',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': [],
+            'class': 'logging.StreamHandler',
+        },
+        'django.server': {
+            'level': 'INFO',
+            'filters': ['skip_static_requests'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'django.server',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'django.server': {
+            'handlers': ['django.server'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    }
+}
+LOGGING_CONFIG = None
+logging.config.dictConfig(logging_configurations)
