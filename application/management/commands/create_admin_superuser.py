@@ -15,4 +15,3 @@ class Command(BaseCommand):
 
         User.objects.create_superuser('admin', 'admin@admin.com', 'coconut')
         self.stdout.write('Superuser "admin" with "coconut" password created')
-
