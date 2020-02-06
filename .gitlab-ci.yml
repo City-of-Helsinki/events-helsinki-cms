@@ -3,6 +3,9 @@ include:
     ref: v2
     file: '/.gitlab-ci-template.yml'
 
+variables:
+  APP_MIGRATE_COMMAND: /app/.prod/on_deploy.sh
+
 build:
   extends: .build
 
@@ -14,6 +17,5 @@ review:
 
 staging:
   variables:
-    K8S_SECRET_APPLY_MIGRATIONS: true
     K8S_SECRET_DEBUG: false
     K8S_SECRET_DJANGO_SECRET_KEY: "$GL_QA_DJANGO_SECRET_KEY"
