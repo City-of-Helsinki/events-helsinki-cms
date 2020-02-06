@@ -6,6 +6,12 @@ include:
 build:
   extends: .build
 
+review:
+  extends: .review
+  variables:
+    K8S_SECRET_DEBUG: true
+    K8S_SECRET_DJANGO_SECRET_KEY: "$GL_QA_DJANGO_SECRET_KEY"
+
 staging:
   variables:
     K8S_SECRET_APPLY_MIGRATIONS: true
