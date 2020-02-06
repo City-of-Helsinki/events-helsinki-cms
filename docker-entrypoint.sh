@@ -21,5 +21,5 @@ fi
 if [[ "$DEV_SERVER" = "true" ]]; then
     ./manage.py runserver $DEV_SERVER_ADDRESS
 else
-    gunicorn --config gunicorn_configurations.py project.wsgi
+    gunicorn --config /app/.prod/gunicorn_configurations.py project.wsgi
 fi
