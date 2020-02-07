@@ -6,6 +6,7 @@
 #################################################
 # Whitelisted folders
 #################################################
+!.prod*
 !application*
 !project*
 
@@ -14,7 +15,6 @@
 #################################################
 !.flake8
 !docker-entrypoint.sh
-!gunicorn_configurations.py
 !manage.py
 !mypy.ini
 !requirements*
