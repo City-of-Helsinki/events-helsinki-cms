@@ -13,7 +13,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/admin/')),
+    path('', include('application.urls')),
     path('admin/', admin.site.urls),
-    path('api/', include('application.urls')),
     path('docs/', schema_view.with_ui('swagger')),
 ]
