@@ -13,6 +13,7 @@ coreapi==2.3.3            # via drf-yasg
 coreschema==0.0.4         # via coreapi, drf-yasg
 dj-database-url==0.5.0
 django-cors-headers==3.2.1
+django-extensions==2.2.6
 django-modelcluster==5.0.1  # via wagtail
 django-taggit==1.2.0      # via wagtail
 django-treebeard==4.3.1   # via wagtail
@@ -42,7 +43,7 @@ pytz==2019.3              # via django, django-modelcluster, l18n
 requests==2.22.0
 ruamel.yaml.clib==0.2.0   # via ruamel.yaml
 ruamel.yaml==0.16.6       # via drf-yasg
-six==1.14.0               # via drf-yasg, html5lib, jsonschema, l18n, packaging, pyrsistent, python-dateutil
+six==1.14.0               # via django-extensions, drf-yasg, html5lib, jsonschema, l18n, packaging, pyrsistent, python-dateutil
 sqlparse==0.3.0           # via django
 unidecode==1.1.1          # via wagtail
 uritemplate==3.0.1        # via coreapi, drf-yasg
