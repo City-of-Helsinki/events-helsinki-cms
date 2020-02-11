@@ -32,6 +32,23 @@ INSTALLED_APPS = [
     'django_extensions',
     'drf_yasg',
     'rest_framework',
+
+    # Wagtail apps
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+
+    # Wagtail related apps
+    'modelcluster',
+    'taggit',
 ]
 
 
