@@ -146,6 +146,9 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',  # local development environment of frontend application
 )
 
+# Wagtail settings
+WAGTAIL_SITE_NAME = 'City of Helsinki'
+
 
 # Logging
 def skip_static_requests(record):
