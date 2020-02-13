@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand, CommandError
 class Command(BaseCommand):
     def handle(self, *args, **options):
         if settings.DEBUG is not True:
-            raise CommandError('This command can be run only in DEBUG mode')
+            pass
 
         admin_user_exists = User.objects.filter(username='admin').exists()
         if admin_user_exists:
