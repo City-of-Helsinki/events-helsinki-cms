@@ -32,6 +32,23 @@ INSTALLED_APPS = [
     'django_extensions',
     'drf_yasg',
     'rest_framework',
+
+    # Wagtail apps
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+
+    # Wagtail related apps
+    'modelcluster',
+    'taggit',
 ]
 
 
@@ -60,6 +77,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Wagtail middlewares
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 
@@ -114,15 +135,19 @@ LOGIN_URL = '/admin/login/'
 LOGOUT_URL = '/admin/logout/'
 
 
-# Static files
+# Static and media files
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static-files')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media-files')
 
 # CORS settings
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',  # local development environment of frontend application
 )
+
+# Wagtail settings
+WAGTAIL_SITE_NAME = 'City of Helsinki'
 
 
 # Logging
