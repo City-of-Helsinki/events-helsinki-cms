@@ -11,6 +11,8 @@ build:
   
 test:
   extends: .test
+  variables:
+    TESTING: "true"
 
 review:
   extends: .review

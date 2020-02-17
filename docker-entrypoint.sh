@@ -17,6 +17,9 @@ if [[ "$CREATE_SUPERUSER" = "true" ]]; then
     ./manage.py create_admin_superuser
 fi
 
+if [[ "$TESTING" = "true" ]]; then
+    pytest
+fi
 
 if [[ "$DEV_SERVER" = "true" ]]; then
     ./manage.py runserver $DEV_SERVER_ADDRESS
