@@ -10,10 +10,10 @@ build:
   extends: .build
   
 test:
-  only:
-    refs:
-      - develop
-  extends: .test
+  stage: test
+  script: 
+    pip install pytest;
+    pytest
   variables:
     TESTING: "true"
 
