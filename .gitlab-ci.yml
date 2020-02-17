@@ -8,6 +8,9 @@ variables:
 
 build:
   extends: .build
+  
+test:
+  extends: .test
 
 review:
   extends: .review
