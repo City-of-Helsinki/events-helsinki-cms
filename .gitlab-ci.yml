@@ -10,10 +10,11 @@ build:
   extends: .build
   
 test:
+  stage: test
+  script: pwd; ls
   only:
     refs:
       - develop
-  extends: .test
   variables:
     TESTING: "true"
 
