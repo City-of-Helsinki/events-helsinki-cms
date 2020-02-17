@@ -24,7 +24,7 @@ RUN pip --no-cache-dir install -r /app/requirements.txt
 # ==============================
 FROM base_stage AS development
 # ==============================
-
+ENV PYTEST_ADDOPTS --disable-warnings --verbose --verbose --capture=no --reuse-db
 COPY --chown=appuser:appuser requirements-dev.txt /app/
 RUN pip --no-cache-dir install -r /app/requirements-dev.txt
 
