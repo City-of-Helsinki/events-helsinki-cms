@@ -11,7 +11,7 @@ build:
   
 test:
   stage: test
-  script: pwd; ls
+  script: pytest
   only:
     refs:
       - develop
