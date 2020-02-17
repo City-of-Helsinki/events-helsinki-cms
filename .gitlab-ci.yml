@@ -11,7 +11,9 @@ build:
   
 test:
   stage: test
-  script: pytest
+  script: 
+    pip install -r requirements.txt
+    pytest
   only:
     refs:
       - develop
