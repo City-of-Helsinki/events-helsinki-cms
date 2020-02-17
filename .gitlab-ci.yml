@@ -10,6 +10,9 @@ build:
   extends: .build
   
 test:
+  only:
+    refs:
+      - develop
   extends: .test
   variables:
     TESTING: "true"
