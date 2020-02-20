@@ -8,10 +8,10 @@ variables:
 
 build:
   extends: .build
-  
+
 test:
   stage: test
-  script: 
+  script:
     pip install pytest;
     pytest
   variables:
