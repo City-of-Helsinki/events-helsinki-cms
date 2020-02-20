@@ -1,7 +1,9 @@
 arrow==0.15.5                                   # to work with dates and times for Python, influenced by moment.js
+boto3==1.12.3                                   # AWS SDK which is needed for media files handled by django-storages
 dj-database-url==0.5.0                          # being able to use DATABASE_URL
 django-cors-headers==3.2.1                      # handling server headers required for CORS
 django-extensions==2.2.6                        # lots of useful django management commands like shell_plus
+django-storages==1.9.1                          # Amazon S3 storage support for media files for Wagtail
 django==2.2.9                                   # web framework itself
 djangorestframework==3.11.0                     # creating rest APIs
 drf-yasg==1.17.0                                # Swagger UI for Django REST Framework
