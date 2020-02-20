@@ -1,7 +1,7 @@
 -c requirements.txt # Constrained by requirements.txt
 
-flake8==3.7.9
-mypy==0.761
-pytest-django==3.8.0
-pytest-watch==4.2.0
-pytest==3.10.1 # 5.3.4 breaks ptw with logging issues
+flake8==3.7.9                           # source code checker
+mypy==0.761                             # type checking for Python
+pytest-django==3.8.0                    # Django plugin for Pytest
+pytest-watch==4.2.0                     # continuous test runner
+pytest==3.10.1                          # test runner; 5.3.4 breaks ptw with logging issues

@@ -1,14 +1,14 @@
-arrow==0.15.5
-dj-database-url==0.5.0
-django-cors-headers==3.2.1
-django-extensions==2.2.6
-django==2.2.9
-djangorestframework==3.11.0
-drf-yasg==1.17.0
-gunicorn==20.0.4
-jsonschema==3.2.0
-markdown==3.1.1
-psycopg2-binary==2.8.4
-requests==2.22.0
-wagtail==2.8
-whitenoise==5.0.1
+arrow==0.15.5                                   # to work with dates and times for Python, influenced by moment.js
+dj-database-url==0.5.0                          # being able to use DATABASE_URL
+django-cors-headers==3.2.1                      # handling server headers required for CORS
+django-extensions==2.2.6                        # lots of useful django management commands like shell_plus
+django==2.2.9                                   # web framework itself
+djangorestframework==3.11.0                     # creating rest APIs
+drf-yasg==1.17.0                                # Swagger UI for Django REST Framework
+gunicorn==20.0.4                                # application server
+jsonschema==3.2.0                               # An implementation of JSON Schema validation for Python
+markdown==3.1.1                                 # Markdown support for the browsable API of Django REST Framework
+psycopg2-binary==2.8.4                          # PostgreSQL Database Adapter for Python
+requests==2.22.0                                # sending http requests
+wagtail==2.8                                    # CMS itself
+whitenoise==5.0.1                               # enabling Django to serve its own static files
