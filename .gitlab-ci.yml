@@ -8,6 +8,9 @@ variables:
 
 build:
   extends: .build
+  only:
+    - master
+
 
 test:
   stage: test
