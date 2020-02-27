@@ -18,3 +18,6 @@ makemigrations: clear
 
 migrate: clear
 	@docker-compose exec api python manage.py migrate
+
+collections: clear
+	@docker-compose exec api python manage.py collections_test_data
