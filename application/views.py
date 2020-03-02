@@ -1,7 +1,10 @@
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from application import serializers
+from application import models
 
 
 class HealthCheck(APIView):
@@ -18,8 +21,8 @@ class ReadinessCheck(APIView):
         return Response(status=status.HTTP_200_OK)
 
 
-class Collections(APIView):
+class Collections(generics.ListAPIView):
     permission_classes = (AllowAny,)
 
-    def get(self, request, format=None):
-        return Response(status=status.HTTP_200_OK)
+    queryset = models.Collections.objects.all()
+    serializer_class = serializers.CollectionsSerializer
