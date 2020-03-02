@@ -16,3 +16,10 @@ class ReadinessCheck(APIView):
 
     def get(self, request, format=None):
         return Response(status=status.HTTP_200_OK)
+
+
+class Collections(APIView):
+    permission_classes = (AllowAny,)
+
+    def get(self, request, format=None):
+        return Response(status=status.HTTP_200_OK)
