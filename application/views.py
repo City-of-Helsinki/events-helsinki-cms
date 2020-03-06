@@ -26,3 +26,10 @@ class Collections(generics.ListAPIView):
 
     queryset = models.Collections.objects.all()
     serializer_class = serializers.CollectionsSerializer
+
+
+class CollectionsSingle(generics.RetrieveAPIView):
+    permission_classes = (AllowAny,)
+
+    queryset = models.Collections.objects.all()
+    serializer_class = serializers.CollectionsSerializer
