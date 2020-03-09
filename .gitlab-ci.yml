@@ -8,9 +8,6 @@ variables:
 
 build:
   extends: .build
-  only:
-    - master
-
 
 test:
   stage: test
@@ -32,6 +29,8 @@ staging:
     K8S_SECRET_DJANGO_SECRET_KEY: "$GL_QA_DJANGO_SECRET_KEY"
 
 production:
+  only:
+    - production
   variables:
     K8S_SECRET_DEBUG: "false"
     K8S_SECRET_DJANGO_SECRET_KEY: "$GL_PRODUCTION_DJANGO_SECRET_KEY"
