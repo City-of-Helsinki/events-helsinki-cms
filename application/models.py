@@ -43,6 +43,10 @@ class Collections(Page):
     description_fi = models.TextField(null=True)
     description_sv = models.TextField(null=True)
 
+    social_media_description_en = models.TextField(null=True)
+    social_media_description_fi = models.TextField(null=True)
+    social_media_description_sv = models.TextField(null=True)
+
     link_text_en = models.CharField(max_length=255, null=True, blank=True)
     link_text_fi = models.CharField(max_length=255, null=True, blank=True)
     link_text_sv = models.CharField(max_length=255, null=True, blank=True)
@@ -93,6 +97,14 @@ class Collections(Page):
                 FieldPanel('description_sv'),
             ],
             heading="Description",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('social_media_description_en'),
+                FieldPanel('social_media_description_fi'),
+                FieldPanel('social_media_description_sv'),
+            ],
+            heading="Social Media Description",
         ),
         MultiFieldPanel(
             [
