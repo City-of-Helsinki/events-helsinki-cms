@@ -43,13 +43,13 @@ class Collections(Page):
     description_fi = models.TextField(null=True)
     description_sv = models.TextField(null=True)
 
-    link_text_en = models.CharField(max_length=255, null=True)
-    link_text_fi = models.CharField(max_length=255, null=True)
-    link_text_sv = models.CharField(max_length=255, null=True)
+    link_text_en = models.CharField(max_length=255, null=True, blank=True)
+    link_text_fi = models.CharField(max_length=255, null=True, blank=True)
+    link_text_sv = models.CharField(max_length=255, null=True, blank=True)
 
-    link_url_en = models.URLField(max_length=200, null=True)
-    link_url_fi = models.URLField(max_length=200, null=True)
-    link_url_sv = models.URLField(max_length=200, null=True)
+    link_url_en = models.URLField(max_length=200, null=True, blank=True)
+    link_url_fi = models.URLField(max_length=200, null=True, blank=True)
+    link_url_sv = models.URLField(max_length=200, null=True, blank=True)
 
     event_list_title_en = models.CharField(max_length=255, null=True)
     event_list_title_fi = models.CharField(max_length=255, null=True)
