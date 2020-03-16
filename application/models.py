@@ -73,6 +73,7 @@ class Collections(Page):
                 FieldPanel('title_sv'),
             ],
             heading="Title",
+            help_text='Help text number 1',
         ),
         MultiFieldPanel(
             [
@@ -81,6 +82,7 @@ class Collections(Page):
                 FieldPanel('curated_events_title_sv'),
             ],
             heading="Curated Events Title",
+            help_text='Help text number 2',
         ),
         MultiFieldPanel(
             [
@@ -89,6 +91,7 @@ class Collections(Page):
                 FieldPanel('subtitles_sv'),
             ],
             heading="Subtitles",
+            help_text='Help text number 3',
         ),
         MultiFieldPanel(
             [
@@ -97,6 +100,7 @@ class Collections(Page):
                 FieldPanel('description_sv'),
             ],
             heading="Description",
+            help_text='Help text number 4',
         ),
         MultiFieldPanel(
             [
@@ -105,6 +109,7 @@ class Collections(Page):
                 FieldPanel('social_media_description_sv'),
             ],
             heading="Social Media Description",
+            help_text='Help text number 5',
         ),
         MultiFieldPanel(
             [
@@ -113,6 +118,7 @@ class Collections(Page):
                 FieldPanel('link_text_sv'),
             ],
             heading="Link Text",
+            help_text='Help text number 6',
         ),
         MultiFieldPanel(
             [
@@ -121,6 +127,7 @@ class Collections(Page):
                 FieldPanel('link_url_sv'),
             ],
             heading="Link URL",
+            help_text='Help text number 7',
         ),
         MultiFieldPanel(
             [
@@ -129,8 +136,15 @@ class Collections(Page):
                 FieldPanel('event_list_title_sv'),
             ],
             heading="Event List Title",
+            help_text='Help text number 8',
         ),
-        FieldPanel('event_list_query'),
+        MultiFieldPanel(
+            [
+                FieldPanel('event_list_query'),
+            ],
+            heading="Event List Query",
+            help_text='Help text number 9',
+        ),
         StreamFieldPanel('curated_events'),
     ]
 
