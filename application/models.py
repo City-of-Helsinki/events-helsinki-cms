@@ -35,9 +35,9 @@ class Collections(Page):
     curated_events_title_fi = models.CharField(max_length=255, null=True)
     curated_events_title_sv = models.CharField(max_length=255, null=True)
 
-    short_description_en = models.CharField(max_length=255, null=True)
-    short_description_fi = models.CharField(max_length=255, null=True)
-    short_description_sv = models.CharField(max_length=255, null=True)
+    subtitles_en = models.CharField(max_length=255, null=True)
+    subtitles_fi = models.CharField(max_length=255, null=True)
+    subtitles_sv = models.CharField(max_length=255, null=True)
 
     description_en = models.TextField(null=True)
     description_fi = models.TextField(null=True)
@@ -84,11 +84,11 @@ class Collections(Page):
         ),
         MultiFieldPanel(
             [
-                FieldPanel('short_description_en'),
-                FieldPanel('short_description_fi'),
-                FieldPanel('short_description_sv'),
+                FieldPanel('subtitles_en'),
+                FieldPanel('subtitles_fi'),
+                FieldPanel('subtitles_sv'),
             ],
-            heading="Short Description",
+            heading="Subtitles",
         ),
         MultiFieldPanel(
             [
