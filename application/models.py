@@ -26,6 +26,14 @@ class CollectionsGroup(Page):
 class Collections(Page):
     parent_page_types = ['application.CollectionsGroup']
     subpage_typed = []
+    color_choices = [
+        ('COLOR_A', 'First Color'),
+        ('COLOR_B', 'Second Color'),
+        ('COLOR_C', 'Third Color'),
+        ('COLOR_D', 'Fourth Color'),
+    ]
+
+    box_color = models.CharField(max_length=255, choices=color_choices, null=True)
 
     # title comes from Page class itself
     title_fi = models.CharField(max_length=255, null=True)
@@ -66,6 +74,13 @@ class Collections(Page):
     ], null=True)
 
     content_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('box_color'),
+            ],
+            heading="Box Color",
+            help_text='Help text number 0',
+        ),
         MultiFieldPanel(
             [
                 FieldPanel('title'),
