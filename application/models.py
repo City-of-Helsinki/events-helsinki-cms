@@ -7,7 +7,7 @@ from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamField
 
 class HelsinkiActivities(Page):
     parent_page_types = ['wagtailcore.Page']
-    subpage_typed = ['application.CollectionsGroup']
+    subpage_typed = ['application.CollectionsGroup', 'application.LandingPage']
     max_count = 1
 
     class Meta:
@@ -21,6 +21,96 @@ class CollectionsGroup(Page):
 
     class Meta:
         verbose_name = 'Collection Group'
+
+
+class LandingPage(Page):
+    parent_page_types = ['application.HelsinkiActivities']
+    subpage_typed = []
+    max_count = 1
+
+    # title comes from Page class itself
+    title_fi = models.CharField(max_length=255, null=True)
+    title_sv = models.CharField(max_length=255, null=True)
+
+    description_en = models.TextField(null=True)
+    description_fi = models.TextField(null=True)
+    description_sv = models.TextField(null=True)
+
+    button_text_en = models.CharField(max_length=255, null=True)
+    button_text_fi = models.CharField(max_length=255, null=True)
+    button_text_sv = models.CharField(max_length=255, null=True)
+
+    button_url_en = models.URLField(max_length=200, null=True)
+    button_url_fi = models.URLField(max_length=200, null=True)
+    button_url_sv = models.URLField(max_length=200, null=True)
+
+    meta_information_en = models.TextField(null=True)
+    meta_information_fi = models.TextField(null=True)
+    meta_information_sv = models.TextField(null=True)
+
+    page_title_en = models.CharField(max_length=255, null=True)
+    page_title_fi = models.CharField(max_length=255, null=True)
+    page_title_sv = models.CharField(max_length=255, null=True)
+
+    class Meta:
+        verbose_name = 'Landing Page'
+
+    content_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('title'),
+                FieldPanel('title_fi'),
+                FieldPanel('title_sv'),
+            ],
+            heading="Title",
+            help_text='Help text number 1',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('description_en'),
+                FieldPanel('description_fi'),
+                FieldPanel('description_sv'),
+            ],
+            heading="Description",
+            help_text='Help text number 2',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('button_text_en'),
+                FieldPanel('button_text_fi'),
+                FieldPanel('button_text_sv'),
+            ],
+            heading="Button Text",
+            help_text='Help text number 3',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('button_url_en'),
+                FieldPanel('button_url_fi'),
+                FieldPanel('button_url_sv'),
+            ],
+            heading="Button Url",
+            help_text='Help text number 4',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('meta_information_en'),
+                FieldPanel('meta_information_fi'),
+                FieldPanel('meta_information_sv'),
+            ],
+            heading="Meta Information",
+            help_text='Help text number 5',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('page_title_en'),
+                FieldPanel('page_title_fi'),
+                FieldPanel('page_title_sv'),
+            ],
+            heading="Page Title",
+            help_text='Help text number 6',
+        ),
+    ]
 
 
 class Collections(Page):
