@@ -5,6 +5,8 @@ from wagtail.core import models as wagtail_models
 from application import models
 
 COLLECTION_BASE = {
+    "box_color": "COLOR_A",
+
     "curated_events": [
         ('event_link', "http://localhost:3000/fi/event/helsinki:afxh3naida?id=123"),
         ('event_link', "http://localhost:3000/fi/event/helsinki:afxrsql3xa"),
@@ -21,6 +23,10 @@ COLLECTION_BASE = {
     "description_fi": "Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero",
     "description_sv": "Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero",
 
+    "social_media_description_en": "social media is social. eget condimentum rhoncus, sem quam semper libero",
+    "social_media_description_fi": "social media is social. eget condimentum rhoncus, sem quam semper libero",
+    "social_media_description_sv": "social media is social. eget condimentum rhoncus, sem quam semper libero",
+
     "event_list_query": "http://localhost:3000/en/events?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
 
     "event_list_title_en": "All the best events of the fall",
@@ -35,9 +41,9 @@ COLLECTION_BASE = {
     "link_url_fi": "http://www.google.com",
     "link_url_sv": "http://www.google.com",
 
-    "short_description_en": "We put together the best foliage for the fall",
-    "short_description_fi": "Kokosimme parhaat tärpit syksylle",
-    "short_description_sv": "Vi sätter ihop det bästa bladverket för hösten",
+    "subtitles_en": "We put together the best foliage for the fall",
+    "subtitles_fi": "Kokosimme parhaat tärpit syksylle",
+    "subtitles_sv": "Vi sätter ihop det bästa bladverket för hösten",
 
     "title_fi": "Syksyn riehakkaimmat riennot",
     "title_sv": "Höstens mest livliga knep",
