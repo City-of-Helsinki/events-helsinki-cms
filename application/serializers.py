@@ -13,3 +13,9 @@ class CollectionsSerializer(serializers.ModelSerializer):
     def get_curated_events(self, obj):
         clean_curated_events = [curated_event.get('value') for curated_event in obj.curated_events.stream_data]
         return clean_curated_events
+
+
+class LandingPageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.LandingPage
+        exclude = []
