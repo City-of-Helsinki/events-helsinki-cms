@@ -21,3 +21,6 @@ migrate: clear
 
 collections: clear
 	@docker-compose exec api python manage.py collections_test_data
+
+landing_page: clear collections
+	@docker-compose exec api python manage.py landing_page_test_data
