@@ -40,9 +40,9 @@ class LandingPage(Page):
     button_text_fi = models.CharField(max_length=255, null=True)
     button_text_sv = models.CharField(max_length=255, null=True)
 
-    button_url_en = models.URLField(max_length=200, null=True)
-    button_url_fi = models.URLField(max_length=200, null=True)
-    button_url_sv = models.URLField(max_length=200, null=True)
+    button_url_en = models.URLField(max_length=500, null=True)
+    button_url_fi = models.URLField(max_length=500, null=True)
+    button_url_sv = models.URLField(max_length=500, null=True)
 
     meta_information_en = models.TextField(null=True)
     meta_information_fi = models.TextField(null=True)
@@ -149,15 +149,15 @@ class Collections(Page):
     link_text_fi = models.CharField(max_length=255, null=True, blank=True)
     link_text_sv = models.CharField(max_length=255, null=True, blank=True)
 
-    link_url_en = models.URLField(max_length=200, null=True, blank=True)
-    link_url_fi = models.URLField(max_length=200, null=True, blank=True)
-    link_url_sv = models.URLField(max_length=200, null=True, blank=True)
+    link_url_en = models.URLField(max_length=500, null=True, blank=True)
+    link_url_fi = models.URLField(max_length=500, null=True, blank=True)
+    link_url_sv = models.URLField(max_length=500, null=True, blank=True)
 
     event_list_title_en = models.CharField(max_length=255, null=True)
     event_list_title_fi = models.CharField(max_length=255, null=True)
     event_list_title_sv = models.CharField(max_length=255, null=True)
 
-    event_list_query = models.URLField(max_length=200, null=True)
+    event_list_query = models.URLField(max_length=500, null=True)
 
     curated_events = StreamField([
         ('event_link', blocks.URLBlock()),
