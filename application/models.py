@@ -117,10 +117,10 @@ class Collections(Page):
     parent_page_types = ['application.CollectionsGroup']
     subpage_typed = []
     color_choices = [
-        ('COLOR_A', 'First Color'),
-        ('COLOR_B', 'Second Color'),
-        ('COLOR_C', 'Third Color'),
-        ('COLOR_D', 'Fourth Color'),
+        ('SUMU', 'Sumu'),
+        ('ENGEL', 'Engel'),
+        ('KUPARI', 'Kupari'),
+        ('SUOMENLINNA', 'Suomenlinna'),
     ]
 
     box_color = models.CharField(max_length=255, choices=color_choices, null=True)

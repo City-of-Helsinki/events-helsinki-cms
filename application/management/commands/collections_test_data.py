@@ -5,7 +5,7 @@ from wagtail.core import models as wagtail_models
 from application import models
 
 COLLECTION_BASE = {
-    "box_color": "COLOR_A",
+    "box_color": "SUOMENLINNA",
 
     "curated_events": [
         ('event_link', "http://localhost:3000/fi/event/helsinki:afxh3naida?id=123"),
