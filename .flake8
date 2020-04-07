@@ -2,3 +2,5 @@
 max-line-length = 120
 exclude =
     */migrations/*
+per-file-ignores =
+    application/models.py:E501

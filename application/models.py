@@ -174,7 +174,7 @@ class Collections(Page):
                 FieldPanel('title'),
             ],
             heading="OTSIKKO",
-            help_text='Tähän tulee kokoelmasi pääotsikko. Pidäthän otsikon lyhyenä ja ytimekkäänä.',  # noqa: E501
+            help_text='Tähän tulee kokoelmasi pääotsikko. Pidäthän otsikon lyhyenä ja ytimekkäänä.',
         ),
         MultiFieldPanel(
             [
@@ -183,7 +183,7 @@ class Collections(Page):
                 FieldPanel('description_en'),
             ],
             heading="KOKOELMAN KUVAUS",
-            help_text='Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja inspiroi käyttäjiä tutustumaan suosituksiin.',  # noqa: E501
+            help_text='Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja inspiroi käyttäjiä tutustumaan suosituksiin.',
         ),
         MultiFieldPanel(
             [
@@ -192,7 +192,7 @@ class Collections(Page):
                 FieldPanel('link_text_en'),
             ],
             heading="LINKKITEKSTI",
-            help_text='Vapaaehtoinen linkki, joka ohjaa lukijan pois kokoelmasta. Käytä vain harkitusti ja pidä linkkiteksti lyhyenä.',  # noqa: E501
+            help_text='Vapaaehtoinen linkki, joka ohjaa lukijan pois kokoelmasta. Käytä vain harkitusti ja pidä linkkiteksti lyhyenä.',
         ),
         MultiFieldPanel(
             [
@@ -201,7 +201,7 @@ class Collections(Page):
                 FieldPanel('link_url_en'),
             ],
             heading="LINKIN WWW-OSOITE",
-            help_text='Jos lisäsit aikaisempaan \'Linkkiteksti\'-osioon linkin, lisää tähän kenttään www-osoite, johon käyttäjä ohjataan.',  # noqa: E501
+            help_text='Jos lisäsit aikaisempaan \'Linkkiteksti\'-osioon linkin, lisää tähän kenttään www-osoite, johon käyttäjä ohjataan.',
         ),
         MultiFieldPanel(
             [
@@ -210,7 +210,7 @@ class Collections(Page):
                 FieldPanel('social_media_description_en'),
             ],
             heading="KUVAUS SOSIAALISEEN MEDIAAN",
-            help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',  # noqa: E501
+            help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',
         ),
         MultiFieldPanel(
             [
@@ -219,14 +219,14 @@ class Collections(Page):
                 FieldPanel('curated_events_title_en'),
             ],
             heading="SUOSITELTAVIEN TAPAHTUMIEN OTSIKKO",
-            help_text='Kirjoita tähän otsikko, jonka haluat näyttää käsin poimittavien, suositeltavien tapahtumien yläpuolella.',  # noqa: E501
+            help_text='Kirjoita tähän otsikko, jonka haluat näyttää käsin poimittavien, suositeltavien tapahtumien yläpuolella.',
         ),
         MultiFieldPanel(
             [
                 StreamFieldPanel('curated_events'),
             ],
             heading="SUOSITELTAVAT TAPAHTUMAT",
-            help_text='Lisää tähän ne tapahtumat, joita haluat suositella käyttäjälle. Tapahtumat näkyvät siinä järjestyksessä, jossa syötät ne. Voit helposti lisätä uusia tapahtumia, poistaa niitä ja muuttaa järjestystä. Mene haluamasi tapahtuman sivulle, kopioi sen www-osoite ja liitä osoite alla olevaan kenttään.',  # noqa: E501
+            help_text='Lisää tähän ne tapahtumat, joita haluat suositella käyttäjälle. Tapahtumat näkyvät siinä järjestyksessä, jossa syötät ne. Voit helposti lisätä uusia tapahtumia, poistaa niitä ja muuttaa järjestystä. Mene haluamasi tapahtuman sivulle, kopioi sen www-osoite ja liitä osoite alla olevaan kenttään.',
         ),
         MultiFieldPanel(
             [
@@ -235,14 +235,14 @@ class Collections(Page):
                 FieldPanel('event_list_title_en'),
             ],
             heading="MUIDEN TAPAHTUMIEN OTSIKKO",
-            help_text='Käsin poimittujen tapahtumien voit tässä suositella muita samankaltaisia tai muuten kiinnostavia tapahtumia. Näille tapahtumille tarvitaan oma otsikko, esim. "Tutustu myös näihin".',  # noqa: E501
+            help_text='Käsin poimittujen tapahtumien voit tässä suositella muita samankaltaisia tai muuten kiinnostavia tapahtumia. Näille tapahtumille tarvitaan oma otsikko, esim. "Tutustu myös näihin".',
         ),
         MultiFieldPanel(
             [
                 FieldPanel('event_list_query'),
             ],
             heading="TAPAHTUMALISTAUKSEN HAUN WWW-OSOITE",
-            help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',  # noqa: E501
+            help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',
         ),
     ]
 
