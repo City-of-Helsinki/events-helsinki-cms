@@ -125,39 +125,39 @@ class Collections(Page):
 
     box_color = models.CharField(max_length=255, choices=color_choices, null=True)
 
-    title_fi = models.CharField(max_length=255, null=True, blank=True)
-    title_sv = models.CharField(max_length=255, null=True, blank=True)
+    title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko FI')
+    title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko SV')
     # title comes from Page class itself
 
-    description_fi = models.TextField(null=True, blank=True)
-    description_sv = models.TextField(null=True, blank=True)
-    description_en = models.TextField(null=True, blank=True)
+    description_fi = models.TextField(null=True, blank=True, verbose_name='Kuvaus FI')
+    description_sv = models.TextField(null=True, blank=True, verbose_name='Kuvaus SV')
+    description_en = models.TextField(null=True, blank=True, verbose_name='Kuvaus EN')
 
-    link_text_fi = models.CharField(max_length=255, null=True, blank=True)
-    link_text_sv = models.CharField(max_length=255, null=True, blank=True)
-    link_text_en = models.CharField(max_length=255, null=True, blank=True)
+    link_text_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teskti FI')
+    link_text_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teskti SV')
+    link_text_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teskti EN')
 
-    link_url_fi = models.URLField(max_length=500, null=True, blank=True)
-    link_url_sv = models.URLField(max_length=500, null=True, blank=True)
-    link_url_en = models.URLField(max_length=500, null=True, blank=True)
+    link_url_fi = models.URLField(max_length=500, null=True, blank=True, verbose_name='Linkki suomenkieliselle sivulle')
+    link_url_sv = models.URLField(max_length=500, null=True, blank=True, verbose_name='Linkki ruotsinkieliselle sivulle')
+    link_url_en = models.URLField(max_length=500, null=True, blank=True, verbose_name='Linkki englanninkieliselle sivulle')
 
-    social_media_description_fi = models.TextField(null=True, blank=True)
-    social_media_description_sv = models.TextField(null=True, blank=True)
-    social_media_description_en = models.TextField(null=True, blank=True)
+    social_media_description_fi = models.TextField(null=True, blank=True, verbose_name='Some-kuvaus FI')
+    social_media_description_sv = models.TextField(null=True, blank=True, verbose_name='Some-kuvaus SV')
+    social_media_description_en = models.TextField(null=True, blank=True, verbose_name='Some-kuvaus EN')
 
-    curated_events_title_fi = models.CharField(max_length=255, null=True, blank=True)
-    curated_events_title_sv = models.CharField(max_length=255, null=True, blank=True)
-    curated_events_title_en = models.CharField(max_length=255, null=True, blank=True)
+    curated_events_title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko FI')
+    curated_events_title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko SV')
+    curated_events_title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko EN')
 
     curated_events = StreamField([
         ('event_link', blocks.URLBlock()),
-    ], null=True)
+    ], null=True, verbose_name='Suositeltavat tapahtumat')
 
-    event_list_title_fi = models.CharField(max_length=255, null=True, blank=True)
-    event_list_title_sv = models.CharField(max_length=255, null=True, blank=True)
-    event_list_title_en = models.CharField(max_length=255, null=True, blank=True)
+    event_list_title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko FI')
+    event_list_title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko SV')
+    event_list_title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko EN')
 
-    event_list_query = models.URLField(max_length=500, null=True)
+    event_list_query = models.URLField(max_length=500, null=True, verbose_name='Hakutulossivun www-osoite')
 
     content_panels = [
         MultiFieldPanel(
@@ -173,7 +173,7 @@ class Collections(Page):
                 FieldPanel('title_sv'),
                 FieldPanel('title'),
             ],
-            heading="Title",
+            heading="OTSIKKO",
             help_text='Tähän tulee kokoelmasi pääotsikko. Pidäthän otsikon lyhyenä ja ytimekkäänä.',  # noqa: E501
         ),
         MultiFieldPanel(
@@ -182,7 +182,7 @@ class Collections(Page):
                 FieldPanel('description_sv'),
                 FieldPanel('description_en'),
             ],
-            heading="Description",
+            heading="KOKOELMAN KUVAUS",
             help_text='Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja inspiroi käyttäjiä tutustumaan suosituksiin.',  # noqa: E501
         ),
         MultiFieldPanel(
@@ -191,7 +191,7 @@ class Collections(Page):
                 FieldPanel('link_text_sv'),
                 FieldPanel('link_text_en'),
             ],
-            heading="Link Text",
+            heading="LINKKITEKSTI",
             help_text='Vapaaehtoinen linkki, joka ohjaa lukijan pois kokoelmasta. Käytä vain harkitusti ja pidä linkkiteksti lyhyenä.',  # noqa: E501
         ),
         MultiFieldPanel(
@@ -200,7 +200,7 @@ class Collections(Page):
                 FieldPanel('link_url_sv'),
                 FieldPanel('link_url_en'),
             ],
-            heading="Link URL",
+            heading="LINKIN WWW-OSOITE",
             help_text='Jos lisäsit aikaisempaan \'Linkkiteksti\'-osioon linkin, lisää tähän kenttään www-osoite, johon käyttäjä ohjataan.',  # noqa: E501
         ),
         MultiFieldPanel(
@@ -209,7 +209,7 @@ class Collections(Page):
                 FieldPanel('social_media_description_sv'),
                 FieldPanel('social_media_description_en'),
             ],
-            heading="Social Media Description",
+            heading="KUVAUS SOSIAALISEEN MEDIAAN",
             help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',  # noqa: E501
         ),
         MultiFieldPanel(
@@ -218,14 +218,14 @@ class Collections(Page):
                 FieldPanel('curated_events_title_sv'),
                 FieldPanel('curated_events_title_en'),
             ],
-            heading="Curated Events Title",
+            heading="SUOSITELTAVIEN TAPAHTUMIEN OTSIKKO",
             help_text='Kirjoita tähän otsikko, jonka haluat näyttää käsin poimittavien, suositeltavien tapahtumien yläpuolella.',  # noqa: E501
         ),
         MultiFieldPanel(
             [
                 StreamFieldPanel('curated_events'),
             ],
-            heading="Curated Events",
+            heading="SUOSITELTAVAT TAPAHTUMAT",
             help_text='Lisää tähän ne tapahtumat, joita haluat suositella käyttäjälle. Tapahtumat näkyvät siinä järjestyksessä, jossa syötät ne. Voit helposti lisätä uusia tapahtumia, poistaa niitä ja muuttaa järjestystä. Mene haluamasi tapahtuman sivulle, kopioi sen www-osoite ja liitä osoite alla olevaan kenttään.',  # noqa: E501
         ),
         MultiFieldPanel(
@@ -234,14 +234,14 @@ class Collections(Page):
                 FieldPanel('event_list_title_sv'),
                 FieldPanel('event_list_title_en'),
             ],
-            heading="Event List Title",
+            heading="MUIDEN TAPAHTUMIEN OTSIKKO",
             help_text='Käsin poimittujen tapahtumien voit tässä suositella muita samankaltaisia tai muuten kiinnostavia tapahtumia. Näille tapahtumille tarvitaan oma otsikko, esim. "Tutustu myös näihin".',  # noqa: E501
         ),
         MultiFieldPanel(
             [
                 FieldPanel('event_list_query'),
             ],
-            heading="Event List Query",
+            heading="TAPAHTUMALISTAUKSEN HAUN WWW-OSOITE",
             help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',  # noqa: E501
         ),
     ]
