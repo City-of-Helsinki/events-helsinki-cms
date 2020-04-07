@@ -32,9 +32,9 @@ class LandingPage(Page):
     title_sv = models.CharField(max_length=255, null=True)
     # title comes from Page class itself
 
-    description_fi = models.TextField(null=True)
-    description_sv = models.TextField(null=True)
-    description_en = models.TextField(null=True)
+    description_fi = models.TextField(null=True, blank=True)
+    description_sv = models.TextField(null=True, blank=True)
+    description_en = models.TextField(null=True, blank=True)
 
     button_text_fi = models.CharField(max_length=255, null=True)
     button_text_sv = models.CharField(max_length=255, null=True)
