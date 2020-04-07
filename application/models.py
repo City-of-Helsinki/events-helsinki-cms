@@ -3,6 +3,7 @@ from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 
 
 class HelsinkiActivities(Page):
@@ -51,9 +52,6 @@ class LandingPage(Page):
     page_title_fi = models.CharField(max_length=255, null=True)
     page_title_sv = models.CharField(max_length=255, null=True)
     page_title_en = models.CharField(max_length=255, null=True)
-
-    class Meta:
-        verbose_name = 'Landing Page'
 
     content_panels = [
         MultiFieldPanel(
@@ -111,6 +109,14 @@ class LandingPage(Page):
             help_text='Help text number 6',
         ),
     ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading='Sisältö'),
+        ObjectList(Page.settings_panels, heading='Asetukset', classname='settings'),
+    ])
+
+    class Meta:
+        verbose_name = 'Landing Page'
 
 
 class Collections(Page):
@@ -245,6 +251,11 @@ class Collections(Page):
             help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',
         ),
     ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading='Sisältö'),
+        ObjectList(Page.settings_panels, heading='Asetukset', classname='settings'),
+    ])
 
     class Meta:
         verbose_name = 'Collection'
