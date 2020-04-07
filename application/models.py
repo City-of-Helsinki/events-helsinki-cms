@@ -237,7 +237,13 @@ class Collections(Page):
             heading="Event List Query",
             help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',  # noqa: E501
         ),
-        StreamFieldPanel('curated_events'),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('curated_events'),
+            ],
+            heading="Curated Events",
+            help_text='Lisää tähän ne tapahtumat, joita haluat suositella käyttäjälle. Tapahtumat näkyvät siinä järjestyksessä, jossa syötät ne. Voit helposti lisätä uusia tapahtumia, poistaa niitä ja muuttaa järjestystä. Mene haluamasi tapahtuman sivulle, kopioi sen www-osoite ja liitä osoite alla olevaan kenttään.',  # noqa: E501
+        ),
     ]
 
     class Meta:
