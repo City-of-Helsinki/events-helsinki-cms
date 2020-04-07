@@ -29,29 +29,29 @@ class LandingPage(Page):
     subpage_typed = []
     max_count = 1
 
-    title_fi = models.CharField(max_length=255, null=True)
-    title_sv = models.CharField(max_length=255, null=True)
+    title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
+    title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
     # title comes from Page class itself
 
-    description_fi = models.TextField(null=True, blank=True)
-    description_sv = models.TextField(null=True, blank=True)
-    description_en = models.TextField(null=True, blank=True)
+    description_fi = models.TextField(null=True, blank=True, verbose_name='Selite FI')
+    description_sv = models.TextField(null=True, blank=True, verbose_name='Selite SV')
+    description_en = models.TextField(null=True, blank=True, verbose_name='Selite EN')
 
-    button_text_fi = models.CharField(max_length=255, null=True)
-    button_text_sv = models.CharField(max_length=255, null=True)
-    button_text_en = models.CharField(max_length=255, null=True)
+    button_text_fi = models.CharField(max_length=255, null=True, verbose_name='Napin teksti FI')
+    button_text_sv = models.CharField(max_length=255, null=True, verbose_name='Napin teksti SV')
+    button_text_en = models.CharField(max_length=255, null=True, verbose_name='Napin teksti EN')
 
-    button_url_fi = models.URLField(max_length=500, null=True)
-    button_url_sv = models.URLField(max_length=500, null=True)
-    button_url_en = models.URLField(max_length=500, null=True)
+    button_url_fi = models.URLField(max_length=500, null=True, verbose_name='Linkki suomenkieliselle sivulle')
+    button_url_sv = models.URLField(max_length=500, null=True, verbose_name='Linkki ruotsinkieliselle sivulle')
+    button_url_en = models.URLField(max_length=500, null=True, verbose_name='Linkki englanninkieliselle sivulle')
 
-    meta_information_fi = models.TextField(null=True)
-    meta_information_sv = models.TextField(null=True)
-    meta_information_en = models.TextField(null=True)
+    meta_information_fi = models.TextField(null=True, verbose_name='Meta tieto FI')
+    meta_information_sv = models.TextField(null=True, verbose_name='Meta tieto SV')
+    meta_information_en = models.TextField(null=True, verbose_name='Meta tieto EN')
 
-    page_title_fi = models.CharField(max_length=255, null=True)
-    page_title_sv = models.CharField(max_length=255, null=True)
-    page_title_en = models.CharField(max_length=255, null=True)
+    page_title_fi = models.CharField(max_length=255, null=True, verbose_name='Sivun title FI')
+    page_title_sv = models.CharField(max_length=255, null=True, verbose_name='Sivun title SV')
+    page_title_en = models.CharField(max_length=255, null=True, verbose_name='Sivun title EN')
 
     content_panels = [
         MultiFieldPanel(
@@ -60,8 +60,8 @@ class LandingPage(Page):
                 FieldPanel('title_sv'),
                 FieldPanel('title'),
             ],
-            heading="Title",
-            help_text='Help text number 1',
+            heading="OTSIKKO",
+            help_text='Otsikon maksimimerkkimäärä on noin 60 merkkiä sanojen pituudesta riippuen. Tarkistatathan esikatselusta, että sisältö on kooltaan sopiva.',
         ),
         MultiFieldPanel(
             [
@@ -69,8 +69,8 @@ class LandingPage(Page):
                 FieldPanel('description_sv'),
                 FieldPanel('description_en'),
             ],
-            heading="Description",
-            help_text='Help text number 2',
+            heading="SELITE",
+            help_text='Selite sijoittuu otsikon yläpuolelle. Voit jättää tämän kohdan myös tyhjäksi.',
         ),
         MultiFieldPanel(
             [
@@ -78,8 +78,8 @@ class LandingPage(Page):
                 FieldPanel('button_text_sv'),
                 FieldPanel('button_text_en'),
             ],
-            heading="Button Text",
-            help_text='Help text number 3',
+            heading="NAPPI",
+            help_text='',
         ),
         MultiFieldPanel(
             [
@@ -87,8 +87,8 @@ class LandingPage(Page):
                 FieldPanel('button_url_sv'),
                 FieldPanel('button_url_en'),
             ],
-            heading="Button Url",
-            help_text='Help text number 4',
+            heading="NAPIN LINKKI",
+            help_text='',
         ),
         MultiFieldPanel(
             [
@@ -96,8 +96,8 @@ class LandingPage(Page):
                 FieldPanel('meta_information_sv'),
                 FieldPanel('meta_information_en'),
             ],
-            heading="Meta Information",
-            help_text='Help text number 5',
+            heading="META TIETO",
+            help_text='',
         ),
         MultiFieldPanel(
             [
@@ -105,8 +105,8 @@ class LandingPage(Page):
                 FieldPanel('page_title_sv'),
                 FieldPanel('page_title_en'),
             ],
-            heading="Page Title",
-            help_text='Help text number 6',
+            heading="SIVUN TITLE",
+            help_text='',
         ),
     ]
 
