@@ -126,24 +126,24 @@ class Collections(Page):
     box_color = models.CharField(max_length=255, choices=color_choices, null=True)
 
     # title comes from Page class itself
-    title_fi = models.CharField(max_length=255, null=True)
-    title_sv = models.CharField(max_length=255, null=True)
+    title_fi = models.CharField(max_length=255, null=True, blank=True)
+    title_sv = models.CharField(max_length=255, null=True, blank=True)
 
-    curated_events_title_en = models.CharField(max_length=255, null=True)
-    curated_events_title_fi = models.CharField(max_length=255, null=True)
-    curated_events_title_sv = models.CharField(max_length=255, null=True)
+    curated_events_title_en = models.CharField(max_length=255, null=True, blank=True)
+    curated_events_title_fi = models.CharField(max_length=255, null=True, blank=True)
+    curated_events_title_sv = models.CharField(max_length=255, null=True, blank=True)
 
-    subtitles_en = models.CharField(max_length=255, null=True)
-    subtitles_fi = models.CharField(max_length=255, null=True)
-    subtitles_sv = models.CharField(max_length=255, null=True)
+    subtitles_en = models.CharField(max_length=255, null=True, blank=True)
+    subtitles_fi = models.CharField(max_length=255, null=True, blank=True)
+    subtitles_sv = models.CharField(max_length=255, null=True, blank=True)
 
-    description_en = models.TextField(null=True)
-    description_fi = models.TextField(null=True)
-    description_sv = models.TextField(null=True)
+    description_en = models.TextField(null=True, blank=True)
+    description_fi = models.TextField(null=True, blank=True)
+    description_sv = models.TextField(null=True, blank=True)
 
-    social_media_description_en = models.TextField(null=True)
-    social_media_description_fi = models.TextField(null=True)
-    social_media_description_sv = models.TextField(null=True)
+    social_media_description_en = models.TextField(null=True, blank=True)
+    social_media_description_fi = models.TextField(null=True, blank=True)
+    social_media_description_sv = models.TextField(null=True, blank=True)
 
     link_text_en = models.CharField(max_length=255, null=True, blank=True)
     link_text_fi = models.CharField(max_length=255, null=True, blank=True)
@@ -153,9 +153,9 @@ class Collections(Page):
     link_url_fi = models.URLField(max_length=500, null=True, blank=True)
     link_url_sv = models.URLField(max_length=500, null=True, blank=True)
 
-    event_list_title_en = models.CharField(max_length=255, null=True)
-    event_list_title_fi = models.CharField(max_length=255, null=True)
-    event_list_title_sv = models.CharField(max_length=255, null=True)
+    event_list_title_en = models.CharField(max_length=255, null=True, blank=True)
+    event_list_title_fi = models.CharField(max_length=255, null=True, blank=True)
+    event_list_title_sv = models.CharField(max_length=255, null=True, blank=True)
 
     event_list_query = models.URLField(max_length=500, null=True)
 
