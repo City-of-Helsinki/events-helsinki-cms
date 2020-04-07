@@ -41,10 +41,6 @@ COLLECTION_BASE = {
     "link_url_fi": "http://www.google.com",
     "link_url_sv": "http://www.google.com",
 
-    "subtitles_en": "We put together the best foliage for the fall",
-    "subtitles_fi": "Kokosimme parhaat tärpit syksylle",
-    "subtitles_sv": "Vi sätter ihop det bästa bladverket för hösten",
-
     "title_fi": "Syksyn riehakkaimmat riennot",
     "title_sv": "Höstens mest livliga knep",
 }

@@ -133,10 +133,6 @@ class Collections(Page):
     curated_events_title_sv = models.CharField(max_length=255, null=True, blank=True)
     curated_events_title_en = models.CharField(max_length=255, null=True, blank=True)
 
-    subtitles_fi = models.CharField(max_length=255, null=True, blank=True)
-    subtitles_sv = models.CharField(max_length=255, null=True, blank=True)
-    subtitles_en = models.CharField(max_length=255, null=True, blank=True)
-
     description_fi = models.TextField(null=True, blank=True)
     description_sv = models.TextField(null=True, blank=True)
     description_en = models.TextField(null=True, blank=True)
@@ -188,15 +184,6 @@ class Collections(Page):
             ],
             heading="Curated Events Title",
             help_text='Kirjoita tähän otsikko, jonka haluat näyttää käsin poimittavien, suositeltavien tapahtumien yläpuolella.',  # noqa: E501
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('subtitles_fi'),
-                FieldPanel('subtitles_sv'),
-                FieldPanel('subtitles_en'),
-            ],
-            heading="Subtitles",
-            help_text='Help text number 3',
         ),
         MultiFieldPanel(
             [
