@@ -178,7 +178,7 @@ class Collections(Page):
                 FieldPanel('title'),
             ],
             heading="Title",
-            help_text='Help text number 1',
+            help_text='Tähän tulee kokoelmasi pääotsikko. Pidäthän otsikon lyhyenä ja ytimekkäänä.',  # noqa: E501
         ),
         MultiFieldPanel(
             [
@@ -187,7 +187,7 @@ class Collections(Page):
                 FieldPanel('curated_events_title_en'),
             ],
             heading="Curated Events Title",
-            help_text='Help text number 2',
+            help_text='Kirjoita tähän otsikko, jonka haluat näyttää käsin poimittavien, suositeltavien tapahtumien yläpuolella.',  # noqa: E501
         ),
         MultiFieldPanel(
             [
@@ -205,7 +205,7 @@ class Collections(Page):
                 FieldPanel('description_en'),
             ],
             heading="Description",
-            help_text='Help text number 4',
+            help_text='Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja inspiroi käyttäjiä tutustumaan suosituksiin.',  # noqa: E501
         ),
         MultiFieldPanel(
             [
@@ -214,7 +214,7 @@ class Collections(Page):
                 FieldPanel('social_media_description_en'),
             ],
             heading="Social Media Description",
-            help_text='Help text number 5',
+            help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',  # noqa: E501
         ),
         MultiFieldPanel(
             [
@@ -223,7 +223,7 @@ class Collections(Page):
                 FieldPanel('link_text_en'),
             ],
             heading="Link Text",
-            help_text='Help text number 6',
+            help_text='Vapaaehtoinen linkki, joka ohjaa lukijan pois kokoelmasta. Käytä vain harkitusti ja pidä linkkiteksti lyhyenä.',  # noqa: E501
         ),
         MultiFieldPanel(
             [
@@ -232,7 +232,7 @@ class Collections(Page):
                 FieldPanel('link_url_en'),
             ],
             heading="Link URL",
-            help_text='Help text number 7',
+            help_text='Jos lisäsit aikaisempaan \'Linkkiteksti\'-osioon linkin, lisää tähän kenttään www-osoite, johon käyttäjä ohjataan.',  # noqa: E501
         ),
         MultiFieldPanel(
             [
@@ -241,14 +241,14 @@ class Collections(Page):
                 FieldPanel('event_list_title_en'),
             ],
             heading="Event List Title",
-            help_text='Help text number 8',
+            help_text='Käsin poimittujen tapahtumien voit tässä suositella muita samankaltaisia tai muuten kiinnostavia tapahtumia. Näille tapahtumille tarvitaan oma otsikko, esim. "Tutustu myös näihin".',  # noqa: E501
         ),
         MultiFieldPanel(
             [
                 FieldPanel('event_list_query'),
             ],
             heading="Event List Query",
-            help_text='Help text number 9',
+            help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',  # noqa: E501
         ),
         StreamFieldPanel('curated_events'),
     ]
