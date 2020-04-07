@@ -129,17 +129,9 @@ class Collections(Page):
     title_sv = models.CharField(max_length=255, null=True, blank=True)
     # title comes from Page class itself
 
-    curated_events_title_fi = models.CharField(max_length=255, null=True, blank=True)
-    curated_events_title_sv = models.CharField(max_length=255, null=True, blank=True)
-    curated_events_title_en = models.CharField(max_length=255, null=True, blank=True)
-
     description_fi = models.TextField(null=True, blank=True)
     description_sv = models.TextField(null=True, blank=True)
     description_en = models.TextField(null=True, blank=True)
-
-    social_media_description_fi = models.TextField(null=True, blank=True)
-    social_media_description_sv = models.TextField(null=True, blank=True)
-    social_media_description_en = models.TextField(null=True, blank=True)
 
     link_text_fi = models.CharField(max_length=255, null=True, blank=True)
     link_text_sv = models.CharField(max_length=255, null=True, blank=True)
@@ -149,15 +141,23 @@ class Collections(Page):
     link_url_sv = models.URLField(max_length=500, null=True, blank=True)
     link_url_en = models.URLField(max_length=500, null=True, blank=True)
 
+    social_media_description_fi = models.TextField(null=True, blank=True)
+    social_media_description_sv = models.TextField(null=True, blank=True)
+    social_media_description_en = models.TextField(null=True, blank=True)
+
+    curated_events_title_fi = models.CharField(max_length=255, null=True, blank=True)
+    curated_events_title_sv = models.CharField(max_length=255, null=True, blank=True)
+    curated_events_title_en = models.CharField(max_length=255, null=True, blank=True)
+
+    curated_events = StreamField([
+        ('event_link', blocks.URLBlock()),
+    ], null=True)
+
     event_list_title_fi = models.CharField(max_length=255, null=True, blank=True)
     event_list_title_sv = models.CharField(max_length=255, null=True, blank=True)
     event_list_title_en = models.CharField(max_length=255, null=True, blank=True)
 
     event_list_query = models.URLField(max_length=500, null=True)
-
-    curated_events = StreamField([
-        ('event_link', blocks.URLBlock()),
-    ], null=True)
 
     content_panels = [
         MultiFieldPanel(
@@ -178,30 +178,12 @@ class Collections(Page):
         ),
         MultiFieldPanel(
             [
-                FieldPanel('curated_events_title_fi'),
-                FieldPanel('curated_events_title_sv'),
-                FieldPanel('curated_events_title_en'),
-            ],
-            heading="Curated Events Title",
-            help_text='Kirjoita tähän otsikko, jonka haluat näyttää käsin poimittavien, suositeltavien tapahtumien yläpuolella.',  # noqa: E501
-        ),
-        MultiFieldPanel(
-            [
                 FieldPanel('description_fi'),
                 FieldPanel('description_sv'),
                 FieldPanel('description_en'),
             ],
             heading="Description",
             help_text='Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja inspiroi käyttäjiä tutustumaan suosituksiin.',  # noqa: E501
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('social_media_description_fi'),
-                FieldPanel('social_media_description_sv'),
-                FieldPanel('social_media_description_en'),
-            ],
-            heading="Social Media Description",
-            help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',  # noqa: E501
         ),
         MultiFieldPanel(
             [
@@ -223,6 +205,31 @@ class Collections(Page):
         ),
         MultiFieldPanel(
             [
+                FieldPanel('social_media_description_fi'),
+                FieldPanel('social_media_description_sv'),
+                FieldPanel('social_media_description_en'),
+            ],
+            heading="Social Media Description",
+            help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',  # noqa: E501
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('curated_events_title_fi'),
+                FieldPanel('curated_events_title_sv'),
+                FieldPanel('curated_events_title_en'),
+            ],
+            heading="Curated Events Title",
+            help_text='Kirjoita tähän otsikko, jonka haluat näyttää käsin poimittavien, suositeltavien tapahtumien yläpuolella.',  # noqa: E501
+        ),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('curated_events'),
+            ],
+            heading="Curated Events",
+            help_text='Lisää tähän ne tapahtumat, joita haluat suositella käyttäjälle. Tapahtumat näkyvät siinä järjestyksessä, jossa syötät ne. Voit helposti lisätä uusia tapahtumia, poistaa niitä ja muuttaa järjestystä. Mene haluamasi tapahtuman sivulle, kopioi sen www-osoite ja liitä osoite alla olevaan kenttään.',  # noqa: E501
+        ),
+        MultiFieldPanel(
+            [
                 FieldPanel('event_list_title_fi'),
                 FieldPanel('event_list_title_sv'),
                 FieldPanel('event_list_title_en'),
@@ -236,13 +243,6 @@ class Collections(Page):
             ],
             heading="Event List Query",
             help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',  # noqa: E501
-        ),
-        MultiFieldPanel(
-            [
-                StreamFieldPanel('curated_events'),
-            ],
-            heading="Curated Events",
-            help_text='Lisää tähän ne tapahtumat, joita haluat suositella käyttäjälle. Tapahtumat näkyvät siinä järjestyksessä, jossa syötät ne. Voit helposti lisätä uusia tapahtumia, poistaa niitä ja muuttaa järjestystä. Mene haluamasi tapahtuman sivulle, kopioi sen www-osoite ja liitä osoite alla olevaan kenttään.',  # noqa: E501
         ),
     ]
 
