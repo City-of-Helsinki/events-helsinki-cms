@@ -123,9 +123,9 @@ class Collections(Page):
     parent_page_types = ['application.CollectionsGroup']
     subpage_typed = []
     color_choices = [
-        ('SUMU', 'Sumu'),
+        ('FOG', 'Sumu'),
         ('ENGEL', 'Engel'),
-        ('KUPARI', 'Kupari'),
+        ('COPPER', 'Kupari'),
         ('SUOMENLINNA', 'Suomenlinna'),
     ]
 
