@@ -8,7 +8,7 @@ from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 
 class HelsinkiActivities(Page):
     parent_page_types = ['wagtailcore.Page']
-    subpage_typed = ['application.CollectionsFolder', 'application.LandingPage']
+    subpage_typed = ['application.CollectionsFolder', 'application.LandingPagesFolder']
     max_count = 1
 
     class Meta:
@@ -24,8 +24,17 @@ class CollectionsFolder(Page):
         verbose_name = 'Collections Folder'
 
 
-class LandingPage(Page):
+class LandingPagesFolder(Page):
     parent_page_types = ['application.HelsinkiActivities']
+    subpage_typed = ['application.LandingPage']
+    max_count = 1
+
+    class Meta:
+        verbose_name = 'Landing Pages Folder'
+
+
+class LandingPage(Page):
+    parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
     max_count = 1
 
