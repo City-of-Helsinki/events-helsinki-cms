@@ -17,6 +17,10 @@ if [[ "$CREATE_SUPERUSER" = "true" ]]; then
     ./manage.py create_admin_superuser
 fi
 
+if [[ "$HELSINKI_ACTIVITIES_TEST_DATA" = "true" ]]; then
+    ./manage.py helsinki_activities_test_data
+fi
+
 if [[ "$TESTING" = "true" ]]; then
     pytest
 fi

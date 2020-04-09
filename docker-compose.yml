@@ -27,6 +27,7 @@ services:
       - DJANGO_SECRET_KEY=NotImportantHere
       - DEV_SERVER=true
       - DEV_SERVER_ADDRESS=0.0.0.0:8000
+      - HELSINKI_ACTIVITIES_TEST_DATA=true
       - WAIT_FOR_IT_ADDRESS=database:5432
     ports:
       - "127.0.0.1:8000:8000"
