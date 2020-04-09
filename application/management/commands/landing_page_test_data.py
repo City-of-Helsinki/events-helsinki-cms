@@ -39,6 +39,11 @@ class Command(BaseCommand):
 
         helsinki_activities_page = wagtail_models.Page.objects.get(title='Helsinki Activities')
 
-        helsinki_activities_page.add_child(instance=models.LandingPage(title='Landing Page', **LANDING_PAGE_BASE))
+        landing_pages_page = helsinki_activities_page.add_child(
+            instance=models.LandingPagesFolder(title='Landing Pages'))
+
+        landing_pages_page.add_child(instance=models.LandingPages(title='Summer is here!', **LANDING_PAGE_BASE))
+        landing_pages_page.add_child(instance=models.LandingPages(title='Fall is here!', **LANDING_PAGE_BASE))
+        landing_pages_page.add_child(instance=models.LandingPages(title='Winter is here!', **LANDING_PAGE_BASE))
 
         self.stdout.write('Populating data to CMS succeeded')

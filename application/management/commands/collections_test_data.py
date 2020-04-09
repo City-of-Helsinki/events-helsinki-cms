@@ -59,7 +59,7 @@ class Command(BaseCommand):
 
         helsinki_activities_page = root_page.add_child(instance=models.HelsinkiActivities(title='Helsinki Activities'))
 
-        collections_page = helsinki_activities_page.add_child(instance=models.CollectionsGroup(title='Collections'))
+        collections_page = helsinki_activities_page.add_child(instance=models.CollectionsFolder(title='Collections'))
 
         collections_page.add_child(instance=models.Collections(title='Kool Kids of Kallio', **COLLECTION_BASE))
         collections_page.add_child(instance=models.Collections(title='Kool Kids of Kamppi', **COLLECTION_BASE))
