@@ -18,9 +18,3 @@ makemigrations: clear
 
 migrate: clear
 	@docker-compose exec api python manage.py migrate
-
-collections: clear
-	@docker-compose exec api python manage.py collections_test_data
-
-landing_page: clear collections
-	@docker-compose exec api python manage.py landing_page_test_data
