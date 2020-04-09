@@ -163,7 +163,7 @@ class Collections(Page):
     event_list_title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko SV')
     event_list_title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko EN')
 
-    event_list_query = models.URLField(max_length=500, null=True, verbose_name='Hakutulossivun www-osoite')
+    event_list_query = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite')
 
     content_panels = [
         MultiFieldPanel(
