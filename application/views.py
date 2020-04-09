@@ -38,5 +38,5 @@ class CollectionsSingle(generics.RetrieveAPIView):
 class LandingPage(generics.ListAPIView):
     permission_classes = (AllowAny,)
 
-    queryset = models.LandingPage.objects.all()
-    serializer_class = serializers.LandingPageSerializer
+    queryset = models.LandingPages.objects.all()
+    serializer_class = serializers.LandingPagesSerializer

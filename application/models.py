@@ -26,14 +26,14 @@ class CollectionsFolder(Page):
 
 class LandingPagesFolder(Page):
     parent_page_types = ['application.HelsinkiActivities']
-    subpage_typed = ['application.LandingPage']
+    subpage_typed = ['application.LandingPages']
     max_count = 1
 
     class Meta:
         verbose_name = 'Landing Pages Folder'
 
 
-class LandingPage(Page):
+class LandingPages(Page):
     parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
     max_count = 1

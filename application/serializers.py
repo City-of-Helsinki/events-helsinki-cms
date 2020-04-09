@@ -16,9 +16,9 @@ class CollectionsSerializer(serializers.ModelSerializer):
         return clean_curated_events
 
 
-class LandingPageSerializer(serializers.ModelSerializer):
+class LandingPagesSerializer(serializers.ModelSerializer):
     title_en = serializers.CharField(source='title')
 
     class Meta:
-        model = models.LandingPage
+        model = models.LandingPages
         exclude = ['title']
