@@ -36,7 +36,6 @@ class LandingPagesFolder(Page):
 class LandingPages(Page):
     parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
-    max_count = 1
 
     title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
