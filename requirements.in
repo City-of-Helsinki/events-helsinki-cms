@@ -12,5 +12,5 @@ jsonschema==3.2.0                               # An implementation of JSON Sche
 markdown==3.1.1                                 # Markdown support for the browsable API of Django REST Framework
 psycopg2-binary==2.8.4                          # PostgreSQL Database Adapter for Python
 requests==2.22.0                                # sending http requests
-wagtail==2.8                                    # CMS itself
+wagtail==2.8.1                                    # CMS itself
 whitenoise==5.0.1                               # enabling Django to serve its own static files
