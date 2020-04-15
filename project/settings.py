@@ -161,6 +161,7 @@ CORS_ORIGIN_WHITELIST = (
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = 'City of Helsinki'
+WAGTAIL_ENABLE_UPDATE_CHECK = False
 
 
 # Logging
