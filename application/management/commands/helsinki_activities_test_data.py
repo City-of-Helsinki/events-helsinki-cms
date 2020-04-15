@@ -5,6 +5,8 @@ from wagtail.core import models as wagtail_models
 from application import models
 
 COLLECTION_BASE = {
+    "visible_on_frontpage": True,
+
     "box_color": "SUOMENLINNA",
 
     "curated_events": [
