@@ -37,6 +37,8 @@ class LandingPages(Page):
     parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
 
+    visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
+
     title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
     # title comes from Page class itself
@@ -62,6 +64,13 @@ class LandingPages(Page):
     page_title_en = models.CharField(max_length=255, null=True, verbose_name='Sivun title EN')
 
     content_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('visible_on_frontpage'),
+            ],
+            heading="Näytä kokoelma etusivulla",
+            help_text='Help text',
+        ),
         MultiFieldPanel(
             [
                 FieldPanel('title_fi'),
