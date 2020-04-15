@@ -48,6 +48,8 @@ COLLECTION_BASE = {
 }
 
 LANDING_PAGE_BASE = {
+    "visible_on_frontpage": False,
+
     "title_fi": "Syksyn riehakkaimmat riennot",
     "title_sv": "Höstens mest livliga knep",
 
@@ -89,12 +91,18 @@ class Command(BaseCommand):
         collections_folder = helsinki_activities.add_child(instance=models.CollectionsFolder(title='Collections'))
         landing_pages_folder = helsinki_activities.add_child(instance=models.LandingPagesFolder(title='Landing Pages'))
 
-        collections_folder.add_child(instance=models.Collections(title='Kool Kids of Kallio', **COLLECTION_BASE))
-        collections_folder.add_child(instance=models.Collections(title='Kool Kids of Kamppi', **COLLECTION_BASE))
-        collections_folder.add_child(instance=models.Collections(title='Kool Kids of Kurvi', **COLLECTION_BASE))
+        collections_folder.add_child(instance=models.Collections(
+            title='Kool Kids of Kallio', **COLLECTION_BASE))
+        collections_folder.add_child(instance=models.Collections(
+            title='Kool Kids of Kamppi', **dict(COLLECTION_BASE, visible_on_frontpage=False)))
+        collections_folder.add_child(instance=models.Collections(
+            title='Kool Kids of Kurvi', **COLLECTION_BASE))
 
-        landing_pages_folder.add_child(instance=models.LandingPages(title='Summer is here!', **LANDING_PAGE_BASE))
-        landing_pages_folder.add_child(instance=models.LandingPages(title='Fall is here!', **LANDING_PAGE_BASE))
-        landing_pages_folder.add_child(instance=models.LandingPages(title='Winter is here!', **LANDING_PAGE_BASE))
+        landing_pages_folder.add_child(instance=models.LandingPages(
+            title='Summer is here!', **dict(LANDING_PAGE_BASE, visible_on_frontpage=True)))
+        landing_pages_folder.add_child(instance=models.LandingPages(
+            title='Fall is here!', **LANDING_PAGE_BASE))
+        landing_pages_folder.add_child(instance=models.LandingPages(
+            title='Winter is here!', **LANDING_PAGE_BASE))
 
         self.stdout.write('Helsinki Activities test data were populated to CMS')
