@@ -137,7 +137,7 @@ class Collections(Page):
         ('SUOMENLINNA', 'Suomenlinna'),
     ]
 
-    visible_on_frontpage = models.BooleanField(default=False)
+    visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
     box_color = models.CharField(max_length=255, choices=color_choices, null=True)
 
     title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko FI')
@@ -179,7 +179,7 @@ class Collections(Page):
             [
                 FieldPanel('visible_on_frontpage'),
             ],
-            heading="Visible on frontpage",
+            heading="Näytä kokoelma etusivulla",
             help_text='Help text',
         ),
         MultiFieldPanel(
