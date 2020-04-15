@@ -137,6 +137,7 @@ class Collections(Page):
         ('SUOMENLINNA', 'Suomenlinna'),
     ]
 
+    visible_on_frontpage = models.BooleanField(default=False)
     box_color = models.CharField(max_length=255, choices=color_choices, null=True)
 
     title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko FI')
@@ -174,6 +175,13 @@ class Collections(Page):
     event_list_query = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite')
 
     content_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('visible_on_frontpage'),
+            ],
+            heading="Visible on frontpage",
+            help_text='Help text',
+        ),
         MultiFieldPanel(
             [
                 FieldPanel('box_color'),
