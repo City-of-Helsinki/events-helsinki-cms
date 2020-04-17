@@ -3,6 +3,7 @@ boto3==1.12.3                                   # AWS SDK which is needed for me
 dj-database-url==0.5.0                          # being able to use DATABASE_URL
 django-cors-headers==3.2.1                      # handling server headers required for CORS
 django-extensions==2.2.6                        # lots of useful django management commands like shell_plus
+django-filter==2.2.0                            # enabling the API to filter results based on query params
 django-storages==1.9.1                          # Amazon S3 storage support for media files for Wagtail
 django==2.2.9                                   # web framework itself
 djangorestframework==3.11.0                     # creating rest APIs
