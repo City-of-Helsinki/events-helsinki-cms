@@ -26,6 +26,7 @@ class Collections(generics.ListAPIView):
 
     queryset = models.Collections.objects.all()
     serializer_class = serializers.CollectionsSerializer
+    filterset_fields = ['visible_on_frontpage']
 
 
 class CollectionsSingle(generics.RetrieveAPIView):
@@ -40,3 +41,4 @@ class LandingPage(generics.ListAPIView):
 
     queryset = models.LandingPages.objects.all()
     serializer_class = serializers.LandingPagesSerializer
+    filterset_fields = ['visible_on_frontpage']
