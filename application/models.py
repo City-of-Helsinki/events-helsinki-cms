@@ -59,9 +59,9 @@ class LandingPages(Page):
     meta_information_sv = models.TextField(null=True, verbose_name='Meta tieto SV')
     meta_information_en = models.TextField(null=True, verbose_name='Meta tieto EN')
 
-    page_title_fi = models.CharField(max_length=255, null=True, verbose_name='Sivun title FI')
-    page_title_sv = models.CharField(max_length=255, null=True, verbose_name='Sivun title SV')
-    page_title_en = models.CharField(max_length=255, null=True, verbose_name='Sivun title EN')
+    page_title_fi = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi FI')
+    page_title_sv = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi SV')
+    page_title_en = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi EN')
 
     content_panels = [
         MultiFieldPanel(
@@ -114,7 +114,7 @@ class LandingPages(Page):
                 FieldPanel('meta_information_en'),
             ],
             heading="META TIETO",
-            help_text='',
+            help_text='Meta tieto avustaa hakukoneita tiedon etsimisessä.',
         ),
         MultiFieldPanel(
             [
@@ -122,7 +122,7 @@ class LandingPages(Page):
                 FieldPanel('page_title_sv'),
                 FieldPanel('page_title_en'),
             ],
-            heading="SIVUN TITLE",
+            heading="SIVUN OTSIKOINTI",
             help_text='',
         ),
     ]
@@ -147,7 +147,7 @@ class Collections(Page):
     ]
 
     visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
-    box_color = models.CharField(max_length=255, choices=color_choices, null=True)
+    box_color = models.CharField(max_length=255, choices=color_choices, null=True, verbose_name='Taustaväri ylätunisteelle')
 
     title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko SV')
@@ -157,9 +157,9 @@ class Collections(Page):
     description_sv = models.TextField(null=True, blank=True, verbose_name='Kuvaus SV')
     description_en = models.TextField(null=True, blank=True, verbose_name='Kuvaus EN')
 
-    link_text_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teskti FI')
-    link_text_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teskti SV')
-    link_text_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teskti EN')
+    link_text_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teksti FI')
+    link_text_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teksti SV')
+    link_text_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teksti EN')
 
     link_url_fi = models.URLField(max_length=500, null=True, blank=True, verbose_name='Linkki suomenkieliselle sivulle')
     link_url_sv = models.URLField(max_length=500, null=True, blank=True, verbose_name='Linkki ruotsinkieliselle sivulle')
@@ -195,8 +195,8 @@ class Collections(Page):
             [
                 FieldPanel('box_color'),
             ],
-            heading="Box Color",
-            help_text='Help text number 0',
+            heading="TAUSTAVÄRI YLÄTUNISTEELLE",
+            help_text='Valittu väri tulee näkyviin kokoelman yläosaan, joka sisältää kokoelman otsikon sekä kuvauksen.',
         ),
         MultiFieldPanel(
             [
