@@ -153,6 +153,12 @@ CORS_ORIGIN_WHITELIST = (
 # Media files storage configs
 DEFAULT_FILE_STORAGE = os.getenv("DEFAULT_FILE_STORAGE")
 
+if DEFAULT_FILE_STORAGE == "storages.backends.gcloud.GoogleCloudStorage":
+    GS_BUCKET_NAME = os.getenv("STAGING_GCS_BUCKET_NAME")
+    GOOGLE_APPLICATION_CREDENTIALS = os.getenv("STAGING_GCS_BUCKET_CREDENTIALS")
+    GS_DEFAULT_ACL = 'publicRead'
+    GS_FILE_OVERWRITE = False
+
 # Wagtail settings
 WAGTAIL_SITE_NAME = 'City of Helsinki'
 WAGTAIL_ENABLE_UPDATE_CHECK = False
