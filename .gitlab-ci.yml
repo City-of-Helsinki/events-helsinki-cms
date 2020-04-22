@@ -27,6 +27,9 @@ staging:
   variables:
     K8S_SECRET_DEBUG: "false"
     K8S_SECRET_DJANGO_SECRET_KEY: "$GL_QA_DJANGO_SECRET_KEY"
+    K8S_SECRET_DEFAULT_FILE_STORAGE: "storages.backends.gcloud.GoogleCloudStorage"
+    # STAGING_GCS_BUCKET_CREDENTIALS is already available in the deployment. Do not re-define it.
+    K8S_SECRET_STAGING_GCS_BUCKET_NAME: "$STAGING_GCS_BUCKET_NAME"
 
 production:
   variables:
