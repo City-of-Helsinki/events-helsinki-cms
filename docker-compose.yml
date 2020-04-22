@@ -24,6 +24,7 @@ services:
       - CREATE_SUPERUSER=true
       - DATABASE_URL=postgres://primary_user@database:5432/primary_db
       - DEBUG=true
+      - DEFAULT_FILE_STORAGE=django.core.files.storage.FileSystemStorage
       - DJANGO_SECRET_KEY=NotImportantHere
       - DEV_SERVER=true
       - DEV_SERVER_ADDRESS=0.0.0.0:8000

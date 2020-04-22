@@ -150,6 +150,9 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',  # local development environment of frontend application
 )
 
+# Media files storage configs
+DEFAULT_FILE_STORAGE = os.getenv("DEFAULT_FILE_STORAGE")
+
 # Wagtail settings
 WAGTAIL_SITE_NAME = 'City of Helsinki'
 WAGTAIL_ENABLE_UPDATE_CHECK = False
