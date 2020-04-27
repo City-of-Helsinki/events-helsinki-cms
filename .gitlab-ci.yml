@@ -33,7 +33,7 @@ staging:
 
 production:
   variables:
-    K8S_SECRET_DEBUG: "false"
+    K8S_SECRET_DEBUG: "true"
     K8S_SECRET_DJANGO_SECRET_KEY: "$GL_PRODUCTION_DJANGO_SECRET_KEY"
     K8S_SECRET_DEFAULT_FILE_STORAGE: "storages.backends.azure_storage.AzureStorage"
     K8S_SECRET_AZURE_BUCKET_NAME: "$STABLE_AZURE_BUCKET_NAME"
