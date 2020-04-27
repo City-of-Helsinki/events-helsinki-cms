@@ -159,6 +159,11 @@ if DEFAULT_FILE_STORAGE == "storages.backends.gcloud.GoogleCloudStorage":
     GS_DEFAULT_ACL = 'publicRead'
     GS_FILE_OVERWRITE = False
 
+elif DEFAULT_FILE_STORAGE == "storages.backends.azure_storage.AzureStorage":
+    AZURE_ACCOUNT_NAME = os.getenv("AZURE_BUCKET_ACCOUNT_NAME")
+    AZURE_ACCOUNT_KEY = os.getenv("AZURE_BUCKET_CREDENTIALS")
+    AZURE_CONTAINER = os.getenv("AZURE_BUCKET_NAME")
+
 # Wagtail settings
 WAGTAIL_SITE_NAME = 'City of Helsinki'
 WAGTAIL_ENABLE_UPDATE_CHECK = False
