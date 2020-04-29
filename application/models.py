@@ -2,8 +2,14 @@ from django.db import models
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
-from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel, StreamFieldPanel
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    MultiFieldPanel,
+    ObjectList,
+    StreamFieldPanel,
+    TabbedInterface,
+)
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class HelsinkiActivities(Page):
@@ -147,6 +153,7 @@ class Collections(Page):
     ]
 
     visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
+    hero_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT)
     box_color = models.CharField(max_length=255, choices=color_choices, null=True, verbose_name='Taustaväri ylätunisteelle')
 
     title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko FI')
@@ -190,6 +197,13 @@ class Collections(Page):
             ],
             heading="Näytä kokoelma etusivulla",
             help_text='Help text',
+        ),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('hero_image'),
+            ],
+            heading="Hero Image",
+            help_text='',
         ),
         MultiFieldPanel(
             [
