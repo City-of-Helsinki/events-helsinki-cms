@@ -26,6 +26,50 @@ class CollectionsSerializer(serializers.ModelSerializer):
 class LandingPagesSerializer(serializers.ModelSerializer):
     title_en = serializers.CharField(source='title')
 
+    hero_background_image_fi = serializers.SerializerMethodField()
+    hero_background_image_sv = serializers.SerializerMethodField()
+    hero_background_image_en = serializers.SerializerMethodField()
+
+    hero_top_layer_image_fi = serializers.SerializerMethodField()
+    hero_top_layer_image_sv = serializers.SerializerMethodField()
+    hero_top_layer_image_en = serializers.SerializerMethodField()
+
     class Meta:
         model = models.LandingPages
         exclude = ['title']
+
+    def get_hero_background_image_fi(self, obj):
+        if obj.hero_background_image_fi:
+            return obj.hero_background_image_fi.file.url
+        else:
+            return None
+
+    def get_hero_background_image_sv(self, obj):
+        if obj.hero_background_image_sv:
+            return obj.hero_background_image_sv.file.url
+        else:
+            return None
+
+    def get_hero_background_image_en(self, obj):
+        if obj.hero_background_image_en:
+            return obj.hero_background_image_en.file.url
+        else:
+            return None
+
+    def get_hero_top_layer_image_fi(self, obj):
+        if obj.hero_top_layer_image_fi:
+            return obj.hero_top_layer_image_fi.file.url
+        else:
+            return None
+
+    def get_hero_top_layer_image_sv(self, obj):
+        if obj.hero_top_layer_image_sv:
+            return obj.hero_top_layer_image_sv.file.url
+        else:
+            return None
+
+    def get_hero_top_layer_image_en(self, obj):
+        if obj.hero_top_layer_image_en:
+            return obj.hero_top_layer_image_en.file.url
+        else:
+            return None
