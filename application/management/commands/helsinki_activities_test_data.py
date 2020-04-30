@@ -89,10 +89,18 @@ class Command(BaseCommand):
         wagtail_models.Page.objects.get(title='Root').get_children().delete()
         Image.objects.all().delete()
 
-        # Saving a sample image to database
-        shutil.copy2('pictures/gerome-bruneau-RPmWEtZLh7U-unsplash.jpg', 'media-files/sample.jpg')
-        collection_hero_image = Image(title='Sample Image', file='sample.jpg')
+        # Saving images to database
+        shutil.copy2('pictures/gerome-bruneau-RPmWEtZLh7U-unsplash.jpg', 'media-files/collection_hero_image.jpg')
+        collection_hero_image = Image(title='Collection Hero Image', file='collection_hero_image.jpg')
         collection_hero_image.save()
+
+        shutil.copy2('pictures/davisco-5E5N49RWtbA-unsplash.jpg', 'media-files/landing_page_hero_background_image.jpg')
+        hero_background_image = Image(title='Landing Page Hero Background Image', file='landing_page_hero_background_image.jpg')
+        hero_background_image.save()
+
+        shutil.copy2('pictures/joanna-kosinska-1_CMoFsPfso-unsplash.jpg', 'media-files/landing_page_hero_top_layer_image.jpg')
+        hero_top_layer_image = Image(title='Landing Page Hero Top Layer Image', file='landing_page_hero_top_layer_image.jpg')
+        hero_top_layer_image.save()
 
         root_page = wagtail_models.Page.objects.get(title='Root')
 
@@ -111,7 +119,7 @@ class Command(BaseCommand):
             title='Kool Kids of Kurvi', **COLLECTION_BASE))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
-            title='Summer is here!', **dict(LANDING_PAGE_BASE, visible_on_frontpage=True)))
+            title='Summer is here!', **dict(LANDING_PAGE_BASE, visible_on_frontpage=True, hero_background_image_fi=hero_background_image, hero_top_layer_image_fi=hero_top_layer_image)))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Fall is here!', **LANDING_PAGE_BASE))
