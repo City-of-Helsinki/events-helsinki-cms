@@ -1,6 +1,9 @@
+import shutil
+
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from wagtail.core import models as wagtail_models
+from wagtail.images.models import Image
 
 from application import models
 
@@ -82,7 +85,14 @@ class Command(BaseCommand):
         if settings.DEBUG is not True:
             raise CommandError('This command can be run only in DEBUG mode')
 
+        # Delete all pages and images
         wagtail_models.Page.objects.get(title='Root').get_children().delete()
+        Image.objects.all().delete()
+
+        # Saving a sample image to database
+        shutil.copy2('pictures/gerome-bruneau-RPmWEtZLh7U-unsplash.jpg', 'media-files/sample.jpg')
+        collection_hero_image = Image(title='Sample Image', file='sample.jpg')
+        collection_hero_image.save()
 
         root_page = wagtail_models.Page.objects.get(title='Root')
 
@@ -92,16 +102,20 @@ class Command(BaseCommand):
         landing_pages_folder = helsinki_activities.add_child(instance=models.LandingPagesFolder(title='Landing Pages'))
 
         collections_folder.add_child(instance=models.Collections(
-            title='Kool Kids of Kallio', **COLLECTION_BASE))
+            title='Kool Kids of Kallio', **dict(COLLECTION_BASE, hero_image=collection_hero_image)))
+
         collections_folder.add_child(instance=models.Collections(
             title='Kool Kids of Kamppi', **dict(COLLECTION_BASE, visible_on_frontpage=False)))
+
         collections_folder.add_child(instance=models.Collections(
             title='Kool Kids of Kurvi', **COLLECTION_BASE))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Summer is here!', **dict(LANDING_PAGE_BASE, visible_on_frontpage=True)))
+
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Fall is here!', **LANDING_PAGE_BASE))
+
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Winter is here!', **LANDING_PAGE_BASE))
 
