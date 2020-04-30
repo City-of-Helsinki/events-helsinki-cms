@@ -45,6 +45,14 @@ class LandingPages(Page):
 
     visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
 
+    hero_background_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+
+    hero_top_layer_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_top_layer_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_top_layer_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+
     title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
     # title comes from Page class itself
@@ -76,6 +84,24 @@ class LandingPages(Page):
             ],
             heading="Näytä kokoelma etusivulla",
             help_text='Help text',
+        ),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('hero_background_image_fi'),
+                ImageChooserPanel('hero_background_image_sv'),
+                ImageChooserPanel('hero_background_image_en'),
+            ],
+            heading="Hero Background Image",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('hero_top_layer_image_fi'),
+                ImageChooserPanel('hero_top_layer_image_sv'),
+                ImageChooserPanel('hero_top_layer_image_en'),
+            ],
+            heading="Hero Top Layer Image",
+            help_text='',
         ),
         MultiFieldPanel(
             [
