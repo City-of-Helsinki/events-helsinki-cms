@@ -4,3 +4,4 @@ exclude =
     */migrations/*
 per-file-ignores =
     application/models.py:E501
+    application/management/commands/helsinki_activities_test_data.py:E501
