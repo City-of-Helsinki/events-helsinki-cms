@@ -47,7 +47,7 @@ class CollectionsSingle(generics.RetrieveAPIView):
             return collection_page
 
 
-class LandingPage(generics.ListAPIView):
+class LandingPages(generics.ListAPIView):
     permission_classes = (AllowAny,)
 
     queryset = models.LandingPages.objects.all()
