@@ -191,9 +191,9 @@ class Collections(Page):
     title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko SV')
     # title comes from Page class itself
 
-    description_fi = models.TextField(null=True, blank=True, verbose_name='Kuvaus FI')
-    description_sv = models.TextField(null=True, blank=True, verbose_name='Kuvaus SV')
-    description_en = models.TextField(null=True, blank=True, verbose_name='Kuvaus EN')
+    description_fi = models.TextField(max_length=400, null=True, blank=True, verbose_name='Kuvaus FI')
+    description_sv = models.TextField(max_length=400, null=True, blank=True, verbose_name='Kuvaus SV')
+    description_en = models.TextField(max_length=400, null=True, blank=True, verbose_name='Kuvaus EN')
 
     link_text_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teksti FI')
     link_text_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Linkki teksti SV')
