@@ -9,4 +9,5 @@ urlpatterns = [
     path('api/collections/', views.Collections.as_view(), name='collections'),
     path('api/collections/<pk>/', views.CollectionsSingle.as_view(), name='collections-single'),
     path('api/landing-pages/', views.LandingPages.as_view(), name='landing-pages'),
+    path('api/landing-pages/<pk>/', views.LandingPagesSingle.as_view(), name='landing-pages-single'),
 ]

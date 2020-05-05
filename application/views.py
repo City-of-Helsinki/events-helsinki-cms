@@ -53,3 +53,20 @@ class LandingPages(generics.ListAPIView):
     queryset = models.LandingPages.objects.all()
     serializer_class = serializers.LandingPagesSerializer
     filterset_fields = ['visible_on_frontpage']
+
+
+class LandingPagesSingle(generics.RetrieveAPIView):
+    permission_classes = (AllowAny,)
+
+    queryset = models.LandingPages.objects.all()
+    serializer_class = serializers.LandingPagesSerializer
+
+    def get_object(self):
+        draft_requested = self.request.query_params.get('draft') == 'true'
+
+        landing_page = get_object_or_404(self.get_queryset(), pk=self.kwargs.get('pk'))
+
+        if draft_requested:
+            return landing_page.get_latest_revision_as_page()
+        else:
+            return landing_page
