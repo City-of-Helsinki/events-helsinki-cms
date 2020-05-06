@@ -15,6 +15,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 class HelsinkiActivities(Page):
     parent_page_types = ['wagtailcore.Page']
     subpage_typed = ['application.CollectionsFolder', 'application.LandingPagesFolder']
+    preview_modes = []
     max_count = 1
 
     class Meta:
@@ -24,6 +25,7 @@ class HelsinkiActivities(Page):
 class CollectionsFolder(Page):
     parent_page_types = ['application.HelsinkiActivities']
     subpage_typed = ['application.Collections']
+    preview_modes = []
     max_count = 1
 
     class Meta:
@@ -33,6 +35,7 @@ class CollectionsFolder(Page):
 class LandingPagesFolder(Page):
     parent_page_types = ['application.HelsinkiActivities']
     subpage_typed = ['application.LandingPages']
+    preview_modes = []
     max_count = 1
 
     class Meta:
