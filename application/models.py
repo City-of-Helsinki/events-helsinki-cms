@@ -15,7 +15,6 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 class HelsinkiActivities(Page):
     parent_page_types = ['wagtailcore.Page']
     subpage_typed = ['application.CollectionsFolder', 'application.LandingPagesFolder']
-    preview_modes = []
     max_count = 1
 
     class Meta:
@@ -25,7 +24,6 @@ class HelsinkiActivities(Page):
 class CollectionsFolder(Page):
     parent_page_types = ['application.HelsinkiActivities']
     subpage_typed = ['application.Collections']
-    preview_modes = []
     max_count = 1
 
     class Meta:
@@ -35,7 +33,6 @@ class CollectionsFolder(Page):
 class LandingPagesFolder(Page):
     parent_page_types = ['application.HelsinkiActivities']
     subpage_typed = ['application.LandingPages']
-    preview_modes = []
     max_count = 1
 
     class Meta:
@@ -45,7 +42,6 @@ class LandingPagesFolder(Page):
 class LandingPages(Page):
     parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
-    preview_modes = []
 
     visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
 
@@ -175,7 +171,6 @@ class LandingPages(Page):
 class Collections(Page):
     parent_page_types = ['application.CollectionsFolder']
     subpage_typed = []
-    preview_modes = []
     color_choices = [
         ('FOG', 'Sumu'),
         ('ENGEL', 'Engel'),
