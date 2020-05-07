@@ -163,6 +163,11 @@ class LandingPages(Page):
         ),
     ]
 
+    def get_context(self, request):
+        context = super().get_context(request)
+        context['FRONTEND_BASE_URL'] = settings.FRONTEND_BASE_URL
+        return context
+
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Sisältö'),
         ObjectList(Page.settings_panels, heading='Asetukset', classname='settings'),
