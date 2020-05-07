@@ -13,6 +13,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Environments settings
 DEBUG = os.getenv('DEBUG') == 'true'
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+FRONTEND_BASE_URL = os.getenv('FRONTEND_BASE_URL')
 
 
 INSTALLED_APPS = [

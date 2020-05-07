@@ -26,6 +26,7 @@ services:
       - DEBUG=true
       - DEFAULT_FILE_STORAGE=django.core.files.storage.FileSystemStorage
       - DJANGO_SECRET_KEY=NotImportantHere
+      - FRONTEND_BASE_URL=http://localhost:3000
       - DEV_SERVER=true
       - DEV_SERVER_ADDRESS=0.0.0.0:8000
       - HELSINKI_ACTIVITIES_TEST_DATA=true
