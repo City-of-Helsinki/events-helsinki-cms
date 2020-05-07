@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from wagtail.core import blocks
 from wagtail.core.models import Page
@@ -319,6 +320,11 @@ class Collections(Page):
             help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',
         ),
     ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        context['FRONTEND_BASE_URL'] = settings.FRONTEND_BASE_URL
+        return context
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Sisältö'),

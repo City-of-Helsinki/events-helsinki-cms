@@ -1,1 +1,6 @@
-<p>Hello world for Collections page type</p>
+<script>
+    window.onload = function() {
+        redirectUrl = '{{ FRONTEND_BASE_URL }}/fi/collection/{{ page.id }}/?draft=true';
+        window.location.replace(redirectUrl);
+    }
+</script>
