@@ -48,6 +48,7 @@ COLLECTION_BASE = {
 
     "title_fi": "Syksyn riehakkaimmat riennot",
     "title_sv": "Höstens mest livliga knep",
+    "title_en": "Very cool English title",
 }
 
 LANDING_PAGE_BASE = {
@@ -55,6 +56,7 @@ LANDING_PAGE_BASE = {
 
     "title_fi": "Syksyn riehakkaimmat riennot",
     "title_sv": "Höstens mest livliga knep",
+    "title_en": "Very cool English title",
 
     "description_en": "Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero",
     "description_fi": "Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero",
