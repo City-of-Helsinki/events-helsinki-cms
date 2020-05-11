@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django.conf import settings
 from django.db import models
 from wagtail.core import blocks
@@ -168,6 +170,17 @@ class LandingPages(Page):
         context['FRONTEND_BASE_URL'] = settings.FRONTEND_BASE_URL
         return context
 
+    def clean(self):
+        '''
+        Unfortunately Wagtail doesn't support customizing which field it uses for Page titles.
+        At the moment, it uses "title" field, but this is not always desirable.
+        The extremely hacky trick below makes Wagtail explorer look like its default language is Finnish.
+        Taken from: https://stackoverflow.com/a/48632873/5208999
+        '''
+        self.title = self.title_fi or 'Ei otsikko suomea'
+        self.slug = str(uuid4())
+        super().clean()
+
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Sisältö'),
         ObjectList(Page.settings_panels, heading='Asetukset', classname='settings'),
@@ -330,6 +343,17 @@ class Collections(Page):
         context = super().get_context(request)
         context['FRONTEND_BASE_URL'] = settings.FRONTEND_BASE_URL
         return context
+
+    def clean(self):
+        '''
+        Unfortunately Wagtail doesn't support customizing which field it uses for Page titles.
+        At the moment, it uses "title" field, but this is not always desirable.
+        The extremely hacky trick below makes Wagtail explorer look like its default language is Finnish.
+        Taken from: https://stackoverflow.com/a/48632873/5208999
+        '''
+        self.title = self.title_fi or 'Ei otsikko suomea'
+        self.slug = str(uuid4())
+        super().clean()
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Sisältö'),
