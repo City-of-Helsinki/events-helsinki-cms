@@ -4,7 +4,6 @@ from application import models
 
 
 class CollectionsSerializer(serializers.ModelSerializer):
-    title_en = serializers.CharField(source='title')
     hero_image = serializers.SerializerMethodField()
     curated_events = serializers.SerializerMethodField()
 
@@ -24,8 +23,6 @@ class CollectionsSerializer(serializers.ModelSerializer):
 
 
 class LandingPagesSerializer(serializers.ModelSerializer):
-    title_en = serializers.CharField(source='title')
-
     hero_background_image_fi = serializers.SerializerMethodField()
     hero_background_image_sv = serializers.SerializerMethodField()
     hero_background_image_en = serializers.SerializerMethodField()

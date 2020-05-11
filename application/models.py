@@ -59,7 +59,7 @@ class LandingPages(Page):
 
     title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
-    # title comes from Page class itself
+    title_en = models.CharField(max_length=255, null=True, verbose_name='Otsikko EN')
 
     description_fi = models.TextField(null=True, blank=True, verbose_name='Selite FI')
     description_sv = models.TextField(null=True, blank=True, verbose_name='Selite SV')
@@ -111,7 +111,7 @@ class LandingPages(Page):
             [
                 FieldPanel('title_fi'),
                 FieldPanel('title_sv'),
-                FieldPanel('title'),
+                FieldPanel('title_en'),
             ],
             heading="OTSIKKO",
             help_text='Otsikon maksimimerkkimäärä on noin 60 merkkiä sanojen pituudesta riippuen. Tarkistatathan esikatselusta, että sisältö on kooltaan sopiva.',
@@ -193,7 +193,7 @@ class Collections(Page):
 
     title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko SV')
-    # title comes from Page class itself
+    title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko EN')
 
     description_fi = models.TextField(max_length=400, null=True, blank=True, verbose_name='Kuvaus FI')
     description_sv = models.TextField(max_length=400, null=True, blank=True, verbose_name='Kuvaus SV')
@@ -251,7 +251,7 @@ class Collections(Page):
             [
                 FieldPanel('title_fi'),
                 FieldPanel('title_sv'),
-                FieldPanel('title'),
+                FieldPanel('title_en'),
             ],
             heading="OTSIKKO",
             help_text='Tähän tulee kokoelmasi pääotsikko. Pidäthän otsikon lyhyenä ja ytimekkäänä.',
