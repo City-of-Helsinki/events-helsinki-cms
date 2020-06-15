@@ -31,6 +31,10 @@ class LandingPagesSerializer(serializers.ModelSerializer):
     hero_top_layer_image_sv = serializers.SerializerMethodField()
     hero_top_layer_image_en = serializers.SerializerMethodField()
 
+    social_media_image_fi = serializers.SerializerMethodField()
+    social_media_image_sv = serializers.SerializerMethodField()
+    social_media_image_en = serializers.SerializerMethodField()
+
     class Meta:
         model = models.LandingPages
         exclude = ['title']
@@ -68,5 +72,23 @@ class LandingPagesSerializer(serializers.ModelSerializer):
     def get_hero_top_layer_image_en(self, obj):
         if obj.hero_top_layer_image_en:
             return obj.hero_top_layer_image_en.file.url
+        else:
+            return None
+
+    def get_social_media_image_fi(self, obj):
+        if obj.social_media_image_fi:
+            return obj.social_media_image_fi.file.url
+        else:
+            return None
+
+    def get_social_media_image_sv(self, obj):
+        if obj.social_media_image_sv:
+            return obj.social_media_image_sv.file.url
+        else:
+            return None
+
+    def get_social_media_image_en(self, obj):
+        if obj.social_media_image_en:
+            return obj.social_media_image_en.file.url
         else:
             return None
