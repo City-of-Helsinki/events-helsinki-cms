@@ -59,6 +59,10 @@ class LandingPages(Page):
     hero_top_layer_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_top_layer_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
 
+    social_media_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    social_media_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    social_media_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+
     title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
     title_en = models.CharField(max_length=255, null=True, verbose_name='Otsikko EN')
@@ -107,6 +111,15 @@ class LandingPages(Page):
                 ImageChooserPanel('hero_top_layer_image_en'),
             ],
             heading="Hero Top Layer Image",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('social_media_image_fi'),
+                ImageChooserPanel('social_media_image_sv'),
+                ImageChooserPanel('social_media_image_en'),
+            ],
+            heading="Social Media Image",
             help_text='',
         ),
         MultiFieldPanel(
