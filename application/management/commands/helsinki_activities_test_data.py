@@ -104,6 +104,10 @@ class Command(BaseCommand):
         hero_top_layer_image = Image(title='Landing Page Hero Top Layer Image', file='landing_page_hero_top_layer_image.jpg')
         hero_top_layer_image.save()
 
+        shutil.copy2('pictures/merakist-CNbRsQj8mHQ-unsplash.jpg', 'media-files/landing_page_social_media_image.jpg')
+        social_media_image = Image(title='Landing Page Social Media Image', file='landing_page_social_media_image.jpg')
+        social_media_image.save()
+
         root_page = wagtail_models.Page.objects.get(title='Root')
 
         helsinki_activities = root_page.add_child(instance=models.HelsinkiActivities(title='Helsinki Activities'))
@@ -121,7 +125,7 @@ class Command(BaseCommand):
             title='Kool Kids of Kurvi', **COLLECTION_BASE))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
-            title='Summer is here!', **dict(LANDING_PAGE_BASE, visible_on_frontpage=True, hero_background_image_fi=hero_background_image, hero_top_layer_image_fi=hero_top_layer_image)))
+            title='Summer is here!', **dict(LANDING_PAGE_BASE, visible_on_frontpage=True, hero_background_image_fi=hero_background_image, hero_top_layer_image_fi=hero_top_layer_image, social_media_image_fi=social_media_image)))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Fall is here!', **LANDING_PAGE_BASE))
