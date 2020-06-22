@@ -49,8 +49,6 @@ class LandingPages(Page):
     parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
 
-    visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
-
     hero_background_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
@@ -88,13 +86,6 @@ class LandingPages(Page):
     page_title_en = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi EN')
 
     content_panels = [
-        MultiFieldPanel(
-            [
-                FieldPanel('visible_on_frontpage'),
-            ],
-            heading="Näytä kokoelma etusivulla",
-            help_text='Help text',
-        ),
         MultiFieldPanel(
             [
                 ImageChooserPanel('hero_background_image_fi'),
