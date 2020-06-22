@@ -52,7 +52,6 @@ class LandingPages(generics.ListAPIView):
 
     queryset = models.LandingPages.objects.all()
     serializer_class = serializers.LandingPagesSerializer
-    filterset_fields = ['visible_on_frontpage']
 
 
 class LandingPagesSingle(generics.RetrieveAPIView):
