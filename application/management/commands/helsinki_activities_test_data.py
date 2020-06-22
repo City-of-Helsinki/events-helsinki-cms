@@ -52,8 +52,6 @@ COLLECTION_BASE = {
 }
 
 LANDING_PAGE_BASE = {
-    "visible_on_frontpage": False,
-
     "title_fi": "Syksyn riehakkaimmat riennot",
     "title_sv": "Höstens mest livliga knep",
     "title_en": "Very cool English title",
@@ -125,7 +123,7 @@ class Command(BaseCommand):
             title='Kool Kids of Kurvi', **COLLECTION_BASE))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
-            title='Summer is here!', **dict(LANDING_PAGE_BASE, visible_on_frontpage=True, hero_background_image_fi=hero_background_image, hero_top_layer_image_fi=hero_top_layer_image, social_media_image_fi=social_media_image)))
+            title='Summer is here!', **dict(LANDING_PAGE_BASE, hero_background_image_fi=hero_background_image, hero_top_layer_image_fi=hero_top_layer_image, social_media_image_fi=social_media_image)))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Fall is here!', **LANDING_PAGE_BASE))
