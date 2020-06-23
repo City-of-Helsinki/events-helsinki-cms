@@ -50,7 +50,7 @@ class CollectionsSingle(generics.RetrieveAPIView):
 class LandingPages(generics.ListAPIView):
     permission_classes = (AllowAny,)
 
-    queryset = models.LandingPages.objects.all()
+    queryset = models.LandingPages.objects.filter(live=True)
     serializer_class = serializers.LandingPagesSerializer
 
 
