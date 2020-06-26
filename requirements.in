@@ -7,7 +7,6 @@ django-storages[google,azure]==1.9.1            # Google Cloud and Azure storage
 django==2.2.9                                   # web framework itself
 djangorestframework==3.11.0                     # creating rest APIs
 drf-yasg==1.17.0                                # Swagger UI for Django REST Framework
-gunicorn==20.0.4                                # application server
 jsonschema==3.2.0                               # An implementation of JSON Schema validation for Python
 markdown==3.1.1                                 # Markdown support for the browsable API of Django REST Framework
 psycopg2-binary==2.8.4                          # PostgreSQL Database Adapter for Python
