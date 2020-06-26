@@ -98,6 +98,10 @@ class Command(BaseCommand):
         hero_background_image = Image(title='Landing Page Hero Background Image', file='landing_page_hero_background_image.jpg')
         hero_background_image.save()
 
+        shutil.copy2('pictures/ravi-sharma-xxGyLaY4v14-unsplash.jpg', 'media-files/landing_page_hero_background_image_mobile.jpg')
+        hero_background_image_mobile = Image(title='Landing Page Hero Background Image Mobile', file='landing_page_hero_background_image_mobile.jpg')
+        hero_background_image_mobile.save()
+
         shutil.copy2('pictures/joanna-kosinska-1_CMoFsPfso-unsplash.jpg', 'media-files/landing_page_hero_top_layer_image.jpg')
         hero_top_layer_image = Image(title='Landing Page Hero Top Layer Image', file='landing_page_hero_top_layer_image.jpg')
         hero_top_layer_image.save()
@@ -123,7 +127,7 @@ class Command(BaseCommand):
             title='Kool Kids of Kurvi', **COLLECTION_BASE))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
-            title='Summer is here!', **dict(LANDING_PAGE_BASE, hero_background_image_fi=hero_background_image, hero_top_layer_image_fi=hero_top_layer_image, social_media_image_fi=social_media_image)))
+            title='Summer is here!', **dict(LANDING_PAGE_BASE, hero_background_image_fi=hero_background_image, hero_background_image_mobile_fi=hero_background_image_mobile, hero_top_layer_image_fi=hero_top_layer_image, social_media_image_fi=social_media_image)))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Fall is here!', **LANDING_PAGE_BASE))
