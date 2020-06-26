@@ -27,6 +27,10 @@ class LandingPagesSerializer(serializers.ModelSerializer):
     hero_background_image_sv = serializers.SerializerMethodField()
     hero_background_image_en = serializers.SerializerMethodField()
 
+    hero_background_image_mobile_fi = serializers.SerializerMethodField()
+    hero_background_image_mobile_sv = serializers.SerializerMethodField()
+    hero_background_image_mobile_en = serializers.SerializerMethodField()
+
     hero_top_layer_image_fi = serializers.SerializerMethodField()
     hero_top_layer_image_sv = serializers.SerializerMethodField()
     hero_top_layer_image_en = serializers.SerializerMethodField()
@@ -54,6 +58,24 @@ class LandingPagesSerializer(serializers.ModelSerializer):
     def get_hero_background_image_en(self, obj):
         if obj.hero_background_image_en:
             return obj.hero_background_image_en.file.url
+        else:
+            return None
+
+    def get_hero_background_image_mobile_fi(self, obj):
+        if obj.hero_background_image_mobile_fi:
+            return obj.hero_background_image_mobile_fi.file.url
+        else:
+            return None
+
+    def get_hero_background_image_mobile_sv(self, obj):
+        if obj.hero_background_image_mobile_sv:
+            return obj.hero_background_image_mobile_sv.file.url
+        else:
+            return None
+
+    def get_hero_background_image_mobile_en(self, obj):
+        if obj.hero_background_image_mobile_en:
+            return obj.hero_background_image_mobile_en.file.url
         else:
             return None
 
