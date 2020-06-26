@@ -53,6 +53,10 @@ class LandingPages(Page):
     hero_background_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
 
+    hero_background_image_mobile_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_mobile_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_mobile_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+
     hero_top_layer_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_top_layer_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_top_layer_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
@@ -93,6 +97,15 @@ class LandingPages(Page):
                 ImageChooserPanel('hero_background_image_en'),
             ],
             heading="Hero Background Image",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('hero_background_image_mobile_fi'),
+                ImageChooserPanel('hero_background_image_mobile_sv'),
+                ImageChooserPanel('hero_background_image_mobile_en'),
+            ],
+            heading="Hero Background Image Mobile",
             help_text='',
         ),
         MultiFieldPanel(
