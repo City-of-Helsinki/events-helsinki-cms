@@ -19,7 +19,9 @@ COPY --chown=appuser:appuser docker-entrypoint.sh /app/
 ENTRYPOINT ["/tini", "--", "/app/docker-entrypoint.sh"]
 
 COPY --chown=appuser:appuser requirements.txt /app/
-RUN pip --no-cache-dir install -r /app/requirements.txt
+RUN apt-install.sh build-essential \
+    && pip --no-cache-dir install -r /app/requirements.txt \
+    && apt-cleanup.sh build-essential
 
 # ==============================
 FROM base_stage AS development

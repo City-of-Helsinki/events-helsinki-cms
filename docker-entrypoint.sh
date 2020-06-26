@@ -28,5 +28,5 @@ fi
 if [[ "$DEV_SERVER" = "true" ]]; then
     ./manage.py runserver $DEV_SERVER_ADDRESS
 else
-    return
+    uwsgi --ini .prod/uwsgi.ini
 fi
