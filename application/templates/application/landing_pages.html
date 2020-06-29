@@ -1,6 +1,7 @@
 <script>
     window.onload = function() {
-        redirectUrl = '{{ FRONTEND_BASE_URL }}/fi/home/{{ page.id }}/?draft=true';
+        addDraft = window.location.href.includes('preview') ||  window.location.href.includes('view_draft') ? true : false;
+        redirectUrl = `{{ FRONTEND_BASE_URL }}/fi/home/{{ page.id }}/?draft=${ addDraft }`;
         window.location.replace(redirectUrl);
     }
 </script>
