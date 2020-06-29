@@ -88,6 +88,7 @@ class Command(BaseCommand):
         # Delete all pages and images
         wagtail_models.Page.objects.get(title='Root').get_children().delete()
         Image.objects.all().delete()
+        wagtail_models.Site.objects.all().delete()
 
         # Saving images to database
         shutil.copy2('pictures/gerome-bruneau-RPmWEtZLh7U-unsplash.jpg', 'media-files/collection_hero_image.jpg')
@@ -134,5 +135,9 @@ class Command(BaseCommand):
 
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Winter is here!', **LANDING_PAGE_BASE))
+
+        # Creating a default "Site"
+        default_site = wagtail_models.Site(hostname='localhost', port='8080', root_page=helsinki_activities, is_default_site=True)
+        default_site.save()
 
         self.stdout.write('Helsinki Activities test data were populated to CMS')
