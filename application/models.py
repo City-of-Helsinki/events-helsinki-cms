@@ -315,15 +315,6 @@ class Collections(Page):
         ),
         MultiFieldPanel(
             [
-                FieldPanel('social_media_description_fi'),
-                FieldPanel('social_media_description_sv'),
-                FieldPanel('social_media_description_en'),
-            ],
-            heading="KUVAUS SOSIAALISEEN MEDIAAN",
-            help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',
-        ),
-        MultiFieldPanel(
-            [
                 FieldPanel('curated_events_title_fi'),
                 FieldPanel('curated_events_title_sv'),
                 FieldPanel('curated_events_title_en'),
@@ -353,6 +344,15 @@ class Collections(Page):
             ],
             heading="TAPAHTUMALISTAUKSEN HAUN WWW-OSOITE",
             help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('social_media_description_fi'),
+                FieldPanel('social_media_description_sv'),
+                FieldPanel('social_media_description_en'),
+            ],
+            heading="KUVAUS SOSIAALISEEN MEDIAAN",
+            help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',
         ),
     ]
 
