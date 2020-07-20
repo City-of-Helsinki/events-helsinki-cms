@@ -1,1 +1,7 @@
-console.log("This additonal js file was added to page editor interface!");
+$(document).ready(function() {
+  second_error_message = $(".error").get(1);
+
+  if (second_error_message) {
+    second_error_message.scrollIntoView({ behavior: "smooth" });
+  }
+});
