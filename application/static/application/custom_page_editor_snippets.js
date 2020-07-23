@@ -1,7 +1,13 @@
-$(document).ready(function() {
-  second_error_message = $(".error").get(1);
+$(documentReady);
 
-  if (second_error_message) {
-    second_error_message.scrollIntoView({ behavior: "smooth" });
+function documentReady() {
+  scrollToValidationError();
+}
+
+function scrollToValidationError() {
+  secondErrorMessage = $(".error").get(1);
+
+  if (secondErrorMessage) {
+    secondErrorMessage.scrollIntoView({ behavior: "smooth" });
   }
-});
+}
