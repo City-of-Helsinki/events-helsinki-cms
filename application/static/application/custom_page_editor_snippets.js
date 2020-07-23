@@ -2,6 +2,7 @@ $(documentReady);
 
 function documentReady() {
   scrollToValidationError();
+  addLinksForCuratedEvents();
 }
 
 function scrollToValidationError() {
@@ -9,5 +10,14 @@ function scrollToValidationError() {
 
   if (secondErrorMessage) {
     secondErrorMessage.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function addLinksForCuratedEvents() {
+  eventLinks = $("input[placeholder*='Event link']");
+
+  for (eventLink of eventLinks) {
+    eventPageLink = `<a href='${eventLink.value}'>Link to event page</a>`;
+    $(eventPageLink).insertAfter(eventLink);
   }
 }
