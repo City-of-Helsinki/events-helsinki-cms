@@ -49,9 +49,18 @@ class LandingPages(Page):
     parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
 
+    hero_background_image_color_choices = [
+        ('BLACK', 'Black'),
+        ('WHITE', 'White'),
+    ]
+
     hero_background_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+
+    hero_background_image_color_fi = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
+    hero_background_image_color_sv = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
+    hero_background_image_color_en = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
 
     hero_background_image_mobile_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_mobile_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
@@ -97,6 +106,15 @@ class LandingPages(Page):
                 ImageChooserPanel('hero_background_image_en'),
             ],
             heading="Hero Background Image",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('hero_background_image_color_fi'),
+                FieldPanel('hero_background_image_color_sv'),
+                FieldPanel('hero_background_image_color_en'),
+            ],
+            heading="Hero Background Image Color",
             help_text='',
         ),
         MultiFieldPanel(
