@@ -11,3 +11,5 @@ To overwrite what Wagtail shows for default translated Finnish texts:
 4. We must *compile* the Finnish locale file using: django-admin compilemessages
 '''
 gettext("The page could not be saved due to validation errors")
+gettext("Upload")
+gettext("Uploading…")

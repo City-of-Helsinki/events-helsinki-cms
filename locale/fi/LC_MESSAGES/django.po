@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-03 21:41+0300\n"
+"POT-Creation-Date: 2020-07-29 14:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,3 +21,11 @@ msgstr ""
 #: application/wagtail_messages.py:13
 msgid "The page could not be saved due to validation errors"
 msgstr "Syöttämisässi tiedoissa on virhe"
+
+#: application/wagtail_messages.py:14
+msgid "Upload"
+msgstr "Lataa"
+
+#: application/wagtail_messages.py:15
+msgid "Uploading…"
+msgstr "Lataaminen…"
