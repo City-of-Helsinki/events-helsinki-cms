@@ -12,7 +12,8 @@ from wagtail.admin.edit_handlers import (
     StreamFieldPanel,
     TabbedInterface,
 )
-from wagtail.images.edit_handlers import ImageChooserPanel
+
+from application.wagtail_edit_handlers import CustomImageChooserPanel as ImageChooserPanel
 
 
 class HelsinkiActivities(Page):
