@@ -32,7 +32,9 @@ COLLECTION_BASE = {
     "social_media_description_fi": "social media is social. eget condimentum rhoncus, sem quam semper libero",
     "social_media_description_sv": "social media is social. eget condimentum rhoncus, sem quam semper libero",
 
-    "event_list_query": "http://localhost:3000/en/events?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
+    "event_list_query_fi": "http://localhost:3000/fi/events?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
+    "event_list_query_sv": "http://localhost:3000/sv/events?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
+    "event_list_query_en": "http://localhost:3000/en/events?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
 
     "event_list_title_en": "All the best events of the fall",
     "event_list_title_fi": "Kaikki syksyn parhaat tapahtumat",

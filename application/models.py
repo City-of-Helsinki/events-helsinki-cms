@@ -272,7 +272,9 @@ class Collections(Page):
     event_list_title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko SV')
     event_list_title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko EN')
 
-    event_list_query = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite')
+    event_list_query_fi = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite FI')
+    event_list_query_sv = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite SV')
+    event_list_query_en = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite EN')
 
     content_panels = [
         MultiFieldPanel(
@@ -359,7 +361,9 @@ class Collections(Page):
         ),
         MultiFieldPanel(
             [
-                FieldPanel('event_list_query'),
+                FieldPanel('event_list_query_fi'),
+                FieldPanel('event_list_query_sv'),
+                FieldPanel('event_list_query_en'),
             ],
             heading="TAPAHTUMALISTAUKSEN HAUN WWW-OSOITE",
             help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',
