@@ -55,6 +55,16 @@ class LandingPages(Page):
         ('WHITE', 'White'),
     ]
 
+    title_color_choices = [
+        ('BLACK', 'Black'),
+        ('WHITE', 'White'),
+    ]
+
+    description_color_choices = [
+        ('BLACK', 'Black'),
+        ('WHITE', 'White'),
+    ]
+
     hero_background_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
@@ -79,9 +89,17 @@ class LandingPages(Page):
     title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
     title_en = models.CharField(max_length=255, null=True, verbose_name='Otsikko EN')
 
+    title_color_fi = models.CharField(max_length=255, choices=title_color_choices, null=True, blank=True)
+    title_color_sv = models.CharField(max_length=255, choices=title_color_choices, null=True, blank=True)
+    title_color_en = models.CharField(max_length=255, choices=title_color_choices, null=True, blank=True)
+
     description_fi = models.TextField(null=True, blank=True, verbose_name='Selite FI')
     description_sv = models.TextField(null=True, blank=True, verbose_name='Selite SV')
     description_en = models.TextField(null=True, blank=True, verbose_name='Selite EN')
+
+    description_color_fi = models.CharField(max_length=255, choices=description_color_choices, null=True, blank=True)
+    description_color_sv = models.CharField(max_length=255, choices=description_color_choices, null=True, blank=True)
+    description_color_en = models.CharField(max_length=255, choices=description_color_choices, null=True, blank=True)
 
     button_text_fi = models.CharField(max_length=255, null=True, verbose_name='Napin teksti FI')
     button_text_sv = models.CharField(max_length=255, null=True, verbose_name='Napin teksti SV')
@@ -156,12 +174,30 @@ class LandingPages(Page):
         ),
         MultiFieldPanel(
             [
+                FieldPanel('title_color_fi'),
+                FieldPanel('title_color_sv'),
+                FieldPanel('title_color_en'),
+            ],
+            heading="OTSIKKO Color",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
                 FieldPanel('description_fi'),
                 FieldPanel('description_sv'),
                 FieldPanel('description_en'),
             ],
             heading="SELITE",
             help_text='Selite sijoittuu otsikon yläpuolelle. Voit jättää tämän kohdan myös tyhjäksi.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('description_color_fi'),
+                FieldPanel('description_color_sv'),
+                FieldPanel('description_color_en'),
+            ],
+            heading="SELITE Color",
+            help_text='',
         ),
         MultiFieldPanel(
             [
