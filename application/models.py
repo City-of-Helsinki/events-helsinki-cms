@@ -51,8 +51,10 @@ class LandingPages(Page):
     subpage_typed = []
 
     hero_background_image_color_choices = [
-        ('BLACK', 'Black'),
-        ('WHITE', 'White'),
+        ('FOG', 'Sumu'),
+        ('ENGEL', 'Engel'),
+        ('COPPER', 'Kupari'),
+        ('SUOMENLINNA', 'Suomenlinna'),
     ]
 
     title_color_choices = [
