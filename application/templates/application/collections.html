@@ -1,7 +1,7 @@
 <script>
     window.onload = function() {
         addDraft = window.location.href.includes('preview') ||  window.location.href.includes('view_draft') ? true : false;
-        redirectUrl = `{{ FRONTEND_BASE_URL }}/fi/collection/{{ page.id }}/?draft=${ addDraft }`;
+        redirectUrl = `{{ FRONTEND_BASE_URL }}/fi/collection/{{ page.slug }}/?draft=${ addDraft }`;
         window.location.replace(redirectUrl);
     }
 </script>
