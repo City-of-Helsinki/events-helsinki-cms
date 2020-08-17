@@ -317,6 +317,13 @@ class Collections(Page):
     content_panels = [
         MultiFieldPanel(
             [
+                FieldPanel('slug'),
+            ],
+            heading="Slug",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
                 FieldPanel('visible_on_frontpage'),
             ],
             heading="Näytä kokoelma etusivulla",
@@ -430,7 +437,6 @@ class Collections(Page):
         Taken from: https://stackoverflow.com/a/48632873/5208999
         '''
         self.title = self.title_fi or 'Ei otsikko suomea'
-        self.slug = str(uuid4())
         super().clean()
 
     edit_handler = TabbedInterface([
