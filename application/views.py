@@ -39,7 +39,7 @@ class CollectionsSingle(generics.RetrieveAPIView):
     def get_object(self):
         draft_requested = self.request.query_params.get('draft') == 'true'
 
-        collection_page = get_object_or_404(self.get_queryset(), pk=self.kwargs.get('pk'))
+        collection_page = get_object_or_404(self.get_queryset(), slug=self.kwargs.get('slug'))
 
         if draft_requested:
             return collection_page.get_latest_revision_as_page()
