@@ -27,6 +27,7 @@ staging:
   variables:
     K8S_SECRET_DEBUG: "false"
     K8S_SECRET_DJANGO_SECRET_KEY: "$GL_QA_DJANGO_SECRET_KEY"
+    K8S_SECRET_SUPERUSER_PASSWORD: "$GL_QA_SUPERUSER_PASSWORD"
     K8S_SECRET_FRONTEND_BASE_URL: "https://tapahtumat.test.kuva.hel.ninja"
     K8S_SECRET_DEFAULT_FILE_STORAGE: "storages.backends.gcloud.GoogleCloudStorage"
     # STAGING_GCS_BUCKET_CREDENTIALS is already available in the deployment. Do not re-define it.
@@ -36,6 +37,7 @@ production:
   variables:
     K8S_SECRET_DEBUG: "false"
     K8S_SECRET_DJANGO_SECRET_KEY: "$GL_PRODUCTION_DJANGO_SECRET_KEY"
+    K8S_SECRET_SUPERUSER_PASSWORD: "$GL_PRODUCTION_SUPERUSER_PASSWORD"
     K8S_SECRET_FRONTEND_BASE_URL: "https://tapahtumat.prod.kuva.hel.ninja"
     K8S_SECRET_DEFAULT_FILE_STORAGE: "storages.backends.azure_storage.AzureStorage"
     K8S_SECRET_AZURE_BUCKET_NAME: "$STABLE_AZURE_BUCKET_NAME"
