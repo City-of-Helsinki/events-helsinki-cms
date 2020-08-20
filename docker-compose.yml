@@ -22,6 +22,7 @@ services:
     environment:
       - APPLY_MIGRATIONS=true
       - CREATE_SUPERUSER=true
+      - SUPERUSER_PASSWORD=coconut
       - DATABASE_URL=postgres://primary_user@database:5432/primary_db
       - DEBUG=true
       - DEFAULT_FILE_STORAGE=django.core.files.storage.FileSystemStorage
