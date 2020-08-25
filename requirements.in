@@ -5,12 +5,12 @@ django-extensions==2.2.6                        # lots of useful django manageme
 django-filter==2.2.0                            # enabling the API to filter results based on query params
 django-storages[google,azure]==1.9.1            # Google Cloud and Azure storage support for media files for Wagtail
 django==2.2.9                                   # web framework itself
-djangorestframework==3.11.0                     # creating rest APIs
+djangorestframework==3.11.1                     # creating rest APIs
 drf-yasg==1.17.0                                # Swagger UI for Django REST Framework
 jsonschema==3.2.0                               # An implementation of JSON Schema validation for Python
 markdown==3.1.1                                 # Markdown support for the browsable API of Django REST Framework
 psycopg2-binary==2.8.4                          # PostgreSQL Database Adapter for Python
 requests==2.22.0                                # sending http requests
 uwsgi==2.0.19.1                                 # application server
-wagtail==2.9                                    # CMS itself
+wagtail==2.10                                   # CMS itself
 whitenoise==5.0.1                               # enabling Django to serve its own static files
