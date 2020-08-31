@@ -171,6 +171,7 @@ elif DEFAULT_FILE_STORAGE == "storages.backends.azure_storage.AzureStorage":
 # Wagtail settings
 WAGTAIL_SITE_NAME = 'City of Helsinki'
 WAGTAIL_ENABLE_UPDATE_CHECK = False
+WAGTAILIMAGES_IMAGE_MODEL = 'application.CustomImage'
 
 
 # Logging

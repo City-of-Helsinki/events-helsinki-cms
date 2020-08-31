@@ -5,6 +5,7 @@ from django.db import models
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
+from wagtail.images.models import AbstractImage, AbstractRendition
 from wagtail.admin.edit_handlers import (
     FieldPanel,
     MultiFieldPanel,
@@ -14,6 +15,28 @@ from wagtail.admin.edit_handlers import (
 )
 
 from application.wagtail_edit_handlers import CustomImageChooserPanel as ImageChooserPanel
+
+
+class CustomImage(AbstractImage):
+    admin_form_fields = (
+        'title',
+        'file',
+        'collection',
+        'tags',
+        'focal_point_x',
+        'focal_point_y',
+        'focal_point_width',
+        'focal_point_height',
+    )
+
+
+class CustomRendition(AbstractRendition):
+    image = models.ForeignKey(CustomImage, on_delete=models.CASCADE, related_name='renditions')
+
+    class Meta:
+        unique_together = (
+            ('image', 'filter_spec', 'focal_point_key'),
+        )
 
 
 class HelsinkiActivities(Page):
@@ -67,25 +90,25 @@ class LandingPages(Page):
         ('WHITE', 'White'),
     ]
 
-    hero_background_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_background_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_background_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
 
     hero_background_image_color_fi = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
     hero_background_image_color_sv = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
     hero_background_image_color_en = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
 
-    hero_background_image_mobile_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_background_image_mobile_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_background_image_mobile_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_mobile_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_mobile_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_mobile_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
 
-    hero_top_layer_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_top_layer_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_top_layer_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_top_layer_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_top_layer_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_top_layer_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
 
-    social_media_image_fi = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    social_media_image_sv = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    social_media_image_en = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    social_media_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    social_media_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    social_media_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
 
     title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
@@ -275,7 +298,7 @@ class Collections(Page):
     ]
 
     visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
-    hero_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.PROTECT)
+    hero_image = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT)
     box_color = models.CharField(max_length=255, choices=color_choices, null=True, verbose_name='Taustaväri ylätunisteelle')
 
     title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko FI')
