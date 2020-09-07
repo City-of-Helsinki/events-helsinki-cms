@@ -3,6 +3,16 @@ from rest_framework import serializers
 from application import models
 
 
+def image_serializer(image_field):
+    if image_field:
+        return {
+            'url': image_field.file.url,
+            'photographer_credit': image_field.photographer_credit,
+        }
+    else:
+        return None
+
+
 class CollectionsSerializer(serializers.ModelSerializer):
     hero_image = serializers.SerializerMethodField()
     curated_events = serializers.SerializerMethodField()
@@ -16,10 +26,7 @@ class CollectionsSerializer(serializers.ModelSerializer):
         return clean_curated_events
 
     def get_hero_image(self, obj):
-        if obj.hero_image:
-            return obj.hero_image.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_image)
 
 
 class LandingPagesSerializer(serializers.ModelSerializer):
@@ -44,73 +51,37 @@ class LandingPagesSerializer(serializers.ModelSerializer):
         exclude = ['title']
 
     def get_hero_background_image_fi(self, obj):
-        if obj.hero_background_image_fi:
-            return obj.hero_background_image_fi.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_background_image_fi)
 
     def get_hero_background_image_sv(self, obj):
-        if obj.hero_background_image_sv:
-            return obj.hero_background_image_sv.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_background_image_sv)
 
     def get_hero_background_image_en(self, obj):
-        if obj.hero_background_image_en:
-            return obj.hero_background_image_en.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_background_image_en)
 
     def get_hero_background_image_mobile_fi(self, obj):
-        if obj.hero_background_image_mobile_fi:
-            return obj.hero_background_image_mobile_fi.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_background_image_mobile_fi)
 
     def get_hero_background_image_mobile_sv(self, obj):
-        if obj.hero_background_image_mobile_sv:
-            return obj.hero_background_image_mobile_sv.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_background_image_mobile_sv)
 
     def get_hero_background_image_mobile_en(self, obj):
-        if obj.hero_background_image_mobile_en:
-            return obj.hero_background_image_mobile_en.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_background_image_mobile_en)
 
     def get_hero_top_layer_image_fi(self, obj):
-        if obj.hero_top_layer_image_fi:
-            return obj.hero_top_layer_image_fi.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_top_layer_image_fi)
 
     def get_hero_top_layer_image_sv(self, obj):
-        if obj.hero_top_layer_image_sv:
-            return obj.hero_top_layer_image_sv.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_top_layer_image_sv)
 
     def get_hero_top_layer_image_en(self, obj):
-        if obj.hero_top_layer_image_en:
-            return obj.hero_top_layer_image_en.file.url
-        else:
-            return None
+        return image_serializer(obj.hero_top_layer_image_en)
 
     def get_social_media_image_fi(self, obj):
-        if obj.social_media_image_fi:
-            return obj.social_media_image_fi.file.url
-        else:
-            return None
+        return image_serializer(obj.social_media_image_fi)
 
     def get_social_media_image_sv(self, obj):
-        if obj.social_media_image_sv:
-            return obj.social_media_image_sv.file.url
-        else:
-            return None
+        return image_serializer(obj.social_media_image_sv)
 
     def get_social_media_image_en(self, obj):
-        if obj.social_media_image_en:
-            return obj.social_media_image_en.file.url
-        else:
-            return None
+        return image_serializer(obj.social_media_image_en)
