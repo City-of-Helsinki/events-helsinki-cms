@@ -18,8 +18,11 @@ from application.wagtail_edit_handlers import CustomImageChooserPanel as ImageCh
 
 
 class CustomImage(AbstractImage):
+    photographer_credit = models.CharField(max_length=255, null=True, blank=True)
+
     admin_form_fields = (
         'file',
+        'photographer_credit',
     )
 
 
