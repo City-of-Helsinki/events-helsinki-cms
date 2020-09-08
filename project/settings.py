@@ -172,6 +172,8 @@ elif DEFAULT_FILE_STORAGE == "storages.backends.azure_storage.AzureStorage":
 WAGTAIL_SITE_NAME = 'City of Helsinki'
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 WAGTAILIMAGES_IMAGE_MODEL = 'application.CustomImage'
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 200 * 1024  # i.e. 200 KB
+WAGTAILIMAGES_MAX_IMAGE_PIXELS = 960000  # 1200 * 800 pixels
 
 
 # Logging
