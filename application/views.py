@@ -69,3 +69,17 @@ class LandingPagesSingle(generics.RetrieveAPIView):
             return landing_page.get_latest_revision_as_page()
         else:
             return landing_page
+
+
+class AboutPage(generics.ListAPIView):
+    permission_classes = (AllowAny,)
+
+    queryset = models.AboutPage.objects.filter(live=True)
+    serializer_class = serializers.AboutPageSerializer
+
+
+class AccessibilityPage(generics.ListAPIView):
+    permission_classes = (AllowAny,)
+
+    queryset = models.AccessibilityPage.objects.filter(live=True)
+    serializer_class = serializers.AccessibilityPageSerializer

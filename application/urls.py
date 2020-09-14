@@ -10,4 +10,6 @@ urlpatterns = [
     path('api/collections/<slug>/', views.CollectionsSingle.as_view(), name='collections-single'),
     path('api/landing-pages/', views.LandingPages.as_view(), name='landing-pages'),
     path('api/landing-pages/<pk>/', views.LandingPagesSingle.as_view(), name='landing-pages-single'),
+    path('api/static-pages/about/', views.AboutPage.as_view(), name='static-pages-about'),
+    path('api/static-pages/accessibility/', views.AccessibilityPage.as_view(), name='static-pages-accessibility'),
 ]

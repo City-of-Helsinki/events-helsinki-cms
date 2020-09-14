@@ -13,6 +13,18 @@ def image_serializer(image_field):
         return None
 
 
+class AboutPageSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = models.AboutPage
+
+
+class AccessibilityPageSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = models.AccessibilityPage
+
+
 class CollectionsSerializer(serializers.ModelSerializer):
     hero_image = serializers.SerializerMethodField()
     curated_events = serializers.SerializerMethodField()
