@@ -79,6 +79,28 @@ LANDING_PAGE_BASE = {
 }
 
 
+ABOUT_PAGE_BASE = {
+    "heading_section_fi": "Heading Section in FI",
+    "heading_section_sv": "Heading Section in SV",
+    "heading_section_en": "Heading Section in EN",
+
+    "content_section_fi": "Content Section in FI",
+    "content_section_sv": "Content Section in SV",
+    "content_section_en": "Content Section in EN",
+}
+
+
+ACCESSIBILITY_PAGE_BASE = {
+    "heading_section_fi": "Heading Section in FI",
+    "heading_section_sv": "Heading Section in SV",
+    "heading_section_en": "Heading Section in EN",
+
+    "content_section_fi": "Content Section in FI",
+    "content_section_sv": "Content Section in SV",
+    "content_section_en": "Content Section in EN",
+}
+
+
 class Command(BaseCommand):
     help = "A management command used to populate Helsinki Activities test data into the CMS"
 
@@ -118,6 +140,7 @@ class Command(BaseCommand):
 
         collections_folder = helsinki_activities.add_child(instance=models.CollectionsFolder(title='Collections'))
         landing_pages_folder = helsinki_activities.add_child(instance=models.LandingPagesFolder(title='Landing Pages'))
+        static_pages_folder = helsinki_activities.add_child(instance=models.StaticPagesFolder(title='Static Pages'))
 
         collections_folder.add_child(instance=models.Collections(
             title='Kool Kids of Kallio', **dict(COLLECTION_BASE, hero_image=collection_hero_image)))
@@ -136,6 +159,9 @@ class Command(BaseCommand):
 
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Winter is here!', **LANDING_PAGE_BASE))
+
+        static_pages_folder.add_child(instance=models.AboutPage(title='About', **ABOUT_PAGE_BASE))
+        static_pages_folder.add_child(instance=models.AccessibilityPage(title='Accessibility', **ACCESSIBILITY_PAGE_BASE))
 
         # Creating a default "Site"
         default_site = wagtail_models.Site(hostname='localhost', port='8080', root_page=helsinki_activities, is_default_site=True)
