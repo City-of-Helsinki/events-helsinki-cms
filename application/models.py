@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 from wagtail.core import blocks
 from wagtail.core.models import Page
-from wagtail.core.fields import StreamField
+from wagtail.core.fields import StreamField, RichTextField
 from wagtail.images.models import AbstractImage, AbstractRendition
 from wagtail.admin.edit_handlers import (
     FieldPanel,
@@ -37,7 +37,7 @@ class CustomRendition(AbstractRendition):
 
 class HelsinkiActivities(Page):
     parent_page_types = ['wagtailcore.Page']
-    subpage_typed = ['application.CollectionsFolder', 'application.LandingPagesFolder']
+    subpage_typed = ['application.CollectionsFolder', 'application.LandingPagesFolder', 'application.StaticPagesFolder']
     preview_modes = []
     max_count = 1
 
@@ -63,6 +63,128 @@ class LandingPagesFolder(Page):
 
     class Meta:
         verbose_name = 'Landing Pages Folder'
+
+
+class StaticPagesFolder(Page):
+    parent_page_types = ['application.HelsinkiActivities']
+    subpage_typed = ['application.AboutPage', 'application.AccessibilityPage']
+    preview_modes = []
+    max_count = 1
+
+    class Meta:
+        verbose_name = 'Static Pages Folder'
+
+
+class AboutPage(Page):
+    parent_page_types = ['application.StaticPagesFolder']
+    subpage_typed = []
+    preview_modes = []
+    max_count = 1
+
+    limited_rich_text_field_features = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'bold', 'italic', 'ol', 'ul', 'hr', 'link']
+
+    heading_section_fi = RichTextField(features=limited_rich_text_field_features)
+    heading_section_sv = RichTextField(features=limited_rich_text_field_features)
+    heading_section_en = RichTextField(features=limited_rich_text_field_features)
+
+    content_section_fi = RichTextField(features=limited_rich_text_field_features)
+    content_section_sv = RichTextField(features=limited_rich_text_field_features)
+    content_section_en = RichTextField(features=limited_rich_text_field_features)
+
+    content_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('heading_section_fi'),
+                FieldPanel('heading_section_sv'),
+                FieldPanel('heading_section_en'),
+            ],
+            heading="Heading Section",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('content_section_fi'),
+                FieldPanel('content_section_sv'),
+                FieldPanel('content_section_en'),
+            ],
+            heading="Content Section",
+            help_text='',
+        ),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading='Sisältö'),
+        ObjectList(Page.settings_panels, heading='Asetukset', classname='settings'),
+    ])
+
+    def clean(self):
+        self.title = 'About'
+        self.slug = str(uuid4())
+        super().clean()
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        context['FRONTEND_BASE_URL'] = settings.FRONTEND_BASE_URL
+        return context
+
+    class Meta:
+        verbose_name = 'About Page'
+
+
+class AccessibilityPage(Page):
+    parent_page_types = ['application.StaticPagesFolder']
+    subpage_typed = []
+    preview_modes = []
+    max_count = 1
+
+    limited_rich_text_field_features = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'bold', 'italic', 'ol', 'ul', 'hr', 'link']
+
+    heading_section_fi = RichTextField(features=limited_rich_text_field_features)
+    heading_section_sv = RichTextField(features=limited_rich_text_field_features)
+    heading_section_en = RichTextField(features=limited_rich_text_field_features)
+
+    content_section_fi = RichTextField(features=limited_rich_text_field_features)
+    content_section_sv = RichTextField(features=limited_rich_text_field_features)
+    content_section_en = RichTextField(features=limited_rich_text_field_features)
+
+    content_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('heading_section_fi'),
+                FieldPanel('heading_section_sv'),
+                FieldPanel('heading_section_en'),
+            ],
+            heading="Heading Section",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('content_section_fi'),
+                FieldPanel('content_section_sv'),
+                FieldPanel('content_section_en'),
+            ],
+            heading="Content Section",
+            help_text='',
+        ),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading='Sisältö'),
+        ObjectList(Page.settings_panels, heading='Asetukset', classname='settings'),
+    ])
+
+    def clean(self):
+        self.title = 'Accessibility'
+        self.slug = str(uuid4())
+        super().clean()
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        context['FRONTEND_BASE_URL'] = settings.FRONTEND_BASE_URL
+        return context
+
+    class Meta:
+        verbose_name = 'Accessibility Page'
 
 
 class LandingPages(Page):
