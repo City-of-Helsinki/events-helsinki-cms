@@ -20,7 +20,7 @@ msgstr ""
 
 #: application/wagtail_messages.py:13
 msgid "The page could not be saved due to validation errors"
-msgstr "Syöttämisässi tiedoissa on virhe"
+msgstr "Sivua ei voitu tallentaa. Korjausta vaativan kentän yhteydessä on tarkempi kuvaus virhetilasta."
 
 #: application/wagtail_messages.py:14
 msgid "Upload"
