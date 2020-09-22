@@ -8,7 +8,7 @@ class CustomImageChooserPanel(ImageChooserPanel):
         return {self.field_name: AdminImageChooser(show_edit_link=False)}
 
 
-CUSTOM_SETTINGS_PANEL = [
+CUSTOM_SETTINGS_PANELS = [
     PublishingPanel(help_text='Sekä julkaisu- että poistopäivämäärä ovat vapaaehtoisia kenttiä ja '
                     'ne voidaan jättää tyhjäksi. Voit myös halutessasi täyttää vain toisen kentistä.'),
     PrivacyModalPanel(),

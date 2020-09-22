@@ -15,7 +15,7 @@ from wagtail.admin.edit_handlers import (
 )
 
 from application.wagtail_edit_handlers import CustomImageChooserPanel as ImageChooserPanel
-from application.wagtail_edit_handlers import CUSTOM_SETTINGS_PANEL
+from application.wagtail_edit_handlers import CUSTOM_SETTINGS_PANELS
 
 
 class CustomImage(AbstractImage):
@@ -115,7 +115,7 @@ class AboutPage(Page):
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Sisältö'),
-        ObjectList(CUSTOM_SETTINGS_PANEL, heading='Asetukset', classname='settings'),
+        ObjectList(CUSTOM_SETTINGS_PANELS, heading='Asetukset', classname='settings'),
     ])
 
     def clean(self):
@@ -171,7 +171,7 @@ class AccessibilityPage(Page):
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Sisältö'),
-        ObjectList(CUSTOM_SETTINGS_PANEL, heading='Asetukset', classname='settings'),
+        ObjectList(CUSTOM_SETTINGS_PANELS, heading='Asetukset', classname='settings'),
     ])
 
     def clean(self):
@@ -399,7 +399,7 @@ class LandingPages(Page):
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Sisältö'),
-        ObjectList(CUSTOM_SETTINGS_PANEL, heading='Asetukset', classname='settings'),
+        ObjectList(CUSTOM_SETTINGS_PANELS, heading='Asetukset', classname='settings'),
     ])
 
     class Meta:
@@ -583,7 +583,7 @@ class Collections(Page):
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading='Sisältö'),
-        ObjectList(CUSTOM_SETTINGS_PANEL, heading='Asetukset', classname='settings'),
+        ObjectList(CUSTOM_SETTINGS_PANELS, heading='Asetukset', classname='settings'),
     ])
 
     class Meta:
