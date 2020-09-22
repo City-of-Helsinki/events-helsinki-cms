@@ -208,9 +208,9 @@ class LandingPages(Page):
         ('WHITE', 'White'),
     ]
 
-    hero_background_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_background_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_background_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva FI')
+    hero_background_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva SV')
+    hero_background_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva EN')
 
     hero_background_image_color_fi = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
     hero_background_image_color_sv = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
@@ -220,13 +220,13 @@ class LandingPages(Page):
     hero_background_image_mobile_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
     hero_background_image_mobile_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
 
-    hero_top_layer_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_top_layer_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_top_layer_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_top_layer_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva FI')
+    hero_top_layer_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva SV')
+    hero_top_layer_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva EN')
 
-    social_media_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    social_media_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    social_media_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    social_media_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Some-postauksen kuva FI')
+    social_media_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Some-postauksen kuva SV')
+    social_media_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Some-postauksen kuva EN')
 
     title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
@@ -267,8 +267,8 @@ class LandingPages(Page):
                 ImageChooserPanel('hero_background_image_sv'),
                 ImageChooserPanel('hero_background_image_en'),
             ],
-            heading="Hero Background Image",
-            help_text='',
+            heading="Pääkuva",
+            help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa.',
         ),
         MultiFieldPanel(
             [
@@ -294,8 +294,8 @@ class LandingPages(Page):
                 ImageChooserPanel('hero_top_layer_image_sv'),
                 ImageChooserPanel('hero_top_layer_image_en'),
             ],
-            heading="Hero Top Layer Image",
-            help_text='',
+            heading="Pääkuvan päälle asettuva kuva",
+            help_text='Kuva asettuu pääkuvan päälle. Tämä kuva ei näy mobiilissa. Ainoastaan taustakuva näkyy pienemmillä näytöillä.',
         ),
         MultiFieldPanel(
             [
@@ -303,8 +303,8 @@ class LandingPages(Page):
                 ImageChooserPanel('social_media_image_sv'),
                 ImageChooserPanel('social_media_image_en'),
             ],
-            heading="Social Media Image",
-            help_text='',
+            heading="Some-postauksen kuva",
+            help_text='Kun käyttäjä jakaa etusivun somessa, tämä kuva tulee näkyviin postauksessa.',
         ),
         MultiFieldPanel(
             [
