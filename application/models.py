@@ -392,7 +392,7 @@ class LandingPages(Page):
         The extremely hacky trick below makes Wagtail explorer look like its default language is Finnish.
         Taken from: https://stackoverflow.com/a/48632873/5208999
         '''
-        self.title = self.title_fi or 'Ei otsikko suomea'
+        self.title = self.title_fi or 'Etusivu ilman suomenkielistä otsikkoa'
         self.slug = str(uuid4())
         super().clean()
 
@@ -409,15 +409,15 @@ class Collections(Page):
     parent_page_types = ['application.CollectionsFolder']
     subpage_typed = []
     color_choices = [
-        ('FOG', 'Sumu'),
-        ('ENGEL', 'Engel'),
-        ('COPPER', 'Kupari'),
-        ('SUOMENLINNA', 'Suomenlinna'),
+        ('FOG', 'Sumu – vaaleansininen'),
+        ('ENGEL', 'Engel – keltainen'),
+        ('COPPER', 'Kupari – vihreä'),
+        ('SUOMENLINNA', 'Suomenlinna – vaaleanpunainen'),
     ]
 
     visible_on_frontpage = models.BooleanField(default=False, verbose_name='Näytä kokoelma etusivulla')
-    hero_image = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT)
-    box_color = models.CharField(max_length=255, choices=color_choices, null=True, verbose_name='Taustaväri ylätunisteelle')
+    hero_image = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, verbose_name='Kokoelman pääkuva')
+    box_color = models.CharField(max_length=255, choices=color_choices, null=True, verbose_name='Taustaväri ylätunnisteelle')
 
     title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko FI')
     title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Otsikko SV')
@@ -439,17 +439,17 @@ class Collections(Page):
     social_media_description_sv = models.TextField(null=True, blank=True, verbose_name='Some-kuvaus SV')
     social_media_description_en = models.TextField(null=True, blank=True, verbose_name='Some-kuvaus EN')
 
-    curated_events_title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko FI')
-    curated_events_title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko SV')
-    curated_events_title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko EN')
+    curated_events_title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko FI', default='Suositellut tapahtumat')
+    curated_events_title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko SV', default='Rekommenderade evenemang')
+    curated_events_title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko EN', default='Recommended events')
 
     curated_events = StreamField([
         ('event_link', blocks.URLBlock()),
     ], null=True, verbose_name='Suositeltavat tapahtumat')
 
-    event_list_title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko FI')
-    event_list_title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko SV')
-    event_list_title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko EN')
+    event_list_title_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko FI', default='Sinua voisi myös kiinnostaa')
+    event_list_title_sv = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko SV', default='Kolla även dessa')
+    event_list_title_en = models.CharField(max_length=255, null=True, blank=True, verbose_name='Tapahtumien otsikko EN', default='Related events')
 
     event_list_query_fi = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite FI')
     event_list_query_sv = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite SV')
@@ -468,20 +468,20 @@ class Collections(Page):
                 FieldPanel('visible_on_frontpage'),
             ],
             heading="Näytä kokoelma etusivulla",
-            help_text='Help text',
+            help_text='Valitessasi "Näytä kokoelma etusivulla" kokoelma tulee näkyviin kokoelmasivun lisäksi myös palvelun etusivulla.',
         ),
         MultiFieldPanel(
             [
                 ImageChooserPanel('hero_image'),
             ],
-            heading="Hero Image",
-            help_text='',
+            heading="Kokoelman pääkuva",
+            help_text='Kuvan maksimikoko on 200 KB. Kuvan tulisi olla vähintään 970 px leveä ja 650 px korkea.',
         ),
         MultiFieldPanel(
             [
                 FieldPanel('box_color'),
             ],
-            heading="TAUSTAVÄRI YLÄTUNISTEELLE",
+            heading="Taustaväri ylätunnisteelle",
             help_text='Valittu väri tulee näkyviin kokoelman yläosaan, joka sisältää kokoelman otsikon sekä kuvauksen.',
         ),
         MultiFieldPanel(
@@ -491,7 +491,7 @@ class Collections(Page):
                 FieldPanel('title_en'),
             ],
             heading="OTSIKKO",
-            help_text='Tähän tulee kokoelmasi pääotsikko. Pidäthän otsikon lyhyenä ja ytimekkäänä.',
+            help_text='Kokoelma julkaistaan vain niillä kielillä, joilla on otsikko. Voit halutessasi jättää otsikkokentän tyhjäksi, jolloin kyseistä kieliversiota ei julkaista.',
         ),
         MultiFieldPanel(
             [
@@ -500,7 +500,7 @@ class Collections(Page):
                 FieldPanel('description_en'),
             ],
             heading="KOKOELMAN KUVAUS",
-            help_text='Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja inspiroi käyttäjiä tutustumaan suosituksiin.',
+            help_text='Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja houkuttelee käyttäjiä tutustumaan suosituksiin. Kuvauksen maksimimerkkimäärä on 400 merkkiä.',
         ),
         MultiFieldPanel(
             [
@@ -508,7 +508,7 @@ class Collections(Page):
                 FieldPanel('link_text_sv'),
                 FieldPanel('link_text_en'),
             ],
-            heading="LINKKITEKSTI",
+            heading="Linkkiteksti - valinnainen",
             help_text='Vapaaehtoinen linkki, joka ohjaa lukijan pois kokoelmasta. Käytä vain harkitusti ja pidä linkkiteksti lyhyenä.',
         ),
         MultiFieldPanel(
@@ -517,7 +517,7 @@ class Collections(Page):
                 FieldPanel('link_url_sv'),
                 FieldPanel('link_url_en'),
             ],
-            heading="LINKIN WWW-OSOITE",
+            heading="Linkin www-osoite - valinnainen",
             help_text='Jos lisäsit aikaisempaan \'Linkkiteksti\'-osioon linkin, lisää tähän kenttään www-osoite, johon käyttäjä ohjataan.',
         ),
         MultiFieldPanel(
@@ -526,7 +526,7 @@ class Collections(Page):
                 FieldPanel('curated_events_title_sv'),
                 FieldPanel('curated_events_title_en'),
             ],
-            heading="SUOSITELTAVIEN TAPAHTUMIEN OTSIKKO",
+            heading="Nostojen otsikko",
             help_text='Kirjoita tähän otsikko, jonka haluat näyttää käsin poimittavien, suositeltavien tapahtumien yläpuolella.',
         ),
         MultiFieldPanel(
@@ -577,7 +577,7 @@ class Collections(Page):
         The extremely hacky trick below makes Wagtail explorer look like its default language is Finnish.
         Taken from: https://stackoverflow.com/a/48632873/5208999
         '''
-        self.title = self.title_fi or 'Ei otsikko suomea'
+        self.title = self.title_fi or 'Kokoelma ilman suomenkielistä otsikkoa'
         super().clean()
 
     edit_handler = TabbedInterface([
