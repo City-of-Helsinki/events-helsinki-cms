@@ -11,5 +11,5 @@ class CustomImageChooserPanel(ImageChooserPanel):
 CUSTOM_SETTINGS_PANELS = [
     PublishingPanel(help_text='Sekä julkaisu- että poistopäivämäärä ovat vapaaehtoisia kenttiä ja '
                     'ne voidaan jättää tyhjäksi. Voit myös halutessasi täyttää vain toisen kentistä.'),
-    PrivacyModalPanel(),
+    PrivacyModalPanel(help_text='Tällä voit määritellä sivun ja sen alasivujen näkyvyyden.'),
 ]
