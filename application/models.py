@@ -119,7 +119,7 @@ class AboutPage(Page):
     ])
 
     def clean(self):
-        self.title = 'About'
+        self.title = 'Tietoja palvelusta'
         self.slug = str(uuid4())
         super().clean()
 
@@ -175,7 +175,7 @@ class AccessibilityPage(Page):
     ])
 
     def clean(self):
-        self.title = 'Accessibility'
+        self.title = 'Saavutettavuus'
         self.slug = str(uuid4())
         super().clean()
 
