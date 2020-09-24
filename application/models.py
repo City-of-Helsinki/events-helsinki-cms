@@ -84,13 +84,13 @@ class AboutPage(Page):
 
     limited_rich_text_field_features = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'bold', 'italic', 'ol', 'ul', 'hr', 'link']
 
-    heading_section_fi = RichTextField(features=limited_rich_text_field_features)
-    heading_section_sv = RichTextField(features=limited_rich_text_field_features)
-    heading_section_en = RichTextField(features=limited_rich_text_field_features)
+    heading_section_fi = RichTextField(features=limited_rich_text_field_features, verbose_name='Ingressi FI')
+    heading_section_sv = RichTextField(features=limited_rich_text_field_features, verbose_name='Ingressi SV')
+    heading_section_en = RichTextField(features=limited_rich_text_field_features, verbose_name='Ingressi EN')
 
-    content_section_fi = RichTextField(features=limited_rich_text_field_features)
-    content_section_sv = RichTextField(features=limited_rich_text_field_features)
-    content_section_en = RichTextField(features=limited_rich_text_field_features)
+    content_section_fi = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue FI')
+    content_section_sv = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue SV')
+    content_section_en = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue EN')
 
     content_panels = [
         MultiFieldPanel(
@@ -99,8 +99,8 @@ class AboutPage(Page):
                 FieldPanel('heading_section_sv'),
                 FieldPanel('heading_section_en'),
             ],
-            heading="Heading Section",
-            help_text='',
+            heading="Ingressi",
+            help_text='Tämä teksti tulee sivun ylälaitaan ja siihen on tarkoitus kirjoittaa lyhyesti sisällön ydin.',
         ),
         MultiFieldPanel(
             [
@@ -108,8 +108,8 @@ class AboutPage(Page):
                 FieldPanel('content_section_sv'),
                 FieldPanel('content_section_en'),
             ],
-            heading="Content Section",
-            help_text='',
+            heading="Sisältöäalue",
+            help_text='Tämä sisältö tulee ingressin jälkeen.',
         ),
     ]
 
@@ -140,13 +140,13 @@ class AccessibilityPage(Page):
 
     limited_rich_text_field_features = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'bold', 'italic', 'ol', 'ul', 'hr', 'link']
 
-    heading_section_fi = RichTextField(features=limited_rich_text_field_features)
-    heading_section_sv = RichTextField(features=limited_rich_text_field_features)
-    heading_section_en = RichTextField(features=limited_rich_text_field_features)
+    heading_section_fi = RichTextField(features=limited_rich_text_field_features, verbose_name='Ingressi FI')
+    heading_section_sv = RichTextField(features=limited_rich_text_field_features, verbose_name='Ingressi SV')
+    heading_section_en = RichTextField(features=limited_rich_text_field_features, verbose_name='Ingressi EN')
 
-    content_section_fi = RichTextField(features=limited_rich_text_field_features)
-    content_section_sv = RichTextField(features=limited_rich_text_field_features)
-    content_section_en = RichTextField(features=limited_rich_text_field_features)
+    content_section_fi = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue FI')
+    content_section_sv = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue SV')
+    content_section_en = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue EN')
 
     content_panels = [
         MultiFieldPanel(
@@ -155,8 +155,8 @@ class AccessibilityPage(Page):
                 FieldPanel('heading_section_sv'),
                 FieldPanel('heading_section_en'),
             ],
-            heading="Heading Section",
-            help_text='',
+            heading="Ingressi",
+            help_text='Tämä teksti tulee sivun ylälaitaan ja siihen on tarkoitus kirjoittaa lyhyesti sisällön ydin.',
         ),
         MultiFieldPanel(
             [
@@ -164,8 +164,8 @@ class AccessibilityPage(Page):
                 FieldPanel('content_section_sv'),
                 FieldPanel('content_section_en'),
             ],
-            heading="Content Section",
-            help_text='',
+            heading="Sisältöäalue",
+            help_text='Tämä sisältö tulee ingressin jälkeen.',
         ),
     ]
 
