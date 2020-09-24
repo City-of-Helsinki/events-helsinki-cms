@@ -443,8 +443,8 @@ class Collections(Page):
             [
                 FieldPanel('slug'),
             ],
-            heading="Slug",
-            help_text='',
+            heading="Lyhytnimi",
+            help_text='Lyhytnimi määrittelee sivun nimen esiintymisen URL:eissa esim. http://domain.com/blog/[polkutunnus]/',
         ),
         MultiFieldPanel(
             [
