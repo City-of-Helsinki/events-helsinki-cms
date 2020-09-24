@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-29 14:54+0300\n"
+"POT-Creation-Date: 2020-09-24 12:35+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,9 @@ msgstr ""
 
 #: application/wagtail_messages.py:13
 msgid "The page could not be saved due to validation errors"
-msgstr "Sivua ei voitu tallentaa. Korjausta vaativan kentän yhteydessä on tarkempi kuvaus virhetilasta."
+msgstr ""
+"Sivua ei voitu tallentaa. Korjausta vaativan kentän yhteydessä on tarkempi "
+"kuvaus virhetilasta."
 
 #: application/wagtail_messages.py:14
 msgid "Upload"
@@ -29,3 +31,7 @@ msgstr "Lataa"
 #: application/wagtail_messages.py:15
 msgid "Uploading…"
 msgstr "Lataaminen…"
+
+#: application/wagtail_messages.py:16
+msgid "Set page privacy"
+msgstr "Aseta sivun näkyvyys"

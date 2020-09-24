@@ -13,3 +13,4 @@ To overwrite what Wagtail shows for default translated Finnish texts:
 gettext("The page could not be saved due to validation errors")
 gettext("Upload")
 gettext("Uploading…")
+gettext("Set page privacy")
