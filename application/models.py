@@ -208,13 +208,13 @@ class LandingPages(Page):
     hero_background_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva SV')
     hero_background_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva EN')
 
-    hero_background_image_color_fi = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
-    hero_background_image_color_sv = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
-    hero_background_image_color_en = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True)
+    hero_background_image_color_fi = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True, verbose_name='Pääkuvan taustaväri FI')
+    hero_background_image_color_sv = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True, verbose_name='Pääkuvan taustaväri SV')
+    hero_background_image_color_en = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True, verbose_name='Pääkuvan taustaväri EN')
 
-    hero_background_image_mobile_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_background_image_mobile_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
-    hero_background_image_mobile_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+')
+    hero_background_image_mobile_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva mobiililla FI')
+    hero_background_image_mobile_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva mobiililla SV')
+    hero_background_image_mobile_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva mobiililla EN')
 
     hero_top_layer_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva FI')
     hero_top_layer_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva SV')
@@ -268,8 +268,8 @@ class LandingPages(Page):
                 FieldPanel('hero_background_image_color_sv'),
                 FieldPanel('hero_background_image_color_en'),
             ],
-            heading="Hero Background Image Color",
-            help_text='',
+            heading="Pääkuvan taustaväri",
+            help_text='Pääkuvan taustalle tuleva väri.',
         ),
         MultiFieldPanel(
             [
@@ -277,8 +277,8 @@ class LandingPages(Page):
                 ImageChooserPanel('hero_background_image_mobile_sv'),
                 ImageChooserPanel('hero_background_image_mobile_en'),
             ],
-            heading="Hero Background Image Mobile",
-            help_text='',
+            heading="Pääkuva mobiililla",
+            help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa. Tämä kuva näkyy vain mobiilissa.',
         ),
         MultiFieldPanel(
             [
