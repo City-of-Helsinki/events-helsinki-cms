@@ -199,6 +199,11 @@ class LandingPages(Page):
         ('SUOMENLINNA', 'Suomenlinna'),
     ]
 
+    title_and_description_color_choices = [
+        ('BLACK', 'Black'),
+        ('WHITE', 'White'),
+    ]
+
     hero_background_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva FI')
     hero_background_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva SV')
     hero_background_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.PROTECT, related_name='+', verbose_name='Pääkuva EN')
@@ -226,6 +231,10 @@ class LandingPages(Page):
     description_fi = models.TextField(null=True, blank=True, verbose_name='Selite FI')
     description_sv = models.TextField(null=True, blank=True, verbose_name='Selite SV')
     description_en = models.TextField(null=True, blank=True, verbose_name='Selite EN')
+
+    title_and_description_color_fi = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri FI')
+    title_and_description_color_sv = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri SV')
+    title_and_description_color_en = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri EN')
 
     button_text_fi = models.CharField(max_length=255, null=True, verbose_name='Napin teksti FI')
     button_text_sv = models.CharField(max_length=255, null=True, verbose_name='Napin teksti SV')
@@ -306,6 +315,15 @@ class LandingPages(Page):
             ],
             heading="SELITE",
             help_text='Selite sijoittuu otsikon yläpuolelle. Voit jättää tämän kohdan myös tyhjäksi.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('title_and_description_color_fi'),
+                FieldPanel('title_and_description_color_sv'),
+                FieldPanel('title_and_description_color_en'),
+            ],
+            heading="Tekstin Väri",
+            help_text='',
         ),
         MultiFieldPanel(
             [
