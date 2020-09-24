@@ -19,7 +19,7 @@ from application.wagtail_edit_handlers import CUSTOM_SETTINGS_PANELS
 
 
 class CustomImage(AbstractImage):
-    photographer_credit = models.CharField(max_length=255, null=True, blank=True)
+    photographer_credit = models.CharField(max_length=255, null=True, blank=True, verbose_name='Kuvaajan tiedot')
 
     admin_form_fields = (
         'file',
