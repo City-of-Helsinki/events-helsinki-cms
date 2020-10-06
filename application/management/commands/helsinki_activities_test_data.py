@@ -1,3 +1,4 @@
+import os
 import shutil
 
 from django.conf import settings
@@ -112,6 +113,8 @@ class Command(BaseCommand):
         wagtail_models.Page.objects.get(title='Root').get_children().delete()
         models.CustomImage.objects.all().delete()
         wagtail_models.Site.objects.all().delete()
+
+        os.makedirs('media-files', exist_ok=True)
 
         # Saving images to database
         shutil.copy2('pictures/gerome-bruneau-RPmWEtZLh7U-unsplash.jpg', 'media-files/collection_hero_image.jpg')
