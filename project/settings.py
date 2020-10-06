@@ -7,6 +7,7 @@ import dj_database_url
 ALLOWED_HOSTS = ['*']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_URLCONF = 'project.urls'
+SESSION_COOKIE_AGE = 2 * 60 * 60  # 2 hours, in seconds
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
