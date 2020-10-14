@@ -92,6 +92,18 @@ class AboutPage(Page):
     content_section_sv = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue SV')
     content_section_en = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue EN')
 
+    keywords_fi = StreamField([
+        ('keywords_fi', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords FI')
+
+    keywords_sv = StreamField([
+        ('keywords_sv', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords SV')
+
+    keywords_en = StreamField([
+        ('keywords_en', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords EN')
+
     content_panels = [
         MultiFieldPanel(
             [
@@ -110,6 +122,15 @@ class AboutPage(Page):
             ],
             heading="Sisältöäalue",
             help_text='Tämä sisältö tulee ingressin jälkeen.',
+        ),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('keywords_fi'),
+                StreamFieldPanel('keywords_sv'),
+                StreamFieldPanel('keywords_en'),
+            ],
+            heading="Keywords",
+            help_text='',
         ),
     ]
 
@@ -148,6 +169,18 @@ class AccessibilityPage(Page):
     content_section_sv = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue SV')
     content_section_en = RichTextField(features=limited_rich_text_field_features, verbose_name='Sisältöäalue EN')
 
+    keywords_fi = StreamField([
+        ('keywords_fi', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords FI')
+
+    keywords_sv = StreamField([
+        ('keywords_sv', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords SV')
+
+    keywords_en = StreamField([
+        ('keywords_en', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords EN')
+
     content_panels = [
         MultiFieldPanel(
             [
@@ -166,6 +199,15 @@ class AccessibilityPage(Page):
             ],
             heading="Sisältöäalue",
             help_text='Tämä sisältö tulee ingressin jälkeen.',
+        ),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('keywords_fi'),
+                StreamFieldPanel('keywords_sv'),
+                StreamFieldPanel('keywords_en'),
+            ],
+            heading="Keywords",
+            help_text='',
         ),
     ]
 
@@ -251,6 +293,18 @@ class LandingPages(Page):
     page_title_fi = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi FI')
     page_title_sv = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi SV')
     page_title_en = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi EN')
+
+    keywords_fi = StreamField([
+        ('keywords_fi', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords FI')
+
+    keywords_sv = StreamField([
+        ('keywords_sv', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords SV')
+
+    keywords_en = StreamField([
+        ('keywords_en', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords EN')
 
     content_panels = [
         MultiFieldPanel(
@@ -361,6 +415,15 @@ class LandingPages(Page):
             heading="SIVUN OTSIKOINTI",
             help_text='',
         ),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('keywords_fi'),
+                StreamFieldPanel('keywords_sv'),
+                StreamFieldPanel('keywords_en'),
+            ],
+            heading="Keywords",
+            help_text='',
+        ),
     ]
 
     def get_context(self, request):
@@ -437,6 +500,18 @@ class Collections(Page):
     event_list_query_fi = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite FI')
     event_list_query_sv = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite SV')
     event_list_query_en = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite EN')
+
+    keywords_fi = StreamField([
+        ('keywords_fi', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords FI')
+
+    keywords_sv = StreamField([
+        ('keywords_sv', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords SV')
+
+    keywords_en = StreamField([
+        ('keywords_en', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords EN')
 
     content_panels = [
         MultiFieldPanel(
@@ -545,6 +620,15 @@ class Collections(Page):
             ],
             heading="KUVAUS SOSIAALISEEN MEDIAAN",
             help_text='Tämä teksti näkyy, kun käyttäjä jakaa kokoelman sosiaalisessa mediassa. Max. 160 merkkiä pitkä teksti, joka houkuttelee avaamaan linkin.',
+        ),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('keywords_fi'),
+                StreamFieldPanel('keywords_sv'),
+                StreamFieldPanel('keywords_en'),
+            ],
+            heading="Keywords",
+            help_text='',
         ),
     ]
 
