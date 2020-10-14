@@ -13,13 +13,44 @@ def image_serializer(image_field):
         return None
 
 
+def keywords_stream_field_serializer(keywords_field):
+    clean_data = [field.get('value') for field in keywords_field.stream_data]
+    return clean_data
+
+
 class AboutPageSerializer(serializers.ModelSerializer):
+    keywords_fi = serializers.SerializerMethodField()
+    keywords_sv = serializers.SerializerMethodField()
+    keywords_en = serializers.SerializerMethodField()
+
+    def get_keywords_fi(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_fi)
+
+    def get_keywords_sv(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_sv)
+
+    def get_keywords_en(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_en)
+
     class Meta:
         fields = '__all__'
         model = models.AboutPage
 
 
 class AccessibilityPageSerializer(serializers.ModelSerializer):
+    keywords_fi = serializers.SerializerMethodField()
+    keywords_sv = serializers.SerializerMethodField()
+    keywords_en = serializers.SerializerMethodField()
+
+    def get_keywords_fi(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_fi)
+
+    def get_keywords_sv(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_sv)
+
+    def get_keywords_en(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_en)
+
     class Meta:
         fields = '__all__'
         model = models.AccessibilityPage
@@ -28,6 +59,10 @@ class AccessibilityPageSerializer(serializers.ModelSerializer):
 class CollectionsSerializer(serializers.ModelSerializer):
     hero_image = serializers.SerializerMethodField()
     curated_events = serializers.SerializerMethodField()
+
+    keywords_fi = serializers.SerializerMethodField()
+    keywords_sv = serializers.SerializerMethodField()
+    keywords_en = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Collections
@@ -39,6 +74,15 @@ class CollectionsSerializer(serializers.ModelSerializer):
 
     def get_hero_image(self, obj):
         return image_serializer(obj.hero_image)
+
+    def get_keywords_fi(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_fi)
+
+    def get_keywords_sv(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_sv)
+
+    def get_keywords_en(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_en)
 
 
 class LandingPagesSerializer(serializers.ModelSerializer):
@@ -57,6 +101,10 @@ class LandingPagesSerializer(serializers.ModelSerializer):
     social_media_image_fi = serializers.SerializerMethodField()
     social_media_image_sv = serializers.SerializerMethodField()
     social_media_image_en = serializers.SerializerMethodField()
+
+    keywords_fi = serializers.SerializerMethodField()
+    keywords_sv = serializers.SerializerMethodField()
+    keywords_en = serializers.SerializerMethodField()
 
     class Meta:
         model = models.LandingPages
@@ -97,3 +145,12 @@ class LandingPagesSerializer(serializers.ModelSerializer):
 
     def get_social_media_image_en(self, obj):
         return image_serializer(obj.social_media_image_en)
+
+    def get_keywords_fi(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_fi)
+
+    def get_keywords_sv(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_sv)
+
+    def get_keywords_en(self, obj):
+        return keywords_stream_field_serializer(obj.keywords_en)
