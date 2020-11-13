@@ -2,7 +2,9 @@ import os
 import logging.config
 
 import dj_database_url
+from dotenv import load_dotenv
 
+load_dotenv()
 
 ALLOWED_HOSTS = ['*']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
