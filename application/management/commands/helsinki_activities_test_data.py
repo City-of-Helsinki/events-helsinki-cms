@@ -58,6 +58,16 @@ COLLECTION_BASE = {
 }
 
 LANDING_PAGE_BASE = {
+    "meta_information_en": "We put together the best foliage for the fall",
+    "meta_information_fi": "Kokosimme parhaat tärpit syksylle",
+    "meta_information_sv": "Vi sätter ihop det bästa bladverket för hösten",
+
+    "page_title_en": "We put together the best foliage for the fall",
+    "page_title_fi": "Kokosimme parhaat tärpit syksylle",
+    "page_title_sv": "Vi sätter ihop det bästa bladverket för hösten",
+}
+
+BANNER_PAGE_BASE = {
     "title_fi": "Syksyn riehakkaimmat riennot",
     "title_sv": "Höstens mest livliga knep",
     "title_en": "Very cool English title",
@@ -73,16 +83,7 @@ LANDING_PAGE_BASE = {
     "button_url_en": "http://www.google.com",
     "button_url_fi": "http://www.google.com",
     "button_url_sv": "http://www.google.com",
-
-    "meta_information_en": "We put together the best foliage for the fall",
-    "meta_information_fi": "Kokosimme parhaat tärpit syksylle",
-    "meta_information_sv": "Vi sätter ihop det bästa bladverket för hösten",
-
-    "page_title_en": "We put together the best foliage for the fall",
-    "page_title_fi": "Kokosimme parhaat tärpit syksylle",
-    "page_title_sv": "Vi sätter ihop det bästa bladverket för hösten",
 }
-
 
 ABOUT_PAGE_BASE = {
     "heading_section_fi": "Heading Section in FI",
@@ -93,7 +94,6 @@ ABOUT_PAGE_BASE = {
     "content_section_sv": "Content Section in SV",
     "content_section_en": "Content Section in EN",
 }
-
 
 ACCESSIBILITY_PAGE_BASE = {
     "heading_section_fi": "Heading Section in FI",
@@ -114,6 +114,7 @@ class Command(BaseCommand):
             raise CommandError('This command can be run only in DEBUG mode')
 
         # Delete all pages and images
+
         wagtail_models.Page.objects.get(title='Root').get_children().delete()
         models.CustomImage.objects.all().delete()
         wagtail_models.Site.objects.all().delete()
@@ -130,7 +131,8 @@ class Command(BaseCommand):
         hero_background_image.save()
 
         shutil.copy2('pictures/ravi-sharma-xxGyLaY4v14-unsplash.jpg', 'media-files/landing_page_hero_background_image_mobile.jpg')
-        hero_background_image_mobile = models.CustomImage(title='Landing Page Hero Background Image Mobile', file='landing_page_hero_background_image_mobile.jpg', photographer_credit='ravi-sharma')
+        hero_background_image_mobile = models.CustomImage(title='Landing Page Hero Background Image Mobile', file='landing_page_hero_background_image_mobile.jpg',
+                                                          photographer_credit='ravi-sharma')
         hero_background_image_mobile.save()
 
         shutil.copy2('pictures/joanna-kosinska-1_CMoFsPfso-unsplash.jpg', 'media-files/landing_page_hero_top_layer_image.jpg')
@@ -148,6 +150,16 @@ class Command(BaseCommand):
         collections_folder = helsinki_activities.add_child(instance=models.CollectionsFolder(title='Collections'))
         landing_pages_folder = helsinki_activities.add_child(instance=models.LandingPagesFolder(title='Landing Pages'))
         static_pages_folder = helsinki_activities.add_child(instance=models.StaticPagesFolder(title='Static Pages'))
+        banner_pages_folder = helsinki_activities.add_child(instance=models.StaticPagesFolder(title='Banner Pages'))
+
+        top_banner = banner_pages_folder.add_child(instance=models.BannerPages(title="Summer banner top", **dict(BANNER_PAGE_BASE, hero_background_image_fi=hero_background_image,
+                                                                                               hero_background_image_mobile_fi=hero_background_image_mobile,
+                                                                                               hero_top_layer_image_fi=hero_top_layer_image,
+                                                                                               social_media_image_fi=social_media_image)))
+        bottom_banner = banner_pages_folder.add_child(instance=models.BannerPages(title="Summer banner bottom", **dict(BANNER_PAGE_BASE, hero_background_image_fi=hero_background_image,
+                                                                                                            hero_background_image_mobile_fi=hero_background_image_mobile,
+                                                                                                            hero_top_layer_image_fi=hero_top_layer_image,
+                                                                                                            social_media_image_fi=social_media_image)))
 
         collections_folder.add_child(instance=models.Collections(
             title='Kool Kids of Kallio', **dict(COLLECTION_BASE, hero_image=collection_hero_image)))
@@ -159,7 +171,7 @@ class Command(BaseCommand):
             title='Kool Kids of Kurvi', **COLLECTION_BASE))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
-            title='Summer is here!', **dict(LANDING_PAGE_BASE, hero_background_image_fi=hero_background_image, hero_background_image_mobile_fi=hero_background_image_mobile, hero_top_layer_image_fi=hero_top_layer_image, social_media_image_fi=social_media_image)))
+            title='Summer is here!', **dict(LANDING_PAGE_BASE, top_banner=top_banner, bottom_banner=bottom_banner)))
 
         landing_pages_folder.add_child(instance=models.LandingPages(
             title='Fall is here!', **LANDING_PAGE_BASE))

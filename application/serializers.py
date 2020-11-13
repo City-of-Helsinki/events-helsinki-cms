@@ -85,7 +85,7 @@ class CollectionsSerializer(serializers.ModelSerializer):
         return keywords_stream_field_serializer(obj.keywords_en)
 
 
-class LandingPagesSerializer(serializers.ModelSerializer):
+class BannerPagesSerializer(serializers.ModelSerializer):
     hero_background_image_fi = serializers.SerializerMethodField()
     hero_background_image_sv = serializers.SerializerMethodField()
     hero_background_image_en = serializers.SerializerMethodField()
@@ -101,14 +101,6 @@ class LandingPagesSerializer(serializers.ModelSerializer):
     social_media_image_fi = serializers.SerializerMethodField()
     social_media_image_sv = serializers.SerializerMethodField()
     social_media_image_en = serializers.SerializerMethodField()
-
-    keywords_fi = serializers.SerializerMethodField()
-    keywords_sv = serializers.SerializerMethodField()
-    keywords_en = serializers.SerializerMethodField()
-
-    class Meta:
-        model = models.LandingPages
-        exclude = ['title']
 
     def get_hero_background_image_fi(self, obj):
         return image_serializer(obj.hero_background_image_fi)
@@ -145,6 +137,29 @@ class LandingPagesSerializer(serializers.ModelSerializer):
 
     def get_social_media_image_en(self, obj):
         return image_serializer(obj.social_media_image_en)
+
+    class Meta:
+        model = models.BannerPages
+        fields = ["hero_background_image_fi", "hero_background_image_sv", "hero_background_image_en",
+                  "hero_background_image_mobile_fi", "hero_background_image_mobile_en", "hero_background_image_mobile_sv",
+                  "hero_top_layer_image_fi", "hero_top_layer_image_sv", "hero_top_layer_image_en",
+                  "social_media_image_fi", "social_media_image_en", "social_media_image_sv",
+                  "button_text_fi", "button_text_en", "button_text_sv",
+                  "button_url_fi", "button_url_sv", "button_url_en",
+                  "title_fi", "title_sv", "title_en",
+                  "description_fi", "description_en", "description_sv"]
+
+
+class LandingPagesSerializer(serializers.ModelSerializer):
+    top_banner = BannerPagesSerializer()
+    bottom_banner = BannerPagesSerializer()
+    keywords_fi = serializers.SerializerMethodField()
+    keywords_sv = serializers.SerializerMethodField()
+    keywords_en = serializers.SerializerMethodField()
+
+    class Meta:
+        model = models.LandingPages
+        exclude = ['title']
 
     def get_keywords_fi(self, obj):
         return keywords_stream_field_serializer(obj.keywords_fi)

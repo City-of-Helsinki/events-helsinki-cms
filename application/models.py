@@ -12,7 +12,7 @@ from wagtail.admin.edit_handlers import (
     ObjectList,
     StreamFieldPanel,
     TabbedInterface,
-)
+    PageChooserPanel)
 
 from application.wagtail_edit_handlers import CustomImageChooserPanel as ImageChooserPanel
 from application.wagtail_edit_handlers import CUSTOM_SETTINGS_PANELS
@@ -65,6 +65,16 @@ class LandingPagesFolder(Page):
 
     class Meta:
         verbose_name = 'Landing Pages Folder'
+
+
+class BannerPagesFolder(Page):
+    parent_page_types = ['application.HelsinkiActivities']
+    subpage_typed = ['application.BannerPages']
+    preview_modes = []
+    max_count = 1
+
+    class Meta:
+        verbose_name = 'Banner Pages Folder'
 
 
 class StaticPagesFolder(Page):
@@ -231,7 +241,7 @@ class AccessibilityPage(Page):
         verbose_name = 'Accessibility Page'
 
 
-class LandingPages(Page):
+class BannerPages(Page):
     parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
 
@@ -263,6 +273,14 @@ class LandingPages(Page):
     hero_top_layer_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva SV')
     hero_top_layer_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva EN')
 
+    button_text_fi = models.CharField(max_length=255, null=True, verbose_name='Napin teksti FI')
+    button_text_sv = models.CharField(max_length=255, null=True, verbose_name='Napin teksti SV')
+    button_text_en = models.CharField(max_length=255, null=True, verbose_name='Napin teksti EN')
+
+    button_url_fi = models.URLField(max_length=500, null=True, verbose_name='Linkki suomenkieliselle sivulle')
+    button_url_sv = models.URLField(max_length=500, null=True, verbose_name='Linkki ruotsinkieliselle sivulle')
+    button_url_en = models.URLField(max_length=500, null=True, verbose_name='Linkki englanninkieliselle sivulle')
+
     social_media_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Some-postauksen kuva FI')
     social_media_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Some-postauksen kuva SV')
     social_media_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Some-postauksen kuva EN')
@@ -275,39 +293,14 @@ class LandingPages(Page):
     description_sv = models.TextField(null=True, blank=True, verbose_name='Selite SV')
     description_en = models.TextField(null=True, blank=True, verbose_name='Selite EN')
 
-    title_and_description_color_fi = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri FI')
-    title_and_description_color_sv = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri SV')
-    title_and_description_color_en = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri EN')
-
-    button_text_fi = models.CharField(max_length=255, null=True, verbose_name='Napin teksti FI')
-    button_text_sv = models.CharField(max_length=255, null=True, verbose_name='Napin teksti SV')
-    button_text_en = models.CharField(max_length=255, null=True, verbose_name='Napin teksti EN')
-
-    button_url_fi = models.URLField(max_length=500, null=True, verbose_name='Linkki suomenkieliselle sivulle')
-    button_url_sv = models.URLField(max_length=500, null=True, verbose_name='Linkki ruotsinkieliselle sivulle')
-    button_url_en = models.URLField(max_length=500, null=True, verbose_name='Linkki englanninkieliselle sivulle')
-
-    meta_information_fi = models.TextField(null=True, verbose_name='Meta tieto FI')
-    meta_information_sv = models.TextField(null=True, verbose_name='Meta tieto SV')
-    meta_information_en = models.TextField(null=True, verbose_name='Meta tieto EN')
-
-    page_title_fi = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi FI')
-    page_title_sv = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi SV')
-    page_title_en = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi EN')
-
-    keywords_fi = StreamField([
-        ('keywords_fi', blocks.CharBlock()),
-    ], null=True, blank=True, verbose_name='keywords FI')
-
-    keywords_sv = StreamField([
-        ('keywords_sv', blocks.CharBlock()),
-    ], null=True, blank=True, verbose_name='keywords SV')
-
-    keywords_en = StreamField([
-        ('keywords_en', blocks.CharBlock()),
-    ], null=True, blank=True, verbose_name='keywords EN')
-
     content_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('title'),
+            ],
+            heading="Banner name",
+            help_text='Otsikon maksimimerkkimäärä on noin 60 merkkiä sanojen pituudesta riippuen. Tarkistatathan esikatselusta, että sisältö on kooltaan sopiva.',
+        ),
         MultiFieldPanel(
             [
                 ImageChooserPanel('hero_background_image_fi'),
@@ -346,6 +339,23 @@ class LandingPages(Page):
         ),
         MultiFieldPanel(
             [
+                FieldPanel('button_text_fi'),
+                FieldPanel('button_text_sv'),
+                FieldPanel('button_text_en'),
+            ],
+            heading="NAPPI",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('button_url_fi'),
+                FieldPanel('button_url_sv'),
+                FieldPanel('button_url_en'),
+            ],
+            heading="NAPIN LINKKI",
+            help_text='',
+        ), MultiFieldPanel(
+            [
                 ImageChooserPanel('social_media_image_fi'),
                 ImageChooserPanel('social_media_image_sv'),
                 ImageChooserPanel('social_media_image_en'),
@@ -371,6 +381,57 @@ class LandingPages(Page):
             heading="SELITE",
             help_text='Selite sijoittuu otsikon yläpuolelle. Voit jättää tämän kohdan myös tyhjäksi.',
         ),
+    ]
+
+    class Meta:
+        verbose_name = 'Banner'
+
+
+class LandingPages(Page):
+    parent_page_types = ['application.LandingPagesFolder']
+    subpage_typed = []
+
+    title_and_description_color_choices = [
+        ('BLACK', 'Black'),
+        ('WHITE', 'White'),
+    ]
+
+    top_banner = models.ForeignKey(BannerPages, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name="top banner")
+    bottom_banner = models.ForeignKey(BannerPages, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name="top banner")
+
+    title_and_description_color_fi = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri FI')
+    title_and_description_color_sv = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri SV')
+    title_and_description_color_en = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri EN')
+
+    meta_information_fi = models.TextField(null=True, verbose_name='Meta tieto FI')
+    meta_information_sv = models.TextField(null=True, verbose_name='Meta tieto SV')
+    meta_information_en = models.TextField(null=True, verbose_name='Meta tieto EN')
+
+    page_title_fi = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi FI')
+    page_title_sv = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi SV')
+    page_title_en = models.CharField(max_length=255, null=True, verbose_name='Sivun otsikointi EN')
+
+    keywords_fi = StreamField([
+        ('keywords_fi', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords FI')
+
+    keywords_sv = StreamField([
+        ('keywords_sv', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords SV')
+
+    keywords_en = StreamField([
+        ('keywords_en', blocks.CharBlock()),
+    ], null=True, blank=True, verbose_name='keywords EN')
+
+    content_panels = [
+        MultiFieldPanel(
+            [
+                PageChooserPanel('top_banner'),
+                PageChooserPanel('bottom_banner')
+            ],
+            heading="Banner selection",
+            help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa.',
+        ),
         MultiFieldPanel(
             [
                 FieldPanel('title_and_description_color_fi'),
@@ -378,24 +439,6 @@ class LandingPages(Page):
                 FieldPanel('title_and_description_color_en'),
             ],
             heading="Tekstin Väri",
-            help_text='',
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('button_text_fi'),
-                FieldPanel('button_text_sv'),
-                FieldPanel('button_text_en'),
-            ],
-            heading="NAPPI",
-            help_text='',
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('button_url_fi'),
-                FieldPanel('button_url_sv'),
-                FieldPanel('button_url_en'),
-            ],
-            heading="NAPIN LINKKI",
             help_text='',
         ),
         MultiFieldPanel(
@@ -439,7 +482,7 @@ class LandingPages(Page):
         The extremely hacky trick below makes Wagtail explorer look like its default language is Finnish.
         Taken from: https://stackoverflow.com/a/48632873/5208999
         '''
-        self.title = self.title_fi or 'Etusivu ilman suomenkielistä otsikkoa'
+        self.title = (self.top_banner and self.top_banner.title_fi) or 'Etusivu ilman suomenkielistä otsikkoa'
         self.slug = str(uuid4())
         super().clean()
 
