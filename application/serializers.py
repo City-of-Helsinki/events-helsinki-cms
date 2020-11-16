@@ -140,14 +140,16 @@ class BannerPagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.BannerPages
-        fields = ["hero_background_image_fi", "hero_background_image_sv", "hero_background_image_en",
-                  "hero_background_image_mobile_fi", "hero_background_image_mobile_en", "hero_background_image_mobile_sv",
-                  "hero_top_layer_image_fi", "hero_top_layer_image_sv", "hero_top_layer_image_en",
-                  "social_media_image_fi", "social_media_image_en", "social_media_image_sv",
-                  "button_text_fi", "button_text_en", "button_text_sv",
-                  "button_url_fi", "button_url_sv", "button_url_en",
-                  "title_fi", "title_sv", "title_en",
-                  "description_fi", "description_en", "description_sv"]
+        fields = [
+            "hero_background_image_fi", "hero_background_image_sv", "hero_background_image_en",
+            "hero_background_image_mobile_fi", "hero_background_image_mobile_en", "hero_background_image_mobile_sv",
+            "hero_top_layer_image_fi", "hero_top_layer_image_sv", "hero_top_layer_image_en",
+            "social_media_image_fi", "social_media_image_en", "social_media_image_sv",
+            "button_text_fi", "button_text_en", "button_text_sv",
+            "button_url_fi", "button_url_sv", "button_url_en",
+            "title_fi", "title_sv", "title_en",
+            "description_fi", "description_en", "description_sv"
+        ]
 
 
 class LandingPagesSerializer(serializers.ModelSerializer):
