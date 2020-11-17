@@ -24,6 +24,7 @@ class CustomImage(AbstractImage):
     admin_form_fields = (
         'file',
         'photographer_credit',
+        'title',
     )
 
 
