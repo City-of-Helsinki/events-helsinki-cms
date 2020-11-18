@@ -14,3 +14,4 @@ requests==2.22.0                                # sending http requests
 uwsgi==2.0.19.1                                 # application server
 wagtail==2.10.1                                 # CMS itself
 whitenoise==5.0.1                               # enabling Django to serve its own static files
+magic-wormhole==0.12.0                          # Send/receive file securely from remote machine
