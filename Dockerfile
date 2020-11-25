@@ -20,6 +20,7 @@ ENTRYPOINT ["/tini", "--", "/app/docker-entrypoint.sh"]
 
 COPY --chown=appuser:appuser requirements.txt /app/
 RUN apt-install.sh build-essential \
+    postgresql-client \
     && pip --no-cache-dir install -r /app/requirements.txt \
     && apt-cleanup.sh build-essential
 
