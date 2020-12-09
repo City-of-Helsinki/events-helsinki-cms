@@ -487,6 +487,94 @@ class LandingPages(Page):
             ],
             heading="Banner selection",
             help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa.',
+        ),MultiFieldPanel(
+            [
+                ImageChooserPanel('hero_background_image_fi'),
+                ImageChooserPanel('hero_background_image_sv'),
+                ImageChooserPanel('hero_background_image_en'),
+            ],
+            heading="Pääkuva",
+            help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('hero_background_image_color_fi'),
+                FieldPanel('hero_background_image_color_sv'),
+                FieldPanel('hero_background_image_color_en'),
+            ],
+            heading="Pääkuvan taustaväri",
+            help_text='Pääkuvan taustalle tuleva väri.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('title_and_description_color_fi'),
+                FieldPanel('title_and_description_color_sv'),
+                FieldPanel('title_and_description_color_en'),
+            ],
+            heading="Tekstin Väri",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('hero_background_image_mobile_fi'),
+                ImageChooserPanel('hero_background_image_mobile_sv'),
+                ImageChooserPanel('hero_background_image_mobile_en'),
+            ],
+            heading="Pääkuva mobiililla",
+            help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa. Tämä kuva näkyy vain mobiilissa.',
+        ),
+        MultiFieldPanel(
+            [
+                ImageChooserPanel('hero_top_layer_image_fi'),
+                ImageChooserPanel('hero_top_layer_image_sv'),
+                ImageChooserPanel('hero_top_layer_image_en'),
+            ],
+            heading="Pääkuvan päälle asettuva kuva",
+            help_text='Kuva asettuu pääkuvan päälle. Tämä kuva ei näy mobiilissa. Ainoastaan taustakuva näkyy pienemmillä näytöillä.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('button_text_fi'),
+                FieldPanel('button_text_sv'),
+                FieldPanel('button_text_en'),
+            ],
+            heading="NAPPI",
+            help_text='',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('button_url_fi'),
+                FieldPanel('button_url_sv'),
+                FieldPanel('button_url_en'),
+            ],
+            heading="NAPIN LINKKI",
+            help_text='',
+        ), MultiFieldPanel(
+            [
+                ImageChooserPanel('social_media_image_fi'),
+                ImageChooserPanel('social_media_image_sv'),
+                ImageChooserPanel('social_media_image_en'),
+            ],
+            heading="Some-postauksen kuva",
+            help_text='Kun käyttäjä jakaa etusivun somessa, tämä kuva tulee näkyviin postauksessa.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('title_fi'),
+                FieldPanel('title_sv'),
+                FieldPanel('title_en'),
+            ],
+            heading="OTSIKKO",
+            help_text='Otsikon maksimimerkkimäärä on noin 60 merkkiä sanojen pituudesta riippuen. Tarkistatathan esikatselusta, että sisältö on kooltaan sopiva.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('description_fi'),
+                FieldPanel('description_sv'),
+                FieldPanel('description_en'),
+            ],
+            heading="SELITE",
+            help_text='Selite sijoittuu otsikon yläpuolelle. Voit jättää tämän kohdan myös tyhjäksi.',
         ),
         MultiFieldPanel(
             [

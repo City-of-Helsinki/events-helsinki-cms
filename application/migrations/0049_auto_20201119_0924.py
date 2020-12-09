@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('wagtailcore', '0052_pagelogentry'),
-        ('application', '0047_auto_20201102_1655'),
+        ('application', '0048_auto_20201120_1237'),
     ]
 
     operations = [
