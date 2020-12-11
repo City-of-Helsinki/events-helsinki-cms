@@ -1,0 +1,50 @@
+name: Build & Production
+on:
+  push:
+    tags:
+      - 'release-*'
+
+env:
+  CONTAINER_REGISTRY: ghcr.io
+  CONTAINER_REGISTRY_USER: ${{ secrets.GHCR_CONTAINER_REGISTRY_USER }}
+  CONTAINER_REGISTRY_PASSWORD: ${{ secrets.GHCR_TOKEN }}
+  CONTAINER_REGISTRY_REPO: ghcr.io/city-of-helsinki/${{ github.event.repository.name }}
+  REPO_NAME: ${{ github.event.repository.name }}
+  KUBECONFIG_RAW: ${{ secrets.KUBECONFIG_RAW_STABLE }}
+  BUILD_ARTIFACT_FOLDER: 'build_artifacts'
+  SERVICE_ARTIFACT_FOLDER: 'service_artifacts'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        uses: andersinno/kolga-build-action@v2
+
+
+  production:
+    runs-on: ubuntu-latest
+    name: Production
+    steps:
+      - uses: actions/checkout@v2
+      - uses: andersinno/kolga-setup-action@v2
+
+      - name: Deploy
+        uses: andersinno/kolga-deploy-action@v2
+        with:
+          track: 'stable'
+        env:
+          K8S_NAMESPACE: ${{ secrets.K8S_NAMESPACE_STABLE }}
+          ENVIRONMENT_URL: https://${{ secrets.ENVIRONMENT_URL_STABLE }}
+          K8S_SECRET_DEBUG: "false"
+          K8S_SECRET_DJANGO_SECRET_KEY: ${{ secrets.GH_PRODUCTION_DJANGO_SECRET_KEY }}
+          K8S_SECRET_SUPERUSER_PASSWORD: ${{ secrets.GH_PRODUCTION_SUPERUSER_PASSWORD }}
+          K8S_SECRET_FRONTEND_BASE_URL: "https://tapahtumat.prod.kuva.hel.ninja"
+          K8S_SECRET_DEFAULT_FILE_STORAGE: "storages.backends.azure_storage.AzureStorage"
+          K8S_SECRET_AZURE_BUCKET_NAME: ${{ secrets.STABLE_AZURE_BUCKET_NAME }}
+          K8S_SECRET_AZURE_BUCKET_CREDENTIALS: ${{ secrets.STABLE_AZURE_BUCKET_CREDENTIALS }}
+          K8S_SECRET_AZURE_BUCKET_ACCOUNT_NAME: ${{ secrets.STABLE_AZURE_BUCKET_ACCOUNT_NAME }}
+          K8S_SECRET_RESTORE_DB_DUMP: ${{ secrets.GH_RESTORE_DB_DUMP }}
+          K8S_SECRET_RESTORE_DB_DUMP_MWH_CODE: ${{ secrets.GH_RESTORE_DB_DUMP_MWH_CODE }}
