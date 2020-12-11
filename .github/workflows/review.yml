@@ -1,0 +1,64 @@
+name: Build & Review
+on: [pull_request]
+
+env:
+  CONTAINER_REGISTRY: ghcr.io
+  CONTAINER_REGISTRY_USER: ${{ secrets.GHCR_CONTAINER_REGISTRY_USER }}
+  CONTAINER_REGISTRY_PASSWORD: ${{ secrets.GHCR_TOKEN }}
+  CONTAINER_REGISTRY_REPO: ghcr.io/city-of-helsinki/${{ github.event.repository.name }}
+  REPO_NAME: ${{ github.event.repository.name }}
+  KUBECONFIG_RAW: ${{ secrets.KUBECONFIG_RAW }}
+  BUILD_ARTIFACT_FOLDER: 'build_artifacts'
+  SERVICE_ARTIFACT_FOLDER: 'service_artifacts'
+  BASE_DOMAIN: ${{ secrets.BASE_DOMAIN_STAGING }}
+  DATABASE_USER: user
+  DATABASE_PASSWORD: testing-password
+  APP_MIGRATE_COMMAND: /app/.prod/on_deploy.sh
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        uses: andersinno/kolga-build-action@v2
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    name: test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          pytest
+        env:
+          TESTING: "true"
+
+  review:
+    runs-on: ubuntu-latest
+    needs: test
+    name: Review
+    steps:
+      - uses: actions/checkout@v2
+      - uses: andersinno/kolga-setup-action@v2
+
+      - name: Review-Services
+        uses: andersinno/kolga-deploy-service-action@v2
+        with:
+          projects: EVENTS_HELSINKI_CMS
+        env:
+          POSTGRES_IMAGE: "docker.io/andersinnovations/postgis:11-bitnami"
+
+      - name: Deploy
+        uses: andersinno/kolga-deploy-action@v2
+        env:
+          ENVIRONMENT_URL: https://${{ env.K8S_NAMESPACE }}.${{ env.BASE_DOMAIN }}
+          K8S_SECRET_DEBUG: "true"
+          K8S_SECRET_DJANGO_SECRET_KEY: "NotImportantHere"
+          K8S_SECRET_SUPERUSER_PASSWORD: 'coconut'
