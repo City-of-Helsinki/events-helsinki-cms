@@ -59,3 +59,4 @@ jobs:
           ENVIRONMENT_URL: https://${{ env.K8S_NAMESPACE }}.${{ env.BASE_DOMAIN }}
           K8S_SECRET_DEBUG: "true"
           K8S_SECRET_DJANGO_SECRET_KEY: "NotImportantHere"
+          K8S_SECRET_SUPERUSER_PASSWORD: 'coconut'
