@@ -11,6 +11,8 @@ env:
   BUILD_ARTIFACT_FOLDER: 'build_artifacts'
   SERVICE_ARTIFACT_FOLDER: 'service_artifacts'
   BASE_DOMAIN: ${{ secrets.BASE_DOMAIN_STAGING }}
+  DATABASE_USER: user
+  DATABASE_PASSWORD: testing-password
   APP_MIGRATE_COMMAND: /app/.prod/on_deploy.sh
 
 jobs:
