@@ -57,5 +57,5 @@ jobs:
           K8S_SECRET_SUPERUSER_PASSWORD: ${{ secrets.GH_QA_SUPERUSER_PASSWORD }}
           K8S_SECRET_FRONTEND_BASE_URL: "https://tapahtumat.test.kuva.hel.ninja"
           K8S_SECRET_DEFAULT_FILE_STORAGE: "storages.backends.gcloud.GoogleCloudStorage"
-          # STAGING_GCS_BUCKET_CREDENTIALS is already available in the deployment. Do not re-define it.
+          K8S_FILE_SECRET_STAGING_GCS_BUCKET_CREDENTIALS: ${{ secrets.STAGING_GCS_BUCKET_CREDENTIALS }}
           K8S_SECRET_STAGING_GCS_BUCKET_NAME: ${{ secrets.STAGING_GCS_BUCKET_NAME }}
