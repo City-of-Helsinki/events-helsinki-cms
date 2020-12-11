@@ -23,6 +23,17 @@ jobs:
       - name: Build
         uses: andersinno/kolga-build-action@v2
 
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    name: test
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          pip install pytest
+          pytest
+        env:
+          TESTING: "true"
 
   production:
     runs-on: ubuntu-latest
