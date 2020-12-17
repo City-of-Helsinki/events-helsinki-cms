@@ -1,0 +1,70 @@
+name: Build & Staging
+on:
+  push:
+    branches:
+      - master
+
+env:
+  CONTAINER_REGISTRY: ghcr.io
+  CONTAINER_REGISTRY_USER: ${{ secrets.GHCR_CONTAINER_REGISTRY_USER }}
+  CONTAINER_REGISTRY_PASSWORD: ${{ secrets.GHCR_TOKEN }}
+  CONTAINER_REGISTRY_REPO: ghcr.io/city-of-helsinki/${{ github.event.repository.name }}
+  REPO_NAME: ${{ github.event.repository.name }}
+  KUBECONFIG_RAW: ${{ secrets.KUBECONFIG_RAW_STAGING }}
+  BUILD_ARTIFACT_FOLDER: 'build_artifacts'
+  SERVICE_ARTIFACT_FOLDER: 'service_artifacts'
+  APP_MIGRATE_COMMAND: /app/.prod/on_deploy.sh
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        uses: andersinno/kolga-build-action@v2
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    name: test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          pytest
+        env:
+          TESTING: "true"
+
+  staging:
+    runs-on: ubuntu-latest
+    needs: test
+    name: Staging
+    steps:
+      - uses: actions/checkout@v2
+      - uses: andersinno/kolga-setup-action@v2
+
+      - name: Deploy
+        uses: andersinno/kolga-deploy-action@v2
+        with:
+          track: 'staging'
+        env:
+          K8S_NAMESPACE: ${{ secrets.K8S_NAMESPACE_STAGING }}
+          ENVIRONMENT_URL: https://${{ secrets.ENVIRONMENT_URL_STAGING }}
+          K8S_SECRET_DEBUG: "false"
+          K8S_SECRET_DJANGO_SECRET_KEY: ${{ secrets.GH_QA_DJANGO_SECRET_KEY }}
+          K8S_SECRET_SUPERUSER_PASSWORD: ${{ secrets.GH_QA_SUPERUSER_PASSWORD }}
+          K8S_SECRET_FRONTEND_BASE_URL: "https://tapahtumat.test.kuva.hel.ninja"
+          K8S_SECRET_DEFAULT_FILE_STORAGE: "storages.backends.gcloud.GoogleCloudStorage"
+          K8S_FILE_SECRET_STAGING_GCS_BUCKET_CREDENTIALS: ${{ secrets.STAGING_GCS_BUCKET_CREDENTIALS }}
+          K8S_SECRET_STAGING_GCS_BUCKET_NAME: ${{ secrets.STAGING_GCS_BUCKET_NAME }}
+          K8S_SECRET_DATABASE_HOST: ${{ secrets.K8S_SECRET_DATABASE_HOST_STAGING }}
+          K8S_SECRET_DATABASE_URL: ${{ secrets.K8S_SECRET_DATABASE_URL_STAGING }}
+          K8S_SECRET_DATABASE_PORT: ${{ secrets.K8S_SECRET_DATABASE_PORT_STAGING }}
+          K8S_SECRET_DATABASE_DB: ${{ secrets.K8S_SECRET_DATABASE_DB_STAGING }}
+          K8S_SECRET_DATABASE_USERNAME: ${{ secrets.K8S_SECRET_DATABASE_USERNAME_STAGING }}
+          K8S_SECRET_DATABASE_PASSWORD: ${{ secrets.K8S_SECRET_DATABASE_PASSWORD_STAGING }}
