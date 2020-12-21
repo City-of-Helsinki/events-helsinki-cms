@@ -69,6 +69,7 @@ pyopenssl==19.1.0         # via twisted
 pyparsing==2.4.6          # via packaging
 pyrsistent==0.15.7        # via jsonschema
 python-dateutil==2.8.1    # via arrow, azure-storage-common
+python-dotenv==0.15.0     # via -r requirements.in
 pytz==2019.3              # via django, django-modelcluster, google-api-core, l18n
 requests==2.22.0          # via -r requirements.in, azure-storage-common, coreapi, google-api-core, wagtail
 rsa==4.0                  # via google-auth
