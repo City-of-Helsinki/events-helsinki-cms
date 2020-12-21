@@ -8,5 +8,4 @@ if [[ "$RESTORE_DB_DUMP" = "1" ]]; then
     psql "$DATABASE_URL" -f /tmp/pg.sql
 fi
 
-./manage.py create_admin_superuser
 ./manage.py migrate --noinput

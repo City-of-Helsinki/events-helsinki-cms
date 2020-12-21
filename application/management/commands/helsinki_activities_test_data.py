@@ -36,6 +36,10 @@ COLLECTION_BASE = {
     "event_list_query_sv": "http://localhost:3000/sv/events?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
     "event_list_query_en": "http://localhost:3000/en/events?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
 
+    "course_list_query_fi": "http://localhost:3000/fi/courses?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
+    "course_list_query_sv": "http://localhost:3000/sv/courses?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
+    "course_list_query_en": "http://localhost:3000/en/courses?categories=music&districts=kaupunginosa%3Aetu-%B6l%C3%B6",
+
     "event_list_title_en": "All the best events of the fall",
     "event_list_title_fi": "Kaikki syksyn parhaat tapahtumat",
     "event_list_title_sv": "Höstens bästa händelser",

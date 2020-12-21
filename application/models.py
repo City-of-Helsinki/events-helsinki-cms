@@ -502,6 +502,10 @@ class Collections(Page):
     event_list_query_sv = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite SV')
     event_list_query_en = models.URLField(max_length=500, null=True, blank=True, verbose_name='Hakutulossivun www-osoite EN')
 
+    course_list_query_fi = models.URLField(max_length=500, null=True, blank=True, verbose_name='Course List Query FI')
+    course_list_query_sv = models.URLField(max_length=500, null=True, blank=True, verbose_name='Course List Query SV')
+    course_list_query_en = models.URLField(max_length=500, null=True, blank=True, verbose_name='Course List Query EN')
+
     keywords_fi = StreamField([
         ('keywords_fi', blocks.CharBlock()),
     ], null=True, blank=True, verbose_name='keywords FI')
@@ -612,6 +616,15 @@ class Collections(Page):
             ],
             heading="TAPAHTUMALISTAUKSEN HAUN WWW-OSOITE",
             help_text='Tee tapahtumahaku sopivilla hakukriteereillä tapahtumat.helsingissa. Kun hakutuloksessa on haluamasi tapahtumat, kopioi hakutuloksen www-osoite tähän kenttään.',
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('course_list_query_fi'),
+                FieldPanel('course_list_query_sv'),
+                FieldPanel('course_list_query_en'),
+            ],
+            heading="Course List Query",
+            help_text='',
         ),
         MultiFieldPanel(
             [
