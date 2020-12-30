@@ -10,7 +10,7 @@ class CustomImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.CustomImage
-        fields = ["url", "photographer_credit"]
+        fields = ["url", "photographer_credit", "title"]
 
 
 def keywords_stream_field_serializer(keywords_field):
