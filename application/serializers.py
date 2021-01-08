@@ -173,22 +173,6 @@ class LandingPagesSerializer(serializers.ModelSerializer):
     keywords_sv = serializers.SerializerMethodField()
     keywords_en = serializers.SerializerMethodField()
 
-    hero_background_image_fi = CustomImageSerializer()
-    hero_background_image_sv = CustomImageSerializer()
-    hero_background_image_en = CustomImageSerializer()
-
-    hero_background_image_mobile_fi = CustomImageSerializer()
-    hero_background_image_mobile_sv = CustomImageSerializer()
-    hero_background_image_mobile_en = CustomImageSerializer()
-
-    hero_top_layer_image_fi = CustomImageSerializer()
-    hero_top_layer_image_sv = CustomImageSerializer()
-    hero_top_layer_image_en = CustomImageSerializer()
-
-    social_media_image_fi = CustomImageSerializer()
-    social_media_image_sv = CustomImageSerializer()
-    social_media_image_en = CustomImageSerializer()
-
     class Meta:
         model = models.LandingPages
         exclude = ['title']

@@ -65,18 +65,6 @@ LANDING_PAGE_BASE = {
     "page_title_en": "We put together the best foliage for the fall",
     "page_title_fi": "Kokosimme parhaat tärpit syksylle",
     "page_title_sv": "Vi sätter ihop det bästa bladverket för hösten",
-
-    "title_fi": "Syksyn riehakkaimmat riennot",
-    "title_sv": "Höstens mest livliga knep",
-    "title_en": "Very cool English title",
-
-    "button_text_en": "Read more on the project website",
-    "button_text_fi": "Lue lisää hankkeen omilta sivuilta",
-    "button_text_sv": "Läs mer på projektets webbplats",
-
-    "button_url_en": "http://www.google.com",
-    "button_url_fi": "http://www.google.com",
-    "button_url_sv": "http://www.google.com",
 }
 
 BANNER_PAGE_BASE = {

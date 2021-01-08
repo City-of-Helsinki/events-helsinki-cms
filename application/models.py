@@ -409,55 +409,8 @@ class LandingPages(Page):
     parent_page_types = ['application.LandingPagesFolder']
     subpage_typed = []
 
-    title_and_description_color_choices = [
-        ('BLACK', 'Black'),
-        ('WHITE', 'White'),
-    ]
-
-    hero_background_image_color_choices = [('FOG', 'Sumu'), ('ENGEL', 'Engel'), ('COPPER', 'Kupari'), ('SUOMENLINNA', 'Suomenlinna'), ]
-
     top_banner = models.ForeignKey(BannerPages, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name="Top banner")
     bottom_banner = models.ForeignKey(BannerPages, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name="Bottom banner")
-
-    hero_background_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuva FI')
-    hero_background_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuva SV')
-    hero_background_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuva EN')
-
-    hero_background_image_color_fi = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True, verbose_name='Pääkuvan taustaväri FI')
-    hero_background_image_color_sv = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True, verbose_name='Pääkuvan taustaväri SV')
-    hero_background_image_color_en = models.CharField(max_length=255, choices=hero_background_image_color_choices, null=True, blank=True, verbose_name='Pääkuvan taustaväri EN')
-
-    hero_background_image_mobile_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuva mobiililla FI')
-    hero_background_image_mobile_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuva mobiililla SV')
-    hero_background_image_mobile_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuva mobiililla EN')
-
-    hero_top_layer_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva FI')
-    hero_top_layer_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva SV')
-    hero_top_layer_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Pääkuvan päälle asettuva kuva EN')
-
-    button_text_fi = models.CharField(max_length=255, null=True, verbose_name='Napin teksti FI')
-    button_text_sv = models.CharField(max_length=255, null=True, verbose_name='Napin teksti SV')
-    button_text_en = models.CharField(max_length=255, null=True, verbose_name='Napin teksti EN')
-
-    button_url_fi = models.URLField(max_length=500, null=True, verbose_name='Linkki suomenkieliselle sivulle')
-    button_url_sv = models.URLField(max_length=500, null=True, verbose_name='Linkki ruotsinkieliselle sivulle')
-    button_url_en = models.URLField(max_length=500, null=True, verbose_name='Linkki englanninkieliselle sivulle')
-
-    social_media_image_fi = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Some-postauksen kuva FI')
-    social_media_image_sv = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Some-postauksen kuva SV')
-    social_media_image_en = models.ForeignKey(settings.WAGTAILIMAGES_IMAGE_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name='+', verbose_name='Some-postauksen kuva EN')
-
-    title_fi = models.CharField(max_length=255, null=True, verbose_name='Otsikko FI')
-    title_sv = models.CharField(max_length=255, null=True, verbose_name='Otsikko SV')
-    title_en = models.CharField(max_length=255, null=True, verbose_name='Otsikko EN')
-
-    description_fi = models.TextField(null=True, blank=True, verbose_name='Selite FI')
-    description_sv = models.TextField(null=True, blank=True, verbose_name='Selite SV')
-    description_en = models.TextField(null=True, blank=True, verbose_name='Selite EN')
-
-    title_and_description_color_fi = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri FI')
-    title_and_description_color_sv = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri SV')
-    title_and_description_color_en = models.CharField(max_length=255, choices=title_and_description_color_choices, null=True, blank=True, verbose_name='Tekstin väri EN')
 
     meta_information_fi = models.TextField(null=True, verbose_name='Meta tieto FI')
     meta_information_sv = models.TextField(null=True, verbose_name='Meta tieto SV')
@@ -487,94 +440,6 @@ class LandingPages(Page):
             ],
             heading="Banner selection",
             help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa.',
-        ),MultiFieldPanel(
-            [
-                ImageChooserPanel('hero_background_image_fi'),
-                ImageChooserPanel('hero_background_image_sv'),
-                ImageChooserPanel('hero_background_image_en'),
-            ],
-            heading="Pääkuva",
-            help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa.',
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('hero_background_image_color_fi'),
-                FieldPanel('hero_background_image_color_sv'),
-                FieldPanel('hero_background_image_color_en'),
-            ],
-            heading="Pääkuvan taustaväri",
-            help_text='Pääkuvan taustalle tuleva väri.',
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('title_and_description_color_fi'),
-                FieldPanel('title_and_description_color_sv'),
-                FieldPanel('title_and_description_color_en'),
-            ],
-            heading="Tekstin Väri",
-            help_text='',
-        ),
-        MultiFieldPanel(
-            [
-                ImageChooserPanel('hero_background_image_mobile_fi'),
-                ImageChooserPanel('hero_background_image_mobile_sv'),
-                ImageChooserPanel('hero_background_image_mobile_en'),
-            ],
-            heading="Pääkuva mobiililla",
-            help_text='Pääkuvalla tarkoitetaan sivuston etusivulla olevaa koko sivun levyistä kuvaa. Tämä kuva näkyy vain mobiilissa.',
-        ),
-        MultiFieldPanel(
-            [
-                ImageChooserPanel('hero_top_layer_image_fi'),
-                ImageChooserPanel('hero_top_layer_image_sv'),
-                ImageChooserPanel('hero_top_layer_image_en'),
-            ],
-            heading="Pääkuvan päälle asettuva kuva",
-            help_text='Kuva asettuu pääkuvan päälle. Tämä kuva ei näy mobiilissa. Ainoastaan taustakuva näkyy pienemmillä näytöillä.',
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('button_text_fi'),
-                FieldPanel('button_text_sv'),
-                FieldPanel('button_text_en'),
-            ],
-            heading="NAPPI",
-            help_text='',
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('button_url_fi'),
-                FieldPanel('button_url_sv'),
-                FieldPanel('button_url_en'),
-            ],
-            heading="NAPIN LINKKI",
-            help_text='',
-        ), MultiFieldPanel(
-            [
-                ImageChooserPanel('social_media_image_fi'),
-                ImageChooserPanel('social_media_image_sv'),
-                ImageChooserPanel('social_media_image_en'),
-            ],
-            heading="Some-postauksen kuva",
-            help_text='Kun käyttäjä jakaa etusivun somessa, tämä kuva tulee näkyviin postauksessa.',
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('title_fi'),
-                FieldPanel('title_sv'),
-                FieldPanel('title_en'),
-            ],
-            heading="OTSIKKO",
-            help_text='Otsikon maksimimerkkimäärä on noin 60 merkkiä sanojen pituudesta riippuen. Tarkistatathan esikatselusta, että sisältö on kooltaan sopiva.',
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel('description_fi'),
-                FieldPanel('description_sv'),
-                FieldPanel('description_en'),
-            ],
-            heading="SELITE",
-            help_text='Selite sijoittuu otsikon yläpuolelle. Voit jättää tämän kohdan myös tyhjäksi.',
         ),
         MultiFieldPanel(
             [
