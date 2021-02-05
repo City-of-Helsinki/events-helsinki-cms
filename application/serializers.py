@@ -86,6 +86,8 @@ class CollectionsSerializer(serializers.ModelSerializer):
 class BannerPagesSerializer(serializers.ModelSerializer):
     hero_background_image = serializers.SerializerMethodField()
 
+    hero_background_image_color = serializers.SerializerMethodField()
+
     hero_background_image_mobile = serializers.SerializerMethodField()
 
     hero_top_layer_image = serializers.SerializerMethodField()
@@ -103,6 +105,7 @@ class BannerPagesSerializer(serializers.ModelSerializer):
         fields = ["hero_background_image",
                   "hero_background_image_mobile",
                   "hero_top_layer_image",
+                  "hero_background_image_color",
                   "social_media_image",
                   "button_text", "button_url", "title",
                   "description", "title_and_description_color"]
@@ -126,6 +129,12 @@ class BannerPagesSerializer(serializers.ModelSerializer):
         for lang, _ in settings.LANGUAGES:
             ret[lang] = CustomImageSerializer(
                 getattr(obj, f"hero_top_layer_image_{lang}")).data
+        return ret
+
+    def get_hero_background_image_color(self, obj):
+        ret = {}
+        for lang, _ in settings.LANGUAGES:
+            ret[lang] = getattr(obj, f"hero_background_image_color_{lang}")
         return ret
 
     def get_social_media_image(self, obj):
