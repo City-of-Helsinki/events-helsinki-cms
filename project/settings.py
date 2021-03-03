@@ -131,6 +131,10 @@ USE_L10N = True
 USE_TZ = True
 LANGUAGES = (("fi", _("Finnish")), ("en", _("English")), ("sv", _("Swedish")))
 
+
+WAGTAIL_USER_TIME_ZONES = ['Europe/Helsinki']
+
+
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
