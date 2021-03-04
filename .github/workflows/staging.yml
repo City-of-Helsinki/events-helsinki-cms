@@ -75,14 +75,14 @@ jobs:
           K8S_SECRET_DATABASE_PASSWORD: ${{ secrets.K8S_SECRET_DATABASE_PASSWORD_STAGING }}
 
       - name: Deploy Publish Scheduled Pages Cronjob
-          uses: City-of-Helsinki/setup-cronjob-action@main
-          with:
-            image_repository: ghcr.io/city-of-helsinki/${{ github.event.repository.name }}
-            image_tag:  ${{ github.sha }}
-            secret_name: "project-staging-events-helsinki-cms-secret"
-            name: "publish-scheduled-pages"
-            kubeconfig_raw: ${{ secrets.KUBECONFIG_RAW_STAGING}}
-            target_namespace: ${{ secrets.K8S_NAMESPACE_STAGING }}
-            schedule: '* * * * *' # once per 1 minute
-            command: "{/app/manage.py}"
-            args: "{publish_scheduled_pages}"
+        uses: City-of-Helsinki/setup-cronjob-action@main
+        with:
+          image_repository: ghcr.io/city-of-helsinki/${{ github.event.repository.name }}
+          image_tag:  ${{ github.sha }}
+          secret_name: "project-staging-events-helsinki-cms-secret"
+          name: "publish-scheduled-pages"
+          kubeconfig_raw: ${{ secrets.KUBECONFIG_RAW_STAGING}}
+          target_namespace: ${{ secrets.K8S_NAMESPACE_STAGING }}
+          schedule: '* * * * *' # once per 1 minute
+          command: "{/app/manage.py}"
+          args: "{publish_scheduled_pages}"
