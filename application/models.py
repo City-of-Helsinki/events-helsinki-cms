@@ -246,7 +246,6 @@ class BannerPages(Page):
     subpage_typed = []
 
     hero_background_image_color_choices = [
-        ('FOG', 'Sumu'),
         ('ENGEL', 'Engel'),
         ('COPPER', 'Kupari'),
         ('SUOMENLINNA', 'Suomenlinna'),
@@ -499,7 +498,6 @@ class Collections(Page):
     parent_page_types = ['application.CollectionsFolder']
     subpage_typed = []
     color_choices = [
-        ('FOG', 'Sumu – vaaleansininen'),
         ('ENGEL', 'Engel – keltainen'),
         ('COPPER', 'Kupari – vihreä'),
         ('SUOMENLINNA', 'Suomenlinna – vaaleanpunainen'),
