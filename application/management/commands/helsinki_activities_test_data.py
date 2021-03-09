@@ -123,24 +123,24 @@ class Command(BaseCommand):
 
         # Saving images to database
         shutil.copy2('pictures/gerome-bruneau-RPmWEtZLh7U-unsplash.jpg', 'media-files/collection_hero_image.jpg')
-        collection_hero_image = models.CustomImage(title='Collection Hero Image', file='collection_hero_image.jpg', photographer_credit='gerome-bruneau')
+        collection_hero_image = models.CustomImage(title='Collection Hero Image', file='collection_hero_image.jpg', photographer_credit_fi='gerome-bruneau')
         collection_hero_image.save()
 
         shutil.copy2('pictures/davisco-5E5N49RWtbA-unsplash.jpg', 'media-files/landing_page_hero_background_image.jpg')
-        hero_background_image = models.CustomImage(title='Landing Page Hero Background Image', file='landing_page_hero_background_image.jpg', photographer_credit='davisco')
+        hero_background_image = models.CustomImage(title='Landing Page Hero Background Image', file='landing_page_hero_background_image.jpg', photographer_credit_fi='davisco')
         hero_background_image.save()
 
         shutil.copy2('pictures/ravi-sharma-xxGyLaY4v14-unsplash.jpg', 'media-files/landing_page_hero_background_image_mobile.jpg')
         hero_background_image_mobile = models.CustomImage(title='Landing Page Hero Background Image Mobile', file='landing_page_hero_background_image_mobile.jpg',
-                                                          photographer_credit='ravi-sharma')
+                                                          photographer_credit_fi='ravi-sharma')
         hero_background_image_mobile.save()
 
         shutil.copy2('pictures/joanna-kosinska-1_CMoFsPfso-unsplash.jpg', 'media-files/landing_page_hero_top_layer_image.jpg')
-        hero_top_layer_image = models.CustomImage(title='Landing Page Hero Top Layer Image', file='landing_page_hero_top_layer_image.jpg', photographer_credit='joanna-kosinska')
+        hero_top_layer_image = models.CustomImage(title='Landing Page Hero Top Layer Image', file='landing_page_hero_top_layer_image.jpg', photographer_credit_fi='joanna-kosinska')
         hero_top_layer_image.save()
 
         shutil.copy2('pictures/merakist-CNbRsQj8mHQ-unsplash.jpg', 'media-files/landing_page_social_media_image.jpg')
-        social_media_image = models.CustomImage(title='Landing Page Social Media Image', file='landing_page_social_media_image.jpg', photographer_credit='merakist')
+        social_media_image = models.CustomImage(title='Landing Page Social Media Image', file='landing_page_social_media_image.jpg', photographer_credit_fi='merakist')
         social_media_image.save()
 
         root_page = wagtail_models.Page.objects.get(title='Root')
