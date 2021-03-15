@@ -19,11 +19,18 @@ from application.wagtail_edit_handlers import CUSTOM_SETTINGS_PANELS
 
 
 class CustomImage(AbstractImage):
-    photographer_credit = models.CharField(max_length=255, null=True, blank=True, verbose_name='Kuvaajan tiedot')
+    photographer_credit_fi = models.CharField(max_length=255, null=True, blank=True, verbose_name='Kuvaajan tiedot')
+    photographer_credit_sv = models.CharField(max_length=255, null=True, blank=True,
+                                              verbose_name='Fotografkredit')
+    photographer_credit_en = models.CharField(max_length=255, null=True, blank=True,
+                                              verbose_name='Photographer credit')
+
 
     admin_form_fields = (
         'file',
-        'photographer_credit',
+        'photographer_credit_fi',
+        'photographer_credit_sv',
+        'photographer_credit_en',
         'title',
     )
 

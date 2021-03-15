@@ -7,6 +7,14 @@ from project import settings
 
 class CustomImageSerializer(serializers.ModelSerializer):
     url = serializers.CharField(source="file.url")
+    photographer_credit = serializers.SerializerMethodField()
+
+    def get_photographer_credit(self, obj):
+        ret = {}
+        for lang, _ in settings.LANGUAGES:
+            # Return finnish translation if en or sv is empty
+            ret[lang] = getattr(obj, f"photographer_credit_{lang}") or obj.photographer_credit_fi
+        return ret
 
     class Meta:
         model = models.CustomImage
@@ -102,12 +110,9 @@ class BannerPagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.BannerPages
-        fields = ["hero_background_image",
-                  "hero_background_image_mobile",
-                  "hero_top_layer_image",
-                  "hero_background_image_color",
-                  "social_media_image",
-                  "button_text", "button_url", "title",
+        fields = ["hero_background_image", "hero_background_image_mobile",
+                  "hero_top_layer_image", "hero_background_image_color",
+                  "social_media_image", "button_text", "button_url", "title",
                   "description", "title_and_description_color"]
 
     def get_hero_background_image(self, obj):
