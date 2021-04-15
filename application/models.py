@@ -811,13 +811,13 @@ class Collections(Page):
     )
 
     description_fi = models.TextField(
-        max_length=400, null=True, blank=True, verbose_name="Kuvaus FI"
+        max_length=700, null=True, blank=True, verbose_name="Kuvaus FI"
     )
     description_sv = models.TextField(
-        max_length=400, null=True, blank=True, verbose_name="Kuvaus SV"
+        max_length=700, null=True, blank=True, verbose_name="Kuvaus SV"
     )
     description_en = models.TextField(
-        max_length=400, null=True, blank=True, verbose_name="Kuvaus EN"
+        max_length=700, null=True, blank=True, verbose_name="Kuvaus EN"
     )
 
     link_text_fi = models.CharField(
