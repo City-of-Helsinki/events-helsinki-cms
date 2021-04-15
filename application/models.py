@@ -1012,7 +1012,7 @@ class Collections(Page):
                 FieldPanel("description_en"),
             ],
             heading="KOKOELMAN KUVAUS",
-            help_text="Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja houkuttelee käyttäjiä tutustumaan suosituksiin. Kuvauksen maksimimerkkimäärä on 400 merkkiä.",
+            help_text="Pääotsikon alle tuleva teksti, joka kertoo lisää kokoelmasta ja houkuttelee käyttäjiä tutustumaan suosituksiin. Kuvauksen maksimimerkkimäärä on 700 merkkiä.",
         ),
         MultiFieldPanel(
             [
