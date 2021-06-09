@@ -1036,7 +1036,7 @@ class Collections(Page):
                 StreamFieldPanel("curated_events"),
             ],
             heading="SUOSITELTAVAT TAPAHTUMAT",
-            help_text="Lisää tähän ne tapahtumat, joita haluat suositella käyttäjälle. Tapahtumat näkyvät siinä järjestyksessä, jossa syötät ne. Voit helposti lisätä uusia tapahtumia, poistaa niitä ja muuttaa järjestystä. Mene haluamasi tapahtuman sivulle, kopioi sen www-osoite ja liitä osoite alla olevaan kenttään.",
+            help_text="Lisää tähän ne tapahtumat, joita haluat suositella käyttäjälle. Mene haluamasi tapahtuman sivulle, kopioi sen www-osoite ja liitä osoite alla olevaan kenttään. Tähän lisäämäsi tapahtumat näkyvät tapahtumat.hel.fi-sivuston kokoelmassa automaattisesti aikajärjestyksessä, vaikka et syöttäisi niitä aikajärjestyksessä.",
         ),
         MultiFieldPanel(
             [
