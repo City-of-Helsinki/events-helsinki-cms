@@ -1,7 +1,7 @@
 ### Tapahtumat.Helsinki CMS
 [![Pipeline status](https://gitlab.com/City-of-Helsinki/KuVa/github-mirrors/events-helsinki-cms/badges/master/pipeline.svg)](https://gitlab.com/City-of-Helsinki/KuVa/github-mirrors/events-helsinki-cms/-/pipelines)
 
-Tapahtumat.Helsinki is a website in which Helsinki residents can find all happenings.
+Tapahtumat.Helsinki is a website in which Helsinki residents can find all that's happening.
 
 Technical instructions in this README.md are written with an experienced Python developer in mind.
 For example, "docker-compose up" means you already know what docker and docker-compose are and you have both installed locally and you don't need help with that.
